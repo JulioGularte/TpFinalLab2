@@ -8,9 +8,9 @@ typedef struct _Ingresos
     int DNI;
     int MatriculaPersonalSolicitante;
     int Eliminado;
-    _Ingresos * siguiente;
-    _Ingresos * anterior;
-    _PracticasXIngresos * practicasIngreso;
+    struct _Ingresos * siguiente;
+    struct _Ingresos * anterior;
+    struct _PracticasXIngresos * practicasIngreso;
 }Ingresos;
 
 
