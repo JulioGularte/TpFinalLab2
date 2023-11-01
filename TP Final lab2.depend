@@ -7,18 +7,22 @@
 	<stdio.h>
 	<stdlib.h>
 
-1698865384 source:c:\tpfinallab2\nodoingreso.c
+1698866301 source:c:\tpfinallab2\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	<stdio.h>
 
-1698865300 c:\tpfinallab2\nodoingreso.h
+1698865744 c:\tpfinallab2\nodoingreso.h
 	"Ingreso.h"
 
-1698864824 c:\tpfinallab2\ingreso.h
+1698865744 c:\tpfinallab2\ingreso.h
 
-1698865440 c:\tpfinallab2\nodoarbolpaciente.h
+1698865744 c:\tpfinallab2\nodoarbolpaciente.h
 	"Pacientes.h"
 
-1698864574 c:\tpfinallab2\pacientes.h
+1698865744 c:\tpfinallab2\pacientes.h
+
+1698866309 source:c:\tpfinallab2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
 
