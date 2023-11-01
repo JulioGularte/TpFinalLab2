@@ -1,15 +1,14 @@
-#ifndef PACIENTES_H_INCLUDED
-#define PACIENTES_H_INCLUDED
-typedef struct _Pacientes
+#ifndef Paciente_H_INCLUDED
+#define Paciente_H_INCLUDED
+typedef struct
 {
+    int nroIngreso;
     char NyA [40];
     int edad;
     int DNI;
     char direccion[30];
     char telefono[15];
     int eliminado;
-    _Pacientes *sig;
-}Pacientes;
+}Paciente;
 
-
-#endif // PACIENTES_H_INCLUDED
+#endif // Paciente_H_INCLUDED
