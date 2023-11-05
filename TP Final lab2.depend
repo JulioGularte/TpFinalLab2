@@ -3,3 +3,18 @@
 	<stdio.h>
 	<stdlib.h>
 
+1699213626 source:g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"EmpleadosLaboratorio.h"
+
+1699215822 source:g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EmpleadosLaboratorio.h"
+
+1699204024 g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\login.h
+
+1699215822 g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\empleadoslaboratorio.h
+
