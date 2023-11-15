@@ -45,3 +45,61 @@
 
 1700021743 c:\tpfinallab2\gotoxy.h
 
+1700088189 source:c:\users\nacho\documents\tp final lab 2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700087345 source:c:\users\nacho\documents\tp final lab 2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1700088189 source:c:\users\nacho\documents\tp final lab 2\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700088189 c:\users\nacho\documents\tp final lab 2\menu.h
+
+1700088189 c:\users\nacho\documents\tp final lab 2\gotoxy.h
+
+1700001111 source:c:\users\nacho\documents\tp final lab 2\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	"NodoPxI.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700089101 c:\users\nacho\documents\tp final lab 2\nodoingreso.h
+	"Ingreso.h"
+
+1700087345 c:\users\nacho\documents\tp final lab 2\ingreso.h
+
+1700089033 c:\users\nacho\documents\tp final lab 2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700087345 c:\users\nacho\documents\tp final lab 2\pacientes.h
+
+1700087345 source:c:\users\nacho\documents\tp final lab 2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700001155 source:c:\users\nacho\documents\tp final lab 2\nodopxi.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	"NodoPxI.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700003195 c:\users\nacho\documents\tp final lab 2\nodopxi.h
+	"PracticasXIngreso.h"
+
+1699910973 c:\users\nacho\documents\tp final lab 2\practicasxingreso.h
+

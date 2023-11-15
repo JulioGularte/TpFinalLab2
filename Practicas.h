@@ -5,7 +5,7 @@ typedef struct
     int nroPractica;
     char NombrePractica [30];
     int eliminado;
-}
+} practicas;
 
 
 #endif // PRACTICAS_H_INCLUDED
