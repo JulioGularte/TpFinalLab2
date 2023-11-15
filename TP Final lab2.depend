@@ -26,3 +26,22 @@
 	"NodoArbolPaciente.h"
 	<stdio.h>
 
+1700021743 source:c:\tpfinallab2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700082875 source:c:\tpfinallab2\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700082844 c:\tpfinallab2\menu.h
+
+1700021743 c:\tpfinallab2\gotoxy.h
+
