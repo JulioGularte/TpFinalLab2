@@ -42,14 +42,21 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="NodoPractica.h" />
+
 		<Unit filename="NodoPxI.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="NodoPxI.h" />
+
 		<Unit filename="Pacientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Pacientes.h" />
+    
+		<Unit filename="Practicas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+
 		<Unit filename="Practicas.h" />
 		<Unit filename="PracticasXIngreso.h" />
 		<Unit filename="gotoxy.c">
