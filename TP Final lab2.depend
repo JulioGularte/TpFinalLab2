@@ -115,20 +115,20 @@
 
 1700165638 c:\tpfinallab2\empleadoslaboratorio.h
 
-1700165638 source:c:\tpfinallab2\nodopractica.c
+1700170720 source:c:\tpfinallab2\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 
-1700165638 c:\tpfinallab2\nodopractica.h
+1700170729 c:\tpfinallab2\nodopractica.h
 	"Practicas.h"
 
-1700165859 c:\tpfinallab2\practicas.h
+1700168550 c:\tpfinallab2\practicas.h
 
-1700156034 source:c:\tpfinallab2\practicas.c
+1700168550 source:c:\tpfinallab2\practicas.c
 	"Practicas.h"
-	"stdio.h"
+	<stdio.h>
 
 1700165638 source:c:\tpfinallab2\nodopxi.c
 	"nodoPxi.h"
