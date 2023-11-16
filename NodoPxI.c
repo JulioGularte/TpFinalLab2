@@ -56,7 +56,7 @@ NodoPxI * buscarNodoPxI(NodoPxI * listaPxI, PracticasXIngreso datoPxI)
     return nodoBuscado;     ///retorno el nodo buscado
 }
 
-NodoPxI * eliminarNodoPxI(NodoPxI * listaPxI, PracticasXIngreso datoPxI)
+NodoPxI * eliminarNodoPxI(NodoPxI * listaPxI, PracticasXIngreso datoPxI) ///lo elimina completamente, ya que no tiene un int eliminado para cambiar
 {
     NodoPxI * nodoAEliminar=buscarNodoPxI(listaPxI,datoPxI); ///cargo el nodo a eliminar en una variable
     NodoPxI * ante=nodoAEliminar->anterior;

@@ -59,35 +59,10 @@ NodoIngresos * buscarNodoIngreso(NodoIngresos * listaIng, Ingreso datoIngreso)
 
 NodoIngresos * eliminarNodoIng(NodoIngresos * listaIng, Ingreso datoIngreso)
 {
-    NodoIngresos * nodoAEliminar=buscarNodoIngreso(listaIng,datoIngreso); ///cargo el nodo a eliminar en una variable
-    NodoIngresos * ante=nodoAEliminar->anterior;
-    NodoIngresos * seg=nodoAEliminar->siguiente;
-
+    NodoIngresos * nodoIngAEliminar=buscarNodoIngreso(listaIng,datoIngreso); ///cargo el nodo a eliminar en una variable
     if (nodoAEliminar!=NULL) ///si hay algo para eliminar, ingreso a la condicion
     {
-        if (ante==NULL) ///caso en que el nodo a eliminar es el primero de la lista
-        {
-            listaIng=listaIng->siguiente;
-            listaIng->anterior=NULL;
-            free(nodoAEliminar);
-        }
-        else        ///es un nodo del medio o el ultimo
-        {
-            if(seg==NULL) ///caso en que sea el ultimo nodo
-            {
-                ante->siguiente=NULL;
-                free(nodoAEliminar);
-
-            }
-            else    ///caso que sea un nodo intermedio
-            {
-
-                ante->siguiente=seg;
-                seg->anterior=ante;
-                free(nodoAEliminar);
-            }
-        }
-
+       nodoIngAEliminar->ingreso.Eliminado=1;
     }
 return listaIng; ///retorno la lista sin el nodo borrado (o igual si es que no se encontro el dato buscado)
 
