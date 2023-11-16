@@ -21,7 +21,9 @@
 1698865744 c:\tpfinallab2\nodoarbolpaciente.h
 	"Pacientes.h"
 
+
 1700157083 c:\tpfinallab2\pacientes.h
+
 
 1698866309 source:c:\tpfinallab2\pacientes.c
 	"NodoArbolPaciente.h"
@@ -42,7 +44,10 @@
 	<windows.h>
 	"gotoxy.h"
 
+
 1700157083 c:\tpfinallab2\menu.h
+
+1700156414 c:\tpfinallab2\menu.h
 
 1700021743 c:\tpfinallab2\gotoxy.h
 
@@ -108,10 +113,12 @@
 1700112202 d:\tp final lab 2\practicas.h
 
 1700156526 source:c:\tpfinallab2\login.c
+
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"EmpleadosLaboratorio.h"
+
 
 1700156526 c:\tpfinallab2\empleadoslaboratorio.h
 
@@ -120,6 +127,7 @@
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
+
 
 1700164881 c:\tpfinallab2\nodopractica.h
 	"Practicas.h"
@@ -139,4 +147,3 @@
 	"PracticasXIngreso.h"
 
 1700164756 c:\tpfinallab2\practicasxingreso.h
-
