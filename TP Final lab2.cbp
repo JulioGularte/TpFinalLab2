@@ -44,6 +44,9 @@
 		<Unit filename="Pacientes.h" />
 		<Unit filename="Practicas.h" />
 		<Unit filename="PracticasXIngreso.h" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="gotoxy.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -57,6 +60,9 @@
 		<Unit filename="menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
