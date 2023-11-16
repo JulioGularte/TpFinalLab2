@@ -3,18 +3,46 @@
 	<stdio.h>
 	<stdlib.h>
 
-1699213626 source:g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\main.c
+
+1698861324 source:c:\tpfinallab2\main.c
 	<stdio.h>
 	<stdlib.h>
-	"EmpleadosLaboratorio.h"
 
-1699215822 source:g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\login.c
+1698866301 source:c:\tpfinallab2\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1698865744 c:\tpfinallab2\nodoingreso.h
+	"Ingreso.h"
+
+1698865744 c:\tpfinallab2\ingreso.h
+
+1698865744 c:\tpfinallab2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1698865744 c:\tpfinallab2\pacientes.h
+
+1698866309 source:c:\tpfinallab2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700021743 source:c:\tpfinallab2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700082875 source:c:\tpfinallab2\menu.c
+	"menu.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	"EmpleadosLaboratorio.h"
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
 
-1699204024 g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\login.h
+1700082844 c:\tpfinallab2\menu.h
 
-1699215822 g:\mi unidad\facu\prog y lab 2\tp final\tpfinallab2\empleadoslaboratorio.h
+1700021743 c:\tpfinallab2\gotoxy.h
 

@@ -32,16 +32,32 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EmpleadosLaboratorio.h" />
-		<Unit filename="Ingresos.h" />
+		<Unit filename="Ingreso.h" />
+		<Unit filename="NodoArbolPaciente.h" />
+		<Unit filename="NodoIngreso.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NodoIngreso.h" />
+		<Unit filename="Pacientes.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Pacientes.h" />
 		<Unit filename="Practicas.h" />
 		<Unit filename="PracticasXIngreso.h" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="gotoxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gotoxy.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 			<code_completion />
