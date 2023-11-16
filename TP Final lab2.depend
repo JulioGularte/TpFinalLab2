@@ -21,7 +21,7 @@
 1698865744 c:\tpfinallab2\nodoarbolpaciente.h
 	"Pacientes.h"
 
-1698865744 c:\tpfinallab2\pacientes.h
+1700156002 c:\tpfinallab2\pacientes.h
 
 1698866309 source:c:\tpfinallab2\pacientes.c
 	"NodoArbolPaciente.h"
@@ -32,7 +32,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700082875 source:c:\tpfinallab2\menu.c
+1700151675 source:c:\tpfinallab2\menu.c
 	"menu.h"
 	<stdio.h>
 	<stdlib.h>
@@ -42,7 +42,90 @@
 	<windows.h>
 	"gotoxy.h"
 
-1700082844 c:\tpfinallab2\menu.h
+1700156414 c:\tpfinallab2\menu.h
 
 1700021743 c:\tpfinallab2\gotoxy.h
 
+1700104080 source:d:\tp final lab 2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1700110723 source:d:\tp final lab 2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700110723 source:d:\tp final lab 2\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EmpleadosLaboratorio.h"
+
+1700110723 d:\tp final lab 2\empleadoslaboratorio.h
+
+1700110723 source:d:\tp final lab 2\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700110723 d:\tp final lab 2\menu.h
+
+1700110723 d:\tp final lab 2\gotoxy.h
+
+1700110723 source:d:\tp final lab 2\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700110723 d:\tp final lab 2\nodoingreso.h
+	"Ingreso.h"
+
+1700110723 d:\tp final lab 2\ingreso.h
+
+1700110723 d:\tp final lab 2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700110723 d:\tp final lab 2\pacientes.h
+
+1700110723 source:d:\tp final lab 2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700112833 source:d:\tp final lab 2\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1700112880 d:\tp final lab 2\nodopractica.h
+	"Practicas.h"
+
+1700112202 d:\tp final lab 2\practicas.h
+
+1700151677 source:c:\tpfinallab2\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EmpleadosLaboratorio.h"
+
+1700151677 c:\tpfinallab2\empleadoslaboratorio.h
+
+1700156002 source:c:\tpfinallab2\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1700156002 c:\tpfinallab2\nodopractica.h
+	"Practicas.h"
+
+1700156002 c:\tpfinallab2\practicas.h
+
+1700156034 source:c:\tpfinallab2\practicas.c
+	"Practicas.h"
+	"stdio.h"
