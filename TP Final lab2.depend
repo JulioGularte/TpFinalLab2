@@ -21,7 +21,6 @@
 1698865744 c:\tpfinallab2\nodoarbolpaciente.h
 	"Pacientes.h"
 
-
 1700157083 c:\tpfinallab2\pacientes.h
 
 
@@ -43,6 +42,7 @@
 	<time.h>
 	<windows.h>
 	"gotoxy.h"
+
 
 
 1700157083 c:\tpfinallab2\menu.h
@@ -112,6 +112,7 @@
 
 1700112202 d:\tp final lab 2\practicas.h
 
+
 1700156526 source:c:\tpfinallab2\login.c
 
 	<stdio.h>
@@ -127,7 +128,6 @@
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
-
 
 1700164881 c:\tpfinallab2\nodopractica.h
 	"Practicas.h"
