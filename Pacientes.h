@@ -10,5 +10,4 @@ typedef struct
     char telefono[15];
     int eliminado;
 }Paciente;
-
 #endif // Paciente_H_INCLUDED
