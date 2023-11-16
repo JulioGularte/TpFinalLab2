@@ -32,7 +32,14 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EmpleadosLaboratorio.h" />
+		<Unit filename="Ingresos.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Ingresos.h" />
+		<Unit filename="NodoDoblePxI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NodoDoblePxI.h" />
 		<Unit filename="Pacientes.h" />
 		<Unit filename="Practicas.h" />
 		<Unit filename="PracticasXIngreso.h" />

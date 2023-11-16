@@ -3,3 +3,23 @@
 	<stdio.h>
 	<stdlib.h>
 
+1700104080 source:d:\tp final lab 2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1700107640 source:d:\tp final lab 2\ingresos.c
+	"ingresos.h"
+	<stdio.h>
+
+1700104102 d:\tp final lab 2\ingresos.h
+
+1700110112 source:d:\tp final lab 2\nododoblepxi.c
+	"NodoDoblePxI.h"
+	<stdio.h>
+	<stdlib.h>
+
+1700110209 d:\tp final lab 2\nododoblepxi.h
+	"PracticasXIngreso.h"
+
+1700107640 d:\tp final lab 2\practicasxingreso.h
+
