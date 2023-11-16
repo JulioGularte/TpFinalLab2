@@ -8,7 +8,7 @@ typedef struct _NodoPractica
 }NodoPractica;
 NodoPractica * inicListaPractica ();
 NodoPractica * crearNodoPractica (Practica practica);
-NodoPractica * agregarPrincipio (NodoPractica *lista, NodoPractica *nuevoNodo);
-void agregarPracticaArchivo (NodoPractica * lista, Practica practica);
-int existePracticaEnArchivo(char nombrePractica []);
+NodoPractica * agregarPrincipioPractica (NodoPractica *lista, NodoPractica *nuevoNodo);
+NodoPractica * agregarPracticaArchivo (NodoPractica * lista, Practica practica);
+int existeNombrePracticaEnArchivo(char nombrePractica []);
 #endif // NODOPRACTICA_H_INCLUDED

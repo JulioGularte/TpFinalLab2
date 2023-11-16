@@ -15,7 +15,7 @@ NodoPractica * crearNodoPractica (Practica practica)
     return nuevo;
 }
 
-NodoPractica * agregarPrincipio (NodoPractica *lista, NodoPractica *nuevoNodo)
+NodoPractica * agregarPrincipioPractica (NodoPractica *lista, NodoPractica *nuevoNodo)
 {
     if (lista==NULL)
     {
@@ -29,15 +29,16 @@ NodoPractica * agregarPrincipio (NodoPractica *lista, NodoPractica *nuevoNodo)
     return lista;
 }
 
-void agregarPracticaArchivo (NodoPractica * lista, Practica practica)
+NodoPractica * agregarPracticaArchivo (NodoPractica * lista, Practica practica)
 {
     FILE * buff=fopen("archivoPractica", "ab");
     if (buff)
     {
-        int flag=existePracticaEnArchivo(practica.NombrePractica);
+        int flag=existeNombrePracticaEnArchivo(practica.NombrePractica);
         if (flag==0)
         {
             fwrite(&practica, sizeof(practica), 1, buff);
+            lista=agregarPrincipioPractica(lista, crearNodoPractica(practica));
         }
         else
         {
@@ -48,9 +49,10 @@ void agregarPracticaArchivo (NodoPractica * lista, Practica practica)
     {
         printf ("Error al abrir el archivo de practicas \n");
     }
+    return lista;
 }
 
-int existePracticaEnArchivo(char nombrePractica [])
+int existeNombrePracticaEnArchivo(char nombrePractica [])
 {
     FILE * buff=fopen("archivoPractica", "ab");
     int flag=0;
@@ -70,4 +72,32 @@ int existePracticaEnArchivo(char nombrePractica [])
         printf ("Error al abrir el archivo de practicas \n");
     }
     return flag;
+}
+
+NodoPractica * editarPractica (NodoPractica * lista, Practica practica, char nuevoNombre [])
+{
+    int existePractica=existeNombrePracticaEnArchivo(nuevoNombre);
+    if (existePractica==0)
+    {
+        int flag=0;
+        FILE * buff=fopen("archivoPractica", "r+b");
+        if (buff)
+        {
+            Practica rg;
+            while (fread(&rg, sizeof(Practica),1, buff)> 0 && flag==0)
+            {
+                if (strcmpi(rg.NombrePractica, nuevoNombre)==0)
+                {
+                    flag=1;
+                    fseek(buff, -sizeof(Practica), SEEK_CUR);
+                    strcpy(rg.NombrePractica, nuevoNombre);
+                    fwrite(&rg, sizeof(Practica), 1, buff);
+                }
+            }
+        }
+    }
+    else
+    {
+        printf("Ya existe una practica con ese nombre en el archivo \n");
+    }
 }
