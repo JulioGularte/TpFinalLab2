@@ -28,7 +28,7 @@ NodoPractica * agregarPrincipioPractica (NodoPractica *lista, NodoPractica *nuev
     }
     return lista;
 }
-
+//eliminar, agregar al final de la lista
 NodoPractica * agregarPracticaArchivo (NodoPractica * lista, Practica practica)
 {
     FILE * buff=fopen("archivoPractica", "ab");
@@ -51,7 +51,7 @@ NodoPractica * agregarPracticaArchivo (NodoPractica * lista, Practica practica)
     }
     return lista;
 }
-
+//refactor a buscar en lista
 int existeNombrePracticaEnArchivo(char nombrePractica [])
 {
     FILE * buff=fopen("archivoPractica", "ab");
@@ -76,62 +76,25 @@ int existeNombrePracticaEnArchivo(char nombrePractica [])
 
 void editarPractica (NodoPractica * lista, Practica practica, char nuevoNombre [])
 {
-    int existePractica=existeNombrePracticaEnArchivo(nuevoNombre);
-    if (existePractica==0)
+    if (!lista)
     {
-        int flag=0;
-        FILE * buff=fopen("archivoPractica", "r+b");
-        if (buff)
-        {
-            Practica rg;
-            while (fread(&rg, sizeof(Practica),1, buff)> 0 && flag==0)
-            {
-                if (strcmpi(rg.NombrePractica, nuevoNombre)==0)
-                {
-                    flag=1;
-                    fseek(buff, -sizeof(Practica), SEEK_CUR);
-                    strcpy(rg.NombrePractica, nuevoNombre);
-                    fwrite(&rg, sizeof(Practica), 1, buff);
-                }
-            }
-        }
+        printf ("La lista esta vacia: \n");
     }
     else
     {
-        printf("Ya existe una practica con ese nombre en el archivo \n");
-    }
-}
-
-void eliminarPractica (NodoPractica * lista, Practica practica)
-{
-    int existePractica=existeNombrePracticaEnArchivo(practica.NombrePractica);
-    if (existePractica==1)
-    {
-        int flag=0;
-        FILE * buff=fopen("archivoPractica", "r+b");
-        if (buff)
+        NodoPractica * seg=lista;
+        while (seg && seg->practica.nroPractica!=practica.nroPractica)
         {
-            Practica rg;
-            while (fread(&rg, sizeof(Practica),1, buff)> 0 && flag==0)
-            {
-                if (practica.nroPractica == rg.nroPractica)
-                {
-                    flag=1;
-                    fseek(buff, -sizeof(Practica), SEEK_CUR);
-                    rg.eliminado=1;
-                    fwrite(&rg, sizeof(Practica), 1, buff);
-                    darDeBajaNodoPractica(rg.nroPractica, lista);
-                }
-            }
+            seg=seg->siguiente;
+        }
+        if (seg)
+        {
+            strcpy(seg->practica.NombrePractica, nuevoNombre);
         }
     }
-    else
-    {
-        printf("No existe la practica solcitada \n");
-    }
 }
 
-void darDeBajaNodoPractica (int id, NodoPractica * lista)
+void BajaNodoPractica (int id, NodoPractica * lista)
 {
     NodoPractica * seg=lista;
     while (seg && seg->practica.nroPractica!=id)
