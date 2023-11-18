@@ -60,7 +60,7 @@ NodoIngresos * buscarNodoIngreso(NodoIngresos * listaIng, Ingreso datoIngreso)
 NodoIngresos * eliminarNodoIng(NodoIngresos * listaIng, Ingreso datoIngreso)
 {
     NodoIngresos * nodoIngAEliminar=buscarNodoIngreso(listaIng,datoIngreso); ///cargo el nodo a eliminar en una variable
-    if (nodoAEliminar!=NULL) ///si hay algo para eliminar, ingreso a la condicion
+    if (nodoIngAEliminar!=NULL) ///si hay algo para eliminar, ingreso a la condicion
     {
        nodoIngAEliminar->ingreso.Eliminado=1;
     }

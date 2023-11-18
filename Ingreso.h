@@ -3,13 +3,14 @@
 typedef struct _Ingreso
 {
     int NroIngreso;
-    char FechaIngreso [10];
-    char FechaRetiro [10];
+    char FechaIngreso [25];
+    char FechaRetiro [25];
     int DNI;
     int MatriculaPersonalSolicitante;
     int Eliminado;
 }Ingreso;
 
+Ingreso cargarIngresoManual(int * nroUltimoIngreso);
 
 
 

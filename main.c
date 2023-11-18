@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include "Ingreso.h"
+int main(){
 
-int main()
-{
-    printf("Hello world!\n");
-    return 0;
+    generarNuevoArchivoRegistro();
+    mostrarArchivo("archivoGeneral.bin");
 }
+
