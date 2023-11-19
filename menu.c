@@ -10,6 +10,22 @@
 #define TeclaAbajo 80
 #define Enter 13
 
+#include "NodoPractica.h"
+
+int crearMenuPrincipalPracticasAdministradores()
+{
+    Menu nuevoMenu;
+    nuevoMenu.opcionSeleccionada = 0;
+    nuevoMenu.titulo = "Gestion de Practicas";
+    nuevoMenu.cantidadOpciones = 3;
+    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
+    nuevoMenu.opciones[0] = "Alta de Practica";
+    nuevoMenu.opciones[1] = "Modificacion de Practica";
+    nuevoMenu.opciones[2] = "Baja de practica";
+    nuevoMenu.opciones[3] = "Volver al menu principal";
+    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
+    return nuevoMenu.opcionSeleccionada;
+}
 
 int gestionarMenu(Menu menu)
 {
@@ -24,6 +40,26 @@ int gestionarMenu(Menu menu)
     return menu.opcionSeleccionada;
 }
 
+void gestionarOpcionesMenuPracticasAdministradores (Menu menu, NodoPractica * lista)
+{
+    system("cls");
+    switch(menu.opcionSeleccionada)
+    {
+    case 0:
+        lista=altaDePractica(lista, crearNodoPractica(crearStPractica()));
+        break;
+    case 1:
+        mostrarListaPracticas(lista, 1);
+        int idPractica;
+        scanf("%d",&idPractica);
+        printf ("Ingrese nuevo nombre para la practica: \n");
+        fflush(stdin);
+        char nuevoNombre[30];
+        gets(nuevoNombre);
+        editarPractica(lista, idPractica, nuevoNombre);
+        break;
+    }
+}
 int cambiarOpcionSeleccionada(int teclaPulsada, int cantidadOpciones, int opcionSeleccionada)
 {
     if (teclaPulsada == TeclaAbajo)
