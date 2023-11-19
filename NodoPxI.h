@@ -6,9 +6,9 @@ typedef struct _NodoPxI
     PracticasXIngreso PxI;
     struct _NodoPxI * siguiente;
 }NodoPxI;
-NodoPxI * inicListaPractica ();
-NodoPxI * crearNodoPractica (PracticasXIngreso pxi);
+NodoPxI * inicListaPxI ();
+NodoPxI * crearNodoPxI (PracticasXIngreso pxi);
 NodoPxI * agregarPrincipioPractica (NodoPxI * lista, NodoPxI * nuevoNodo);
-
+int ExisteIngresoActivoEnPractica (NodoPxI * lista, int PracticaId);
 
 #endif // NODOPXI_H_INCLUDED
