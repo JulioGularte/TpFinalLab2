@@ -293,3 +293,80 @@
 	"Practicas.h"
 	<stdio.h>
 
+1700107175 source:c:\users\g\documents\nueva carpeta\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700106557 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700106557 c:\users\g\documents\nueva carpeta\nodoingreso.h
+	"Ingreso.h"
+
+1700106557 c:\users\g\documents\nueva carpeta\ingreso.h
+
+1700106557 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700411593 c:\users\g\documents\nueva carpeta\pacientes.h
+
+1700106557 source:c:\users\g\documents\nueva carpeta\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700422836 source:c:\users\g\documents\nueva carpeta\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"EmpleadosLaboratorio.h"
+
+1700411593 c:\users\g\documents\nueva carpeta\menu.h
+
+1700411593 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
+
+1700411593 source:c:\users\g\documents\nueva carpeta\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1700411593 source:c:\users\g\documents\nueva carpeta\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700107175 c:\users\g\documents\nueva carpeta\gotoxy.h
+
+1700411593 source:c:\users\g\documents\nueva carpeta\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1700411593 c:\users\g\documents\nueva carpeta\nodopractica.h
+	"Practicas.h"
+
+1700411593 c:\users\g\documents\nueva carpeta\practicas.h
+
+1700411593 source:c:\users\g\documents\nueva carpeta\nodopxi.c
+	"nodoPxi.h"
+	<stdio.h>
+	<stdlib.h>
+
+1700411593 c:\users\g\documents\nueva carpeta\nodopxi.h
+	"PracticasXIngreso.h"
+
+1700411593 c:\users\g\documents\nueva carpeta\practicasxingreso.h
+
+1700411593 source:c:\users\g\documents\nueva carpeta\practicas.c
+	"Practicas.h"
+	<stdio.h>
+

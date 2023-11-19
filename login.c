@@ -200,7 +200,6 @@ void mostrar_empleado (empleados_laboratorio aux,int perfil)
     printf("\nNyA: %s",aux.NyA);
     printf("\nDNI: %s",aux.dni);
     printf("\nPerfil: %s",aux.perfil);
-    printf("\nEstado: %i",aux.baja);
     if(aux.baja == 0){printf("\nEstado: baja");}
     else{printf("\nEstado: alta");}
 }
@@ -226,8 +225,8 @@ nodo_lista* pasar_archivo_to_lista(char archivo[]) ///pasa todos los datos a una
     {
         while(fread(&aux,sizeof(empleados_laboratorio),1,arch)>0)
         {
-            lista=agregar_al_final(lista,aux);
-            //lista=agregar_al_final_ordenado_nya(lista,aux);
+            //lista=agregar_al_final(lista,aux);
+            lista=agregar_al_final_ordenado_nya(lista,aux);
         }
         fclose(arch);
     }
@@ -519,6 +518,8 @@ void dar_de_baja_alta_archivo(char archivo[],int perfil) ///solo busca coinciden
         fclose(arch);
     }
 }
+
+
 ///========================================================================================================================menus
 int menuADMIN() ///menu principal del admin
 {
@@ -541,13 +542,14 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Hospital HP";
-    nuevoMenu.cantidadOpciones = 5;
+    nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Menu Pacientes";
-    nuevoMenu.opciones[1] = "Menu Ingresos";
-    nuevoMenu.opciones[2] = "Menu Practicas";
-    nuevoMenu.opciones[3] = "Menu Practicas por ingresos";
-    nuevoMenu.opciones[4] = "Salir";
+    nuevoMenu.opciones[0] = "Ver Empleados";
+    nuevoMenu.opciones[1] = "Menu Pacientes";
+    nuevoMenu.opciones[2] = "Menu Ingresos";
+    nuevoMenu.opciones[3] = "Menu Practicas";
+    nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
+    nuevoMenu.opciones[5] = "Salir";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
@@ -748,12 +750,13 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
-
 ///=================================================================================================================swichs menus
 void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar los distintos menues dependiendo la gerarquia
 {
     int opcion;
     int opcionInterna;
+    nodo_lista* lista;
+    lista=pasar_archivo_to_lista(archivo);
     switch(perfil)
     {
     case 0:              ///<---- master
@@ -802,28 +805,36 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         opcion=menuADMINISTRATIVO();
         if(opcion==0)
         {
+            system("cls");
+            printf("\t -- Hospital HP --\n\t   -Lista de empleados-\n");
+            mostrar_lista_entera(lista,perfil);
+            printf("\n");
+            system("pause");
+        }
+        else if(opcion==1)
+        {
             do{///pacientes
             opcionInterna=menuPacientes();
             swicherPasientes(opcionInterna,perfil,archivo);
             }while(opcionInterna!=4);
         }
-        else if(opcion==1)
+        else if(opcion==2)
         {
             do{///ingresos
             opcionInterna=menuIngresos();
             swicherIngresos(opcionInterna,perfil,archivo);
             }while(opcionInterna!=4);
         }
-        else if(opcion==2)
+        else if(opcion==3)
         {
             ///funcion ver practicas
         }
-        else if(opcion==3)
+        else if(opcion==4)
         {
             opcionInterna=menuPracticasXIngresos();
             swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
         }
-        }while(opcion!=4);
+        }while(opcion!=5);
         break;
     case 2:              ///<---- tecnico
         do{
@@ -847,7 +858,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             opcionInterna=menuPracticasXIngresosTecnico();
             swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
         }
-        }while(opcion!=4);
+        }while(opcion!=5);
         break;
     default:
         system("cls");
@@ -907,7 +918,31 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         break;
     }
 }
-
+void swicherEmpleado (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
+{
+    int aux;
+    int duplicado=opcion;
+    nodo_lista* lista;
+    lista=pasar_archivo_to_lista(archivo);
+    switch(duplicado)
+    {
+    case 0:
+        system("cls");
+        printf("\t -- Hospital HP --\n\t   -Lista de empleados-\n");
+        mostrar_lista_entera(lista,perfil);
+        printf("\n");
+        system("pause");
+        break;
+    case 1:
+        aux=menuMostrarAltaBaja();
+        if(aux==0){printf("\t -- Hospital HP --\n\t   -Lista estado de Baja- \n");}
+        else if(aux==1){printf("\t -- Hospital HP --\n\t   -Lista estado de Alta- \n");}
+        if(aux!=2){mostrar_lista_baja_alta(lista,perfil,aux);}
+        break;
+    default:
+        break;
+    }
+}
 void swicherPasientes (int opcion,int perfil,char archivo[])  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
