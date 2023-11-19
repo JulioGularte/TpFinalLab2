@@ -3,11 +3,11 @@
 typedef struct
 {
     int nroIngreso;
-    char NyA [40];
+    char NyA [50];
     int edad;
     int DNI;
-    char direccion[30];
-    char telefono[15];
+    char direccion[50];
+    char telefono[20];
     int eliminado;
 }Paciente;
 #endif // Paciente_H_INCLUDED

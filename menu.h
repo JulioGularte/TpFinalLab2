@@ -1,6 +1,7 @@
 #ifndef MENUS_H_INCLUDED
 #define MENUS_H_INCLUDED
-typedef struct {
+typedef struct
+{
     char *titulo;
     int cantidadOpciones;
     int opcionSeleccionada;
