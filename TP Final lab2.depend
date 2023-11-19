@@ -46,7 +46,7 @@
 
 1700165638 c:\tpfinallab2\gotoxy.h
 
-1700416448 source:d:\tp final lab 2\main.c
+1700419936 source:d:\tp final lab 2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -56,15 +56,16 @@
 	<stdlib.h>
 	<windows.h>
 
-1700110723 source:d:\tp final lab 2\login.c
+1700419936 source:d:\tp final lab 2\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"menu.h"
 	"EmpleadosLaboratorio.h"
 
-1700110723 d:\tp final lab 2\empleadoslaboratorio.h
+1700419936 d:\tp final lab 2\empleadoslaboratorio.h
 
-1700416513 source:d:\tp final lab 2\menu.c
+1700419936 source:d:\tp final lab 2\menu.c
 	"menu.h"
 	<stdio.h>
 	<stdlib.h>
@@ -73,13 +74,12 @@
 	<time.h>
 	<windows.h>
 	"gotoxy.h"
-	"NodoPractica.h"
 
-1700370351 d:\tp final lab 2\menu.h
+1700419733 d:\tp final lab 2\menu.h
 
 1700110723 d:\tp final lab 2\gotoxy.h
 
-1700375613 source:d:\tp final lab 2\nodoingreso.c
+1700419940 source:d:\tp final lab 2\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	<stdio.h>
@@ -92,24 +92,24 @@
 1700110723 d:\tp final lab 2\nodoarbolpaciente.h
 	"Pacientes.h"
 
-1700370351 d:\tp final lab 2\pacientes.h
+1700419733 d:\tp final lab 2\pacientes.h
 
 1700110723 source:d:\tp final lab 2\pacientes.c
 	"NodoArbolPaciente.h"
 	<stdio.h>
 
-1700415865 source:d:\tp final lab 2\nodopractica.c
+1700419940 source:d:\tp final lab 2\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"NodoPxI.h"
 
-1700416826 d:\tp final lab 2\nodopractica.h
+1700419940 d:\tp final lab 2\nodopractica.h
 	"Practicas.h"
 	"NodoPxI.h"
 
-1700416737 d:\tp final lab 2\practicas.h
+1700419733 d:\tp final lab 2\practicas.h
 
 1700165638 source:c:\tpfinallab2\login.c
 	<stdio.h>
@@ -144,17 +144,165 @@
 
 1700165638 c:\tpfinallab2\practicasxingreso.h
 
-1700375741 source:d:\tp final lab 2\nodopxi.c
+1700107175 source:c:\users\g\documents\tpfinallab2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700107175 source:c:\users\g\documents\tpfinallab2\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EmpleadosLaboratorio.h"
+
+1700107175 c:\users\g\documents\tpfinallab2\empleadoslaboratorio.h
+
+1700366258 source:c:\users\g\documents\tpfinallab2\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700185412 c:\users\g\documents\tpfinallab2\menu.h
+
+1700107175 c:\users\g\documents\tpfinallab2\gotoxy.h
+
+1700106557 source:c:\users\g\documents\tpfinallab2\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700106557 c:\users\g\documents\tpfinallab2\nodoingreso.h
+	"Ingreso.h"
+
+1700106557 c:\users\g\documents\tpfinallab2\ingreso.h
+
+1700106557 c:\users\g\documents\tpfinallab2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700185412 c:\users\g\documents\tpfinallab2\pacientes.h
+
+1700106557 source:c:\users\g\documents\tpfinallab2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700107175 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700374950 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"EmpleadosLaboratorio.h"
+
+1700283849 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\empleadoslaboratorio.h
+
+1700335002 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1700185412 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\menu.h
+
+1700366258 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+
+1700107175 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\gotoxy.h
+
+1700106557 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700106557 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodoingreso.h
+	"Ingreso.h"
+
+1700106557 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\ingreso.h
+
+1700106557 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700185412 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\pacientes.h
+
+1700185417 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1700185417 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodopractica.h
+	"Practicas.h"
+
+1700185417 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\practicas.h
+
+1700185412 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodopxi.c
 	"nodoPxi.h"
 	<stdio.h>
 	<stdlib.h>
 
-1700375834 d:\tp final lab 2\nodopxi.h
+1700185412 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\nodopxi.h
 	"PracticasXIngreso.h"
 
-1700375613 d:\tp final lab 2\practicasxingreso.h
+1700185412 g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\practicasxingreso.h
 
-1700416713 source:d:\tp final lab 2\practicas.c
+1700106557 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700185417 source:g:\mi unidad\facu\prog y lab 2\tp final\nueva carpeta\tpfinallab2\practicas.c
+	"Practicas.h"
+	<stdio.h>
+
+1700335002 source:c:\users\g\documents\tpfinallab2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1700185417 source:c:\users\g\documents\tpfinallab2\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1700185417 c:\users\g\documents\tpfinallab2\nodopractica.h
+	"Practicas.h"
+
+1700185417 c:\users\g\documents\tpfinallab2\practicas.h
+
+1700185412 source:c:\users\g\documents\tpfinallab2\nodopxi.c
+
+1700419940 source:d:\tp final lab 2\nodopxi.c
+	"nodoPxi.h"
+	<stdio.h>
+	<stdlib.h>
+
+1700185412 c:\users\g\documents\tpfinallab2\nodopxi.h
+	"PracticasXIngreso.h"
+
+1700185412 c:\users\g\documents\tpfinallab2\practicasxingreso.h
+
+1700185417 source:c:\users\g\documents\tpfinallab2\practicas.c
+
+1700419940 d:\tp final lab 2\nodopxi.h
+	"PracticasXIngreso.h"
+
+1700419940 d:\tp final lab 2\practicasxingreso.h
+
+1700419940 source:d:\tp final lab 2\practicas.c
 	"Practicas.h"
 	<stdio.h>
 
