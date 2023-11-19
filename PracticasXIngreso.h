@@ -5,7 +5,7 @@ typedef struct
     int nroIngreso;
     int nroPractica;
     char resultado [40];
-
+    int eliminado;
 }PracticasXIngreso;
 
 

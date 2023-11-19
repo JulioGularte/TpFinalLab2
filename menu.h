@@ -5,7 +5,7 @@ typedef struct
     char *titulo;
     int cantidadOpciones;
     int opcionSeleccionada;
-    char *opciones[];
+    char **opciones;
 }Menu;
 
 int gestionarMenu(Menu menu);
