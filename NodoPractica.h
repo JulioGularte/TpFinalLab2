@@ -1,6 +1,7 @@
 #ifndef NODOPRACTICA_H_INCLUDED
 #define NODOPRACTICA_H_INCLUDED
 #include "Practicas.h"
+#include "NodoPxI.h"
 typedef struct _NodoPractica
 {
     Practica practica;
@@ -8,7 +9,9 @@ typedef struct _NodoPractica
 }NodoPractica;
 NodoPractica * inicListaPractica ();
 NodoPractica * crearNodoPractica (Practica practica);
-NodoPractica * agregarPrincipioPractica (NodoPractica *lista, NodoPractica *nuevoNodo);
-NodoPractica * agregarPracticaArchivo (NodoPractica * lista, Practica practica);
-int existeNombrePracticaEnArchivo(char nombrePractica []);
+int contarPracticasEnLista (NodoPractica * lista);
+int existeNombrePracticaEnLista(NodoPractica * lista, char nombrePractica []);;
+NodoPractica * agregarFinalPractica (NodoPractica *lista, NodoPractica * nuevoNodo);
+void editarPractica (NodoPractica * lista, int idPractica, char nuevoNombre []);
+void BajaNodoPractica (int idPractica, NodoPractica * lista, NodoPxI * listaPxI);
 #endif // NODOPRACTICA_H_INCLUDED

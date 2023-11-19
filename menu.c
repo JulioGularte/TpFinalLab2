@@ -76,4 +76,3 @@ void mostrarOpcion(char *opcion, int numeroDeOpcion, int opcionSeleccionada)
         printf(" %s \n", opcion);
     }
 }
-
