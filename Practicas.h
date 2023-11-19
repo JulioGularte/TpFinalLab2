@@ -7,8 +7,9 @@ typedef struct
     int eliminado;
 }Practica;
 
-Practica crearPractica ();
+Practica crearStPractica ();
 int contarPracticasEnArchivo();
+void mostrarUnaPractica(Practica practica, int esAdmin);
 
 
 #endif // PRACTICAS_H_INCLUDED
