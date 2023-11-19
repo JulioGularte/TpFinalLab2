@@ -38,19 +38,34 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="NodoIngreso.h" />
+		<Unit filename="NodoPractica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NodoPractica.h" />
+
+		<Unit filename="NodoPxI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NodoPxI.h" />
+
 		<Unit filename="Pacientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Pacientes.h" />
-		<Unit filename="Practicas.h" />
-		<Unit filename="PracticasXIngreso.h" />
-		<Unit filename="login.c">
+    
+		<Unit filename="Practicas.c">
 			<Option compilerVar="CC" />
 		</Unit>
+
+		<Unit filename="Practicas.h" />
+		<Unit filename="PracticasXIngreso.h" />
 		<Unit filename="gotoxy.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="gotoxy.h" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -60,9 +75,6 @@
 		<Unit filename="menu.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
