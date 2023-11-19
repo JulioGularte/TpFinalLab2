@@ -1,18 +1,11 @@
 #include "Practicas.h"
 #include <stdio.h>
-int contarPracticasEnArchivo()
+Practica crearStPractica ()
 {
-    FILE * buff=fopen("archivoPracticas", "rb");
-    int cantidad=0;
-    if (buff)
-    {
-        Practica rg;
-        while (fread(&rg, sizeof(Practica),1, buff)>0)
-        {
-            cantidad++;
-        }
-        fclose(buff);
-    }
-    return cantidad;
+    Practica nueva;
+    nueva.eliminado=0;
+    printf ("Ingrese el nombre de la practica: \n");
+    fflush(stdin);
+    gets(nueva.NombrePractica);
+    return nueva;
 }
-
