@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+
+
 int main()
 {
-    menuEjemplo();
+    char archivo[40]= "archivo_empleados.bin";
+    int a=loguear(archivo);
+    //menuEjemplo();
     return 0;
 }
 
@@ -20,3 +24,4 @@ int menuEjemplo()
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
+
