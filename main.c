@@ -1,13 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "NodoArbolPaciente.h"
+#include "NodoIngreso.h"
+#include "NodoArbolPaciente.h"
+#define PAUSA system("pause");
+#define BORRAR system("cls");
 
 
 int main()
-{
-    char archivo[40]= "archivo_empleados.bin";
-    int a=loguear(archivo);
-    //menuEjemplo();
+{   puts("Generando y mostrando Archivo de Pacientes");
+    generarNuevoArchiPaciente("archivoPacientes.bin");
+    mostrarArchivoPaciente("archivoPacientes.bin");
+    PAUSA;
+    BORRAR;
+    /*puts("Generando y mostrando Archivo de Ingresos");
+    generarNuevoArchiIngreso("archivoIngresos.bin");
+    mostrarArchivoIngreso("archivoIngresos.bin");
+    PAUSA;
+    BORRAR;
+    puts("Generando y mostrando Archivo de Practicas por ingreso");
+    generarNuevoArchiPxI("archivoPxI.bin");
+    mostrarArchivoPxI("archivoPxI.bin");
+    PAUSA;
+    BORRAR;
+    puts("Generando y mostrando la lista de ingresos");
+    NodoIngresos * listaDeIngresos=inicListaI();
+    listaDeIngresos=leerArchivoYCargarLista("archivoIngresos.bin",listaDeIngresos);
+    mostrarListaIngresos(listaDeIngresos);*/
+    ///Ingreso nuevoIngresoManual;
+    ///7int nroIngreso=201;
+    ///nuevoIngresoManual=cargarIngresoManual(&nroIngreso);
+    nodoArbolPaciente * arbolPacientes=NULL;
+    arbolPacientes=cargarArbolDesdeArchi("archivoPacientes.bin",arbolPacientes);
+    PAUSA;
+    BORRAR;
+    mostrarArbolPacientes(arbolPacientes);
+
     return 0;
 }
 
@@ -23,5 +52,6 @@ int menuEjemplo()
     nuevoMenu.opciones[2] = "Salir";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
+
 }
 

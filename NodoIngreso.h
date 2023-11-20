@@ -6,7 +6,7 @@ typedef struct _nodoIngresos
     Ingreso ingreso;
     struct _nodoIngresos * siguiente;
     struct _nodoIngresos * anterior;
-    struct _NodoPxI * practicasIngreso;
+    struct _NodoPxI * listaPxI;
 }NodoIngresos;
 
 

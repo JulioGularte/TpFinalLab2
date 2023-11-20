@@ -1,3 +1,4 @@
+#define _XOPEN_SOURCE 700
 #include "NodoIngreso.h"
 #include "NodoArbolPaciente.h"
 #include "NodoPxI.h"
@@ -15,56 +16,93 @@ time_t devuelveFechaActual()
 
 }
 
-Ingreso cargarIngresoManual(int * nroUltimoIngreso) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
+/*Ingreso cargarIngresoManual(int * nroUltimoIngreso,nodoArbolPaciente * arbolPacientes) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
 {
     Ingreso nuevoIngreso;
-    *nroUltimoIngreso=*nroUltimoIngreso+1;
-    nuevoIngreso.NroIngreso=*nroUltimoIngreso;
-
-    ///crea y guarda el tiempo actual como string en el la variable fecha de ingreso
-    time_t t=time(NULL);
-    char fechaHora[25];
-    struct tm tiempoLocal = *localtime(&t);
-    char *formato = "%d-%m-%Y";
-    int bytesEscritos =strftime(fechaHora, sizeof fechaHora, formato, &tiempoLocal);
-    strcpy(nuevoIngreso.FechaIngreso,fechaHora);
-
-    ///inicia la variable eliminado en 0 por defecto
-    nuevoIngreso.Eliminado=0;
-
-    ///ahora hacemos el pedido de los datos faltantes
-
     puts("Ingrese el DNI del paciente:"); ///falta validar que solo ingresen numeros enteros y positivos
     scanf("%d",&nuevoIngreso.DNI);
+    int pacienteExiste=0;
+    pacienteExiste=validarDniPaciente(nuevoIngreso.DNI,arbolPacientes);
+    if(pacienteExiste==1)
+    {
 
-    puts("Ingrese la matricula del profesional que solicita el estudio:"); ///falta validar que solo ingresen numeros enteros y positivos
-    scanf("%d",&nuevoIngreso.MatriculaPersonalSolicitante);
+        *nroUltimoIngreso=*nroUltimoIngreso+1;
+        nuevoIngreso.NroIngreso=*nroUltimoIngreso;
+
+        ///crea y guarda el tiempo actual como string en el la variable fecha de ingreso
+        time_t t=time(NULL);
+        char fecha1[11];
+        char fechaRetiro[11];
+        struct tm tiempoLocal = *localtime(&t);
+        char *formato = "%d/%m/%Y";
+        int bytesEscritos =strftime(fecha1, sizeof fecha1, formato, &tiempoLocal);
+        strcpy(nuevoIngreso.FechaIngreso,fecha1);
+
+        ///inicia la variable eliminado en 0 por defecto
+        nuevoIngreso.Eliminado=0;
+
+        ///ahora hacemos el pedido de los datos faltantes
+
+        puts("Ingrese la matricula del profesional que solicita el estudio:"); ///falta validar que solo ingresen numeros enteros y positivos
+        scanf("%d",&nuevoIngreso.MatriculaPersonalSolicitante);
+
+        strcpy(nuevoIngreso.FechaRetiro," ");
+
+        while(nuevoIngreso.FechaRetiro!=" ")
+        {
+            puts("Ingrese la fecha estimada de retiro: (dd/mm/aaaa)");
+            scanf("%s",fechaRetiro);
+            int formatoFechaValida;
+            int fechaValida;
+            formatoFechaValida=validarFormatoFecha(fechaRetiro);
+            fechaValida=compararFechas(nuevoIngreso.FechaIngreso,fechaRetiro);
+            if (fechaValida==1 && formatoFechaValida==1)
+            {
+                strcpy(nuevoIngreso.FechaRetiro,fechaRetiro);
+            }
+            else
+            {
+                if (fechaValida!=1)
+                {
+                    printf("%d\n",fechaValida);
+                    puts("La fecha de retiro no puede ser anterior a la fecha de ingreso");
+                    printf("La fecha de ingreso es %s \n",nuevoIngreso.FechaIngreso);
+                }
+                else
+                {
+                    puts("La fecha debe tener un formato dd/mm/aaaa y ser una fecha valida");
+                }
+
+            }
+
+        }
 
 
-    puts("Ingrese la fecha estimada de retiro: (dd-mm-aaaa)");///falta validar que la fecha de retiro sea valida
-    scanf("%s",nuevoIngreso.FechaRetiro);
 
-
-
-    return nuevoIngreso;
+        return nuevoIngreso;
+    }
+    else
+    {
+        puts("El dni ingresado no es de ningun paciente");
+    }
 }
-
+*/
 void imprimirFechaActual(time_t t)
 {
     // Tiempo actual
 
     struct tm tiempoLocal = *localtime(&t);
     // El lugar en donde se pondrá la fecha y hora formateadas
-    char fechaHora[70];
+    char fecha1[70];
 
     char *formato = "%d-%m-%Y";
     // Intentar formatear
     int bytesEscritos =
-        strftime(fechaHora, sizeof fechaHora, formato, &tiempoLocal);
+        strftime(fecha1, sizeof fecha1, formato, &tiempoLocal);
     if (bytesEscritos != 0)
     {
         // Si no hay error, los bytesEscritos no son 0
-        printf("%s", fechaHora);
+        printf("%s", fecha1);
     }
     else
     {
@@ -82,5 +120,61 @@ void mostrarIngreso(Ingreso ingresoAMostrar)
     printf("La fecha de ingreso es:...................... %s \n",ingresoAMostrar.FechaIngreso);
     printf("La fecha de retiro es:....................... %s \n",ingresoAMostrar.FechaRetiro);
     printf("============================================================== \n");
+
+}
+
+
+int validarFormatoFecha(char fecha[])  ///si hay tiempo, validar meses que no tienen 31 dias.
+{
+    int dia, mes, anio;
+    if (sscanf(fecha, "%d/%d/%d", &dia, &mes, &anio) != 3)
+    {
+        return 0; // No se pudieron leer los tres componentes de la fecha
+    }
+
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || anio < 1900)
+    {
+        return 0; // Fecha no válida
+    }
+
+    return 1; // Formato de fecha válido
+}
+
+
+int compararFechas(char fecha1[], char fecha2[])
+{
+    struct tm tmFecha1, tmFecha2;
+
+    sscanf(fecha1, "%d/%d/%d", &tmFecha1.tm_mday, &tmFecha1.tm_mon, &tmFecha1.tm_year);
+    sscanf(fecha2, "%d/%d/%d", &tmFecha2.tm_mday, &tmFecha2.tm_mon, &tmFecha2.tm_year);
+
+    tmFecha1.tm_mon -= 1;
+    tmFecha2.tm_mon -= 1;
+
+    tmFecha1.tm_year -= 1900;
+    tmFecha2.tm_year -= 1900;
+
+    time_t timeFecha1 = mktime(&tmFecha1);
+    time_t timeFecha2 = mktime(&tmFecha2);
+
+    return timeFecha1 <= timeFecha2 ? 1 : 0; // si la fecha 2 (la de retiro) es mayor a la de ingreso retorna 1 y si no, 0
+
+}
+int validarDniPaciente(int nroDni, nodoArbolPaciente * arbolDePacientes)
+{
+    ///codigo para cuando tengamos el arbol
+    /*nodoArbolPaciente * aux=arbolDePacientes;
+    int flag=0;
+
+    if(aux->paciente.DNI==nroDni)
+    {
+        return 1;
+    }
+    else if(flag==0)
+    {
+        flag=validarDniPaciente(nroDni,aux->der);
+        flag=validarDniPaciente(nroDni,aux->izq);
+    }
+    return flag;*/
 
 }

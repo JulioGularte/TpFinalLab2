@@ -116,7 +116,7 @@ void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngreso
             while (fread(&rg, sizeof(PracticasXIngreso),1, buff)>0) ///recorro el archivo buscando el PxI
             {
                 registrosLeidos++; ///contador de posicion para retomar la ultima posicion por si tengo que ir al final del archivo y agregar
-                NodoPxI * segPxI=segIngreso->practicasIngreso;
+                NodoPxI * segPxI=segIngreso->listaPxI;
                 while (segPxI) ///recorro la lista de practicas por ingreso
                 {
                     if (segPxI->PxI.nroIngreso==rg.nroIngreso && segPxI->PxI.nroPractica==rg.nroPractica) ///si la practica existe en el archivo la actualizo

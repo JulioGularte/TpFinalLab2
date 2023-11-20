@@ -2,7 +2,6 @@
 #define Paciente_H_INCLUDED
 typedef struct
 {
-    int nroIngreso;
     char NyA [50];
     int edad;
     int DNI;
