@@ -3,8 +3,8 @@
 typedef struct _Ingreso
 {
     int NroIngreso;
-    char FechaIngreso [25];
-    char FechaRetiro [25];
+    char FechaIngreso [11];
+    char FechaRetiro [11];
     int DNI;
     int MatriculaPersonalSolicitante;
     int Eliminado;

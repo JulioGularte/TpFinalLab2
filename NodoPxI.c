@@ -13,7 +13,7 @@ NodoPxI * crearNodoPxI (PracticasXIngreso pxi)
     nuevo->siguiente = NULL;
     return nuevo;
 }
-///TODO: CAMBIAR A AGREGAR AL FINAL
+
 NodoPxI * agregarPrincipioPxI (NodoPxI * lista, NodoPxI * nuevoNodo)
 {
     if (lista==NULL)
