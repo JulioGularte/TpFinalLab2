@@ -32,15 +32,16 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EmpleadosLaboratorio.h" />
-		<Unit filename="Ingreso.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Ingreso.h" />
 		<Unit filename="NodoArbolPaciente.h" />
 		<Unit filename="NodoIngreso.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="NodoIngreso.h" />
+		<Unit filename="NodoPractica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="NodoPractica.h" />
 		<Unit filename="NodoPxI.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -49,15 +50,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Pacientes.h" />
-		<Unit filename="Practicas.h" />
-		<Unit filename="PracticasXIngreso.c">
+		<Unit filename="Practicas.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Practicas.h" />
 		<Unit filename="PracticasXIngreso.h" />
 		<Unit filename="gotoxy.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="gotoxy.h" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -65,10 +69,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
-		<Unit filename="registroGeneral.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="registroGeneral.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

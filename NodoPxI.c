@@ -1,94 +1,44 @@
-#include "NodoIngreso.h"
-#include "NodoArbolPaciente.h"
-#include "NodoPxI.h"
+#include "nodoPxi.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-NodoPxI * inicListaPxI()
+NodoPxI * inicListaPxI ()
 {
     return NULL;
 }
 
-NodoPxI * crearNodoPxI(PracticasXIngreso datoPxI)
+NodoPxI * crearNodoPxI (PracticasXIngreso pxi)
 {
-    NodoPxI * nuevoNodoPxI=(NodoPxI*) malloc (sizeof(NodoPxI));
-    nuevoNodoPxI->PxI=datoPxI;
-    nuevoNodoPxI->anterior=NULL;
-    nuevoNodoPxI->siguiente=NULL;
-
-    return nuevoNodoPxI;
-
+    NodoPxI * nuevo=(NodoPxI*) malloc(sizeof(NodoPxI));
+    nuevo->PxI = pxi;
+    nuevo->siguiente = NULL;
+    return nuevo;
 }
-
-NodoPxI * cargarListaPxI_inicio(NodoPxI * listaPxI, PracticasXIngreso datoPxI)
+///TODO: CAMBIAR A AGREGAR AL FINAL
+NodoPxI * agregarPrincipioPxI (NodoPxI * lista, NodoPxI * nuevoNodo)
 {
-    NodoPxI* nuevoNodoPxI=crearNodoPxI(datoPxI);
-    if(listaPxI==NULL)
+    if (lista==NULL)
     {
-        listaPxI=nuevoNodoPxI;
+        lista=nuevoNodo;
     }
     else
     {
-        nuevoNodoPxI->siguiente=listaPxI;
-        listaPxI->anterior=nuevoNodoPxI;
-        listaPxI=nuevoNodoPxI;
+        nuevoNodo->siguiente=lista;
+        lista=nuevoNodo;
     }
-    return listaPxI;
+    return lista;
 }
-
-
-NodoPxI * buscarNodoPxI(NodoPxI * listaPxI, PracticasXIngreso datoPxI)
+///funcion que determina si una practica existe en un ingreso (activo)
+int ExisteIngresoActivoEnPractica (NodoPxI * lista, int PracticaId)
 {
-    NodoPxI * aux=listaPxI;     ///apunto un nodo auxiliar a la lista para recorrerla
-    NodoPxI * nodoBuscado=NULL;  ///creo una variable para guardar el nodo que estoy buscando
-    int flag=0;                     ///flag para dejar de  recorrer la lista
-    while((aux!=NULL) && flag==0) ///recorro la lista hasta que llegue al final o encuentre el nodo
+    NodoPxI * seg=lista;
+    int flag=0;
+    while (seg && flag==0)
     {
-        if((aux->PxI.nroIngreso==datoPxI.nroIngreso) && (aux->PxI.nroPractica==datoPxI.nroPractica) ) ///debe coincidir el nro de ingreso y el nro de practica a la vez
+        if (seg->PxI.eliminado==0 && seg->PxI.nroPractica==PracticaId)
         {
-            nodoBuscado=aux;        ///guardo el nodo buscado
-            flag=1;                 ///cambio la variable para dejar de buscar en la lista
+            flag=1;
         }
-        aux=aux->siguiente;            /// recorro la lista
+        seg=seg->siguiente;
     }
-
-    return nodoBuscado;     ///retorno el nodo buscado
+    return flag;
 }
-
-NodoPxI * eliminarNodoPxI(NodoPxI * listaPxI, PracticasXIngreso datoPxI) ///lo elimina completamente, ya que no tiene un int eliminado para cambiar
-{
-    NodoPxI * nodoAEliminar=buscarNodoPxI(listaPxI,datoPxI); ///cargo el nodo a eliminar en una variable
-    NodoPxI * ante=nodoAEliminar->anterior;
-    NodoPxI * seg=nodoAEliminar->siguiente;
-    if (nodoAEliminar!=NULL) ///si hay algo para eliminar, ingreso a la condicion
-    {
-        if (ante==NULL) ///caso en que el nodo a eliminar es el primero de la lista
-        {
-            listaPxI=listaPxI->siguiente;
-            listaPxI->anterior=NULL;
-            free(nodoAEliminar);
-        }
-        else        ///es un nodo del medio o el ultimo
-        {
-            if(seg==NULL) ///caso en que sea el ultimo nodo
-            {
-
-                ante->siguiente=NULL;
-                free(nodoAEliminar);
-
-            }
-            else    ///caso que sea un nodo intermedio
-            {
-
-                ante->siguiente=nodoAEliminar->siguiente;
-                seg->anterior=ante;
-                free(nodoAEliminar);
-            }
-        }
-
-    }
-return listaPxI; ///retorno la lista sin el nodo borrado (o igual si es que no se encontro el dato buscado)
-
-}
-

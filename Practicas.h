@@ -5,7 +5,10 @@ typedef struct
     int nroPractica;
     char NombrePractica [30];
     int eliminado;
-} practicas;
+}Practica;
+
+Practica crearPractica ();
+int contarPracticasEnArchivo();
 
 
 #endif // PRACTICAS_H_INCLUDED
