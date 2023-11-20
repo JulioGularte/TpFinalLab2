@@ -26,7 +26,7 @@ int loguear (char archivo[])///pide usuario y clave con 3 intentos y manda al sw
         if(perfil==-1)
         {
             system("cls");
-            printf("\t -- Hospital HP --\n\tLa clave o usuario no existen...\n/tLe quedan %i intentos...",intentos-1);
+            printf("\t -- Hospital HP --\n\tLa clave o usuario no existen...\n\tLe quedan %i intentos...",intentos-1);
         }
     }while(intentos!=0 && perfil==-1);
     menu_opciones_gerarquia(perfil,archivo);
@@ -112,7 +112,7 @@ empleados_laboratorio crear_empleado (char archivo[])
     fflush(stdin);
     gets(nuevo.clave);
 
-    printf("\nIngrese el nombre: ");
+    printf("\nIngrese el nombre y apellido: ");
     fflush(stdin);
     gets(nuevo.NyA);
     ///verificando dni
@@ -374,7 +374,7 @@ void buscar_empleado_en_archivo_NYA(char archivo[],int perfil) ///solo busca coi
         {
             system("cls");
             printf("\t -- Hospital HP --\n\t  -Busqueda de empleados-\n");
-            printf("\nIngrese el usuario buscado: ");
+            printf("\nIngrese el nombre y apellido buscado: ");
             fflush(stdin);
             gets(usuario_buscado);
             while(fread(&aux,sizeof(empleados_laboratorio),1,arch)>0 && encontrado!='s')
@@ -418,7 +418,7 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
     switch(num)
     {
     case 0:
-        printf("\nIngrese el nombre: ");
+        printf("\nIngrese el nombre y apellido: ");
         fflush(stdin);
         gets(dato.NyA);
         break;
@@ -457,6 +457,7 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
         {
             strcpy(dato.perfil,"tecnico");
         }
+        break;
     case 5:
         if(dato.baja==1){dato.baja=0;}
         else {dato.baja=1;}
@@ -547,6 +548,22 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
     nuevoMenu.opciones[0] = "Ver Empleados";
     nuevoMenu.opciones[1] = "Menu Pacientes";
     nuevoMenu.opciones[2] = "Menu Ingresos";
+    nuevoMenu.opciones[3] = "Ver Practicas";
+    nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
+    nuevoMenu.opciones[5] = "Salir";
+    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
+    return nuevoMenu.opcionSeleccionada;
+}
+int menuTECNICO() ///menu principal del administrativo
+{
+    Menu nuevoMenu;
+    nuevoMenu.opcionSeleccionada = 0;
+    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.cantidadOpciones = 6;
+    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
+    nuevoMenu.opciones[0] = "Ver Empleados";
+    nuevoMenu.opciones[1] = "Ver Pacientes";
+    nuevoMenu.opciones[2] = "Ver Ingresos";
     nuevoMenu.opciones[3] = "Menu Practicas";
     nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
     nuevoMenu.opciones[5] = "Salir";
@@ -695,7 +712,7 @@ int menuBUSCAR() ///menu de opciones para buscar
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Modificar empleado buscando por DNI";
     nuevoMenu.opciones[1] = "Modificar empleado buscando por Nombre y Apellido";
-    nuevoMenu.opciones[2] = "Salir";
+    nuevoMenu.opciones[2] = "Volver";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
@@ -742,11 +759,12 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Hospital HP";
-    nuevoMenu.cantidadOpciones = 3;
+    nuevoMenu.cantidadOpciones = 4;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver Practicas";
     nuevoMenu.opciones[1] = "Alta de practicas";
     nuevoMenu.opciones[2] = "Baja de practicas";
+    nuevoMenu.opciones[3] = "Volver";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
@@ -759,7 +777,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     lista=pasar_archivo_to_lista(archivo);
     switch(perfil)
     {
-    case 0:              ///<---- master
+    case 0:///<-------------------------------------------------------------------- master
         do{
         opcion=menuADMIN();
 
@@ -800,7 +818,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         }
         }while(opcion!=5);
         break;
-    case 1:              ///<---- administrador
+    case 1: ///<------------------------------------------------------------------------ administrador
         do{
         opcion=menuADMINISTRATIVO();
         if(opcion==0)
@@ -827,36 +845,52 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         }
         else if(opcion==3)
         {
-            ///funcion ver practicas
+            ///solo funcion ver practicas
         }
         else if(opcion==4)
         {
+            do{
             opcionInterna=menuPracticasXIngresos();
             swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
+            }while(opcionInterna!=4);
         }
         }while(opcion!=5);
         break;
-    case 2:              ///<---- tecnico
+    case 2: ///<-------------------------------------------------------------------- tecnico
         do{
-        opcion=menuADMINISTRATIVO(); ///se utiliza el mismo menu dado que cumple con los mismos parametros
+        opcion=menuTECNICO();
         if(opcion==0)
         {
-            ///ver pacientes funcion sola
+            system("cls");
+            printf("\t -- Hospital HP --\n\t   -Lista de empleados-\n");
+            mostrar_lista_entera(lista,perfil);
+            printf("\n");
+            system("pause");
         }
         else if(opcion==1)
         {
-            opcionInterna=menuIngresosTecnicos();
-            swicherIngresosTecnicos(opcionInterna,perfil,archivo);
+            ///solo funcion ver paciente
         }
         else if(opcion==2)
         {
-            opcionInterna=menuPracticasTecnicos();
-            swicherPracticasTecnicos(opcionInterna,perfil,archivo);
+            do{
+            opcionInterna=menuIngresosTecnicos();
+            swicherIngresosTecnicos(opcionInterna,perfil,archivo);
+            }while(opcionInterna!=2);
         }
         else if(opcion==3)
         {
+            do{
+            opcionInterna=menuPracticasTecnicos();
+            swicherPracticasTecnicos(opcionInterna,perfil,archivo);
+            }while(opcionInterna!=3);
+        }
+        else if(opcion==4)
+        {
+            do{
             opcionInterna=menuPracticasXIngresosTecnico();
             swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
+            }while(opcionInterna!=2);
         }
         }while(opcion!=5);
         break;

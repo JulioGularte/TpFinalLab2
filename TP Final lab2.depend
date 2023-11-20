@@ -311,7 +311,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700106557 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
+1700423286 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	<stdio.h>
@@ -330,7 +330,7 @@
 	"NodoArbolPaciente.h"
 	<stdio.h>
 
-1700422836 source:c:\users\g\documents\nueva carpeta\login.c
+1700485312 source:c:\users\g\documents\nueva carpeta\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -358,28 +358,30 @@
 
 1700107175 c:\users\g\documents\nueva carpeta\gotoxy.h
 
-1700411593 source:c:\users\g\documents\nueva carpeta\nodopractica.c
+1700423286 source:c:\users\g\documents\nueva carpeta\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
+	"NodoPxI.h"
 
-1700411593 c:\users\g\documents\nueva carpeta\nodopractica.h
+1700423286 c:\users\g\documents\nueva carpeta\nodopractica.h
 	"Practicas.h"
+	"NodoPxI.h"
 
 1700411593 c:\users\g\documents\nueva carpeta\practicas.h
 
-1700411593 source:c:\users\g\documents\nueva carpeta\nodopxi.c
+1700423286 source:c:\users\g\documents\nueva carpeta\nodopxi.c
 	"nodoPxi.h"
 	<stdio.h>
 	<stdlib.h>
 
-1700411593 c:\users\g\documents\nueva carpeta\nodopxi.h
+1700423286 c:\users\g\documents\nueva carpeta\nodopxi.h
 	"PracticasXIngreso.h"
 
-1700411593 c:\users\g\documents\nueva carpeta\practicasxingreso.h
+1700423286 c:\users\g\documents\nueva carpeta\practicasxingreso.h
 
-1700411593 source:c:\users\g\documents\nueva carpeta\practicas.c
+1700423286 source:c:\users\g\documents\nueva carpeta\practicas.c
 	"Practicas.h"
 	<stdio.h>
 
