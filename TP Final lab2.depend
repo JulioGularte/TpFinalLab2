@@ -391,3 +391,17 @@
 
 1700336289 c:\users\nacho\documents\tp final lab 2\registrogeneral.h
 
+1700110723 source:d:\tpfinallab2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700110723 source:d:\tpfinallab2\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+
+1700421023 d:\tpfinallab2\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700468541 d:\tpfinallab2\pacientes.h
+

@@ -84,4 +84,3 @@ void mostrarIngreso(Ingreso ingresoAMostrar)
     printf("============================================================== \n");
 
 }
-
