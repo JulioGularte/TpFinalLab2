@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "EmpleadosLaboratorio.h"
 #include "NodoPractica.h"
+#include "NodoIngreso.h"
 /// define usuario maestro "admin"
 #define USUARIO_ADMIN "ADMIN"
 #define CLAVE_ADMIN "admin2023"

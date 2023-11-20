@@ -7,6 +7,7 @@ typedef struct
     char resultado [40];
     int eliminado;
 }PracticasXIngreso;
+PracticasXIngreso crearPxI(int nroIngreso, int nroPractica, char resultado[]);
 
 
 #endif // PRACTICASXINGRESO_H_INCLUDED

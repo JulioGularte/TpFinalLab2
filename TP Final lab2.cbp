@@ -32,6 +32,9 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EmpleadosLaboratorio.h" />
+		<Unit filename="Ingreso.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Ingreso.h" />
 		<Unit filename="NodoArbolPaciente.h" />
 		<Unit filename="NodoIngreso.c">
@@ -54,6 +57,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Practicas.h" />
+		<Unit filename="PracticasXIngreso.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="PracticasXIngreso.h" />
 		<Unit filename="gotoxy.c">
 			<Option compilerVar="CC" />

@@ -4,9 +4,9 @@
 typedef struct _nodoIngresos
 {
     Ingreso ingreso;
-    struct _Ingresos * siguiente;
-    struct _Ingresos * anterior;
-    struct _PracticasXIngresos * practicasIngreso;
+    struct _nodoIngresos * siguiente;
+    struct _nodoIngresos * anterior;
+    struct _NodoPxI * practicasIngreso;
 }NodoIngresos;
 
 
