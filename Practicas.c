@@ -1,5 +1,6 @@
 #include "Practicas.h"
 #include <stdio.h>
+
 Practica crearStPractica ()
 {
     Practica nueva;
@@ -8,4 +9,14 @@ Practica crearStPractica ()
     fflush(stdin);
     gets(nueva.NombrePractica);
     return nueva;
+}
+
+void mostrarUnaPractica(Practica practica, int esAdmin)
+{
+    if (esAdmin==1)
+    {
+        printf ("Nro Practica: %d \n", practica.nroPractica);
+        printf ("Estado: %s", practica.eliminado==1 ? "Eliminada" : "Activa");
+    }
+    printf ("Practica: %s \n", practica.NombrePractica);
 }
