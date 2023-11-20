@@ -3,6 +3,7 @@
 #include <string.h>
 #include "menu.h"
 #include "EmpleadosLaboratorio.h"
+#include "NodoPractica.h"
 /// define usuario maestro "admin"
 #define USUARIO_ADMIN "ADMIN"
 #define CLAVE_ADMIN "admin2023"
@@ -604,12 +605,14 @@ int menuPracticas() ///menu principal de practicas
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Hospital HP";
-    nuevoMenu.cantidadOpciones = 4;
+    nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver practicas";
-    nuevoMenu.opciones[1] = "Alta de practicas";
-    nuevoMenu.opciones[2] = "Baja de practicas";
-    nuevoMenu.opciones[3] = "Volver";
+    nuevoMenu.opciones[1] = "Alta de Practica";
+    nuevoMenu.opciones[2] = "Modificacion de Practica";
+    nuevoMenu.opciones[3] = "Baja de practica";
+    nuevoMenu.opciones[4] = "Guardar cambios en archivo";
+    nuevoMenu.opciones[5] = "Volver al menu";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
@@ -752,6 +755,9 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
 ///=================================================================================================================swichs menus
 void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar los distintos menues dependiendo la gerarquia
 {
+    NodoPractica * listaPracticas=inicListaPractica();
+    NodoPxI * listaPxI=inicListaPxI();
+    listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
     int opcion;
     int opcionInterna;
     switch(perfil)
@@ -785,8 +791,8 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         {
             do{///practicas
             opcionInterna=menuPracticas();
-            swicherPracticasMaster(opcionInterna,perfil,archivo);
-            }while(opcionInterna!=3);
+            swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
+            }while(opcionInterna!=5);
         }
         else if(opcion==4)
         {
@@ -933,7 +939,6 @@ void swicherPasientes (int opcion,int perfil,char archivo[])  ///sirve para mast
 void swicherIngresos (int opcion,int perfil,char archivo[])  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-
     switch(duplicado)
     {
     case 0:
@@ -952,20 +957,54 @@ void swicherIngresos (int opcion,int perfil,char archivo[])  ///sirve para maste
         break;
     }
 }
-void swicherPracticasMaster (int opcion,int perfil,char archivo[])  ///sirve para solo para master master
+void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI)  ///sirve para solo para master master
 {
+    /*
+    nuevoMenu.opciones[0] = "Ver practicas";
+    nuevoMenu.opciones[1] = "Alta de Practica";
+    nuevoMenu.opciones[2] = "Modificacion de Practica";
+    nuevoMenu.opciones[3] = "Baja de practica";
+    */
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-
     switch(duplicado)
     {
     case 0:
-        ///ver practicas
+        {
+        mostrarListaPracticas(*listaPracticas, 1);
+        system("pause");
+        }
         break;
     case 1:
-        ///alta practicas
+        {
+        Practica nueva=crearStPractica();
+        *listaPracticas=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
+        system("pause");
+        }
         break;
     case 2:
-        ///baja practicas
+        mostrarListaPracticas(*listaPracticas, 1);
+        printf("\n Ingrese el id de la practica a modificar:");
+        int idEditar;
+        scanf("%d",&idEditar);
+        printf("\n Ingrese el nuevo nombre de practica: ");
+        char nuevoNombre [30];
+        fflush(stdin);
+        gets(nuevoNombre);
+        editarPractica(*listaPracticas, idEditar,nuevoNombre);
+        system("pause");
+        break;
+    case 3:
+        mostrarListaPracticas(listaPracticas, 1);
+        printf("\n Ingrese el id de la practica a eliminar:");
+        int idEliminar;
+        scanf("%d",&idEliminar);
+        BajaNodoPractica(idEliminar, listaPracticas, listaPxI);
+        break;
+    case 4:
+        actualizarArchivoPracticas(*listaPracticas);
+        //listaPracticas=cargarListaPracticaDesdeArchivo(*listaPracticas);
+        break;
+    case 5:
         break;
     default:
         break;

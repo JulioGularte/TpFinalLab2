@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "NodoPxI.h"
+#define archivoPracticas "archivo_practicas.bin"
 NodoPractica * inicListaPractica ()
 {
     return NULL;
@@ -30,57 +31,50 @@ int contarPracticasEnLista (NodoPractica * lista)
     return cantidadPracticas;
 }
 
-NodoPractica * agregarPracticaEnOrden (NodoPractica *lista, NodoPractica *nuevoNodo)
+NodoPractica * agregarPracticaEnOrden(NodoPractica *lista, NodoPractica *nuevoNodo)
 {
-    int idPractica=contarPracticasEnLista(lista)+1;
-    nuevoNodo->practica.nroPractica=idPractica;
+    int idPractica = contarPracticasEnLista(lista) + 1;
+    nuevoNodo->practica.nroPractica = idPractica;
     if (!lista)
     {
-        lista=nuevoNodo;
+        lista = nuevoNodo;
     }
     else
     {
-        if (strcmp(nuevoNodo->practica.NombrePractica, lista->practica.NombrePractica)<0)
+        if (strcmp(nuevoNodo->practica.NombrePractica, lista->practica.NombrePractica) < 0)
         {
-            nuevoNodo->siguiente=lista;
-            lista=nuevoNodo;
+            nuevoNodo->siguiente = lista;
+            lista = nuevoNodo;
         }
         else
         {
-            NodoPractica * anterior=lista;
-            NodoPractica * actual=lista->siguiente;
-            while (actual  && strcmp(nuevoNodo->practica.NombrePractica, actual->practica.NombrePractica)>0)
+            NodoPractica *anterior = lista;
+            NodoPractica *actual = lista->siguiente;
+            while (actual && strcmp(nuevoNodo->practica.NombrePractica, actual->practica.NombrePractica) > 0)
             {
-                anterior=actual;
-                actual=actual->siguiente;
+                anterior = actual;
+                actual = actual->siguiente;
             }
-            nuevoNodo->siguiente=actual;
-            anterior->siguiente=nuevoNodo;
+            nuevoNodo->siguiente = actual;
+            anterior->siguiente = nuevoNodo;
         }
     }
     return lista;
 }
-///Funcion que busca practica por nombre, para evitar nombres repetidos
-///TESTEAR!!!
+
 int existeNombrePracticaEnLista(NodoPractica * lista, char nombrePractica [])
 {
     int flag=0;
-    if (!lista)
-    {
-        printf ("La lista esta vacia \n");
-    }
-    else
+    if (lista)
     {
         NodoPractica * seg=lista;
-        ///verifico que no existe una practica con ese nombre que este activa, ya que puede existir una practica con el mismo nombre pero que este eliminada
-        while (seg && (strcmpi(seg->practica.NombrePractica, nombrePractica)!=0 && seg->practica.eliminado==0))
+        while (seg && flag==0)
         {
+            if (strcmpi(seg->practica.NombrePractica, nombrePractica)==0)
+            {
+                flag=1;
+            }
             seg=seg->siguiente;
-        }
-        ///si no me cai de la lista, entonces existe el nodo con ese nombre
-        if (seg)
-        {
-            flag=1;
         }
     }
     return flag;
@@ -144,23 +138,19 @@ void BajaNodoPractica (int idPractica, NodoPractica * lista, NodoPxI * listaPxI)
     }
 }
 
-void actualizarArchivo (NodoPractica * lista)
+void actualizarArchivoPracticas (NodoPractica * lista)
 {
-    FILE * buff=fopen("nombreArchivoPracticas", "wb");
+    FILE * buff=fopen(archivoPracticas, "wb");
     if (buff)
     {
         NodoPractica * seg=lista;
         while (seg)
         {
-            Practica stPractica;
-            fread(&stPractica, sizeof(Practica), 1, buff);
+            Practica stPractica=seg->practica;
+            fwrite(&stPractica, sizeof(Practica), 1, buff);
             seg=seg->siguiente;
         }
         fclose(buff);
-    }
-    else
-    {
-        printf ("Error al abrir el archivo de Practicas \n");
     }
 }
 
@@ -170,13 +160,11 @@ NodoPractica * altaDePractica (NodoPractica * lista, NodoPractica * nuevo)
     if (existeNombrePractica==0)
     {
         lista=agregarPracticaEnOrden(lista, nuevo);
-        printf("Practica %s agregada exitosamente!", nuevo->practica.NombrePractica);
+        printf("Practica %s agregada exitosamente! \n", nuevo->practica.NombrePractica);
     }
     else
     {
-        printf ("Ya existe una practica con el nombre %s", nuevo->practica.NombrePractica);
-        system("pause");
-        system("cls");
+        printf ("Ya existe una practica con el nombre %s \n", nuevo->practica.NombrePractica);
     }
     return lista;
 }
@@ -193,7 +181,27 @@ void mostrarListaPracticas (NodoPractica * lista, int esAdmin)
         while (seg)
         {
             mostrarUnaPractica(seg->practica, esAdmin);
+            printf ("=================================================== \n");
             seg=seg->siguiente;
         }
     }
+}
+
+NodoPractica * cargarListaPracticaDesdeArchivo (NodoPractica * lista)
+{
+    FILE * buff=fopen(archivoPracticas, "rb");
+    if (buff)
+    {
+        Practica rg;
+        while (fread(&rg, sizeof(Practica), 1, buff)>0)
+        {
+            lista=agregarPracticaEnOrden(lista, crearNodoPractica(rg));
+        }
+        fclose(buff);
+    }
+    else
+    {
+        printf ("Error al leer desde el archivo de practicas %s", archivoPracticas);
+    }
+    return lista;
 }
