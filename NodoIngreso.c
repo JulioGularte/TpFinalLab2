@@ -65,5 +65,5 @@ NodoIngresos * eliminarNodoIng(NodoIngresos * listaIng, Ingreso datoIngreso)
        nodoIngAEliminar->ingreso.Eliminado=1;
     }
 return listaIng; ///retorno la lista sin el nodo borrado (o igual si es que no se encontro el dato buscado)
-
 }
+

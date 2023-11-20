@@ -822,7 +822,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         }
         else if(opcion==2)
         {
-            ///funcion ver practicas
+            mostrarListaPracticas(listaPracticas, 0);
         }
         else if(opcion==3)
         {
@@ -845,8 +845,10 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         }
         else if(opcion==2)
         {
-            opcionInterna=menuPracticasTecnicos();
-            swicherPracticasTecnicos(opcionInterna,perfil,archivo);
+            do{///practicas
+            opcionInterna=menuPracticas();
+            swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
+            }while(opcionInterna!=5);
         }
         else if(opcion==3)
         {
@@ -1002,7 +1004,6 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         break;
     case 4:
         actualizarArchivoPracticas(*listaPracticas);
-        //listaPracticas=cargarListaPracticaDesdeArchivo(*listaPracticas);
         break;
     case 5:
         break;
@@ -1010,7 +1011,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         break;
     }
 }
-void swicherPracticasXIngresosMaster (int opcion,int perfil,char archivo[])  ///sirve para solo para master master
+void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * listaPracticas, NodoIngresos * listaIngresos, NodoPxI * listaPxI)  ///sirve para solo para master master
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
 
