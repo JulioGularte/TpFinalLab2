@@ -398,6 +398,7 @@
 	<stdlib.h>
 	<windows.h>
 
+
 1700466617 source:d:\tpfinallab2\login.c
 	<stdio.h>
 	<stdlib.h>
@@ -473,4 +474,3 @@
 1700457441 source:d:\tpfinallab2\practicas.c
 	"Practicas.h"
 	<stdio.h>
-
