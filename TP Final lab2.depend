@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1700525184 source:c:\tpfinallab2\main.c
+1700539855 source:c:\tpfinallab2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -11,7 +11,7 @@
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 
-1700522002 source:c:\tpfinallab2\nodoingreso.c
+1700539860 source:c:\tpfinallab2\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -19,17 +19,18 @@
 	<stdlib.h>
 	<string.h>
 
-1700521976 c:\tpfinallab2\nodoingreso.h
+1700539853 c:\tpfinallab2\nodoingreso.h
 	"Ingreso.h"
 
-1700521857 c:\tpfinallab2\ingreso.h
+1700539860 c:\tpfinallab2\ingreso.h
+	"NodoArbolPaciente.h"
 
-1700529692 c:\tpfinallab2\nodoarbolpaciente.h
+1700539853 c:\tpfinallab2\nodoarbolpaciente.h
 	"Pacientes.h"
 
-1700526499 c:\tpfinallab2\pacientes.h
+1700539853 c:\tpfinallab2\pacientes.h
 
-1700527874 source:c:\tpfinallab2\pacientes.c
+1700539853 source:c:\tpfinallab2\pacientes.c
 	"NodoArbolPaciente.h"
 	<stdio.h>
 	<string.h>
@@ -133,14 +134,14 @@
 
 1700506311 c:\tpfinallab2\empleadoslaboratorio.h
 
-1700539696 source:c:\tpfinallab2\nodopractica.c
+1700539855 source:c:\tpfinallab2\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"NodoPxI.h"
 
-1700528510 c:\tpfinallab2\nodopractica.h
+1700539853 c:\tpfinallab2\nodopractica.h
 	"Practicas.h"
 	"NodoPxI.h"
 
@@ -150,18 +151,18 @@
 	"Practicas.h"
 	<stdio.h>
 
-1700522055 source:c:\tpfinallab2\nodopxi.c
+1700539853 source:c:\tpfinallab2\nodopxi.c
 	"nodoPxi.h"
 	"NodoPractica.h"
 	"NodoIngreso.h"
 	<stdio.h>
 	<stdlib.h>
 
-1700521823 c:\tpfinallab2\nodopxi.h
+1700539853 c:\tpfinallab2\nodopxi.h
 	"PracticasXIngreso.h"
 	"NodoIngreso.h"
 
-1700521823 c:\tpfinallab2\practicasxingreso.h
+1700539853 c:\tpfinallab2\practicasxingreso.h
 
 1700107175 source:c:\users\g\documents\tpfinallab2\gotoxy.c
 	<stdio.h>
@@ -540,7 +541,7 @@
 
 1700518021 source:c:\users\nacho\documents\tp final lab 2\nodoarbolpaciente.c
 
-1700521844 source:c:\tpfinallab2\ingreso.c
+1700539860 source:c:\tpfinallab2\ingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -550,7 +551,7 @@
 	<string.h>
 	<time.h>
 
-1700521823 source:c:\tpfinallab2\practicasxingreso.c
+1700539853 source:c:\tpfinallab2\practicasxingreso.c
 	"PracticasXIngreso.h"
 	<string.h>
 
@@ -569,7 +570,7 @@
 
 1700506311 c:\tpfinallab2\registrogeneral.h
 
-1700539696 source:c:\tpfinallab2\nodoarbolpaciente.c
+1700539860 source:c:\tpfinallab2\nodoarbolpaciente.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"

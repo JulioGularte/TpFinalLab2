@@ -16,7 +16,7 @@ time_t devuelveFechaActual()
 
 }
 
-/*Ingreso cargarIngresoManual(int * nroUltimoIngreso,nodoArbolPaciente * arbolPacientes) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
+Ingreso cargarIngresoManual(int * nroUltimoIngreso,nodoArbolPaciente * arbolPacientes) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
 {
     Ingreso nuevoIngreso;
     puts("Ingrese el DNI del paciente:"); ///falta validar que solo ingresen numeros enteros y positivos
@@ -81,12 +81,9 @@ time_t devuelveFechaActual()
 
         return nuevoIngreso;
     }
-    else
-    {
-        puts("El dni ingresado no es de ningun paciente");
-    }
+
 }
-*/
+
 void imprimirFechaActual(time_t t)
 {
     // Tiempo actual
