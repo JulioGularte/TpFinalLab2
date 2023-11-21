@@ -9,34 +9,9 @@
 
 
 int main()
-{   puts("Generando y mostrando Archivo de Pacientes");
-    generarNuevoArchiPaciente("archivoPacientes.bin");
-    mostrarArchivoPaciente("archivoPacientes.bin");
-    PAUSA;
-    BORRAR;
-    /*puts("Generando y mostrando Archivo de Ingresos");
-    generarNuevoArchiIngreso("archivoIngresos.bin");
-    mostrarArchivoIngreso("archivoIngresos.bin");
-    PAUSA;
-    BORRAR;
-    puts("Generando y mostrando Archivo de Practicas por ingreso");
-    generarNuevoArchiPxI("archivoPxI.bin");
-    mostrarArchivoPxI("archivoPxI.bin");
-    PAUSA;
-    BORRAR;
-    puts("Generando y mostrando la lista de ingresos");
-    NodoIngresos * listaDeIngresos=inicListaI();
-    listaDeIngresos=leerArchivoYCargarLista("archivoIngresos.bin",listaDeIngresos);
-    mostrarListaIngresos(listaDeIngresos);*/
-    ///Ingreso nuevoIngresoManual;
-    ///7int nroIngreso=201;
-    ///nuevoIngresoManual=cargarIngresoManual(&nroIngreso);
-    nodoArbolPaciente * arbolPacientes=NULL;
-    arbolPacientes=cargarArbolDesdeArchi("archivoPacientes.bin",arbolPacientes);
-    PAUSA;
-    BORRAR;
-    mostrarArbolPacientes(arbolPacientes);
-
+{
+    char archivo[40];
+    int a=loguear(archivo);
     return 0;
 }
 

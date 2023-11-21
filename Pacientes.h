@@ -9,4 +9,5 @@ typedef struct
     char telefono[20];
     int eliminado;
 }Paciente;
+Paciente cargaManualPaciente();
 #endif // Paciente_H_INCLUDED

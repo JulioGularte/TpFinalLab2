@@ -1,4 +1,3 @@
-#define _XOPEN_SOURCE 700
 #include "NodoIngreso.h"
 #include "NodoArbolPaciente.h"
 #include "NodoPxI.h"
@@ -9,7 +8,6 @@
 #include <time.h>
 #define PAUSA system("pause");
 #define BORRAR system("cls");
-
 
 nodoArbolPaciente *inicArbol()
 {
@@ -33,7 +31,6 @@ nodoArbolPaciente * cargarArbolOrdenadoDNI(nodoArbolPaciente * arbolPacientes, n
     if(aux==NULL)
     {
         arbolPacientes=nodoACargar;
-
     }
     else
     {
@@ -45,11 +42,11 @@ nodoArbolPaciente * cargarArbolOrdenadoDNI(nodoArbolPaciente * arbolPacientes, n
         {
             if(aux->paciente.DNI<nodoACargar->paciente.DNI)
             {
-                aux=cargarArbolOrdenadoDNI(aux->der,nodoACargar);
+                aux->der=cargarArbolOrdenadoDNI(aux->der,nodoACargar);
             }
             else
             {
-                aux=cargarArbolOrdenadoDNI(aux->izq,nodoACargar);
+                aux->izq=cargarArbolOrdenadoDNI(aux->izq,nodoACargar);
             }
         }
     }
@@ -60,44 +57,32 @@ nodoArbolPaciente * cargarArbolDesdeArchi(char archivoPacientes[], nodoArbolPaci
 {
     FILE * archi=fopen(archivoPacientes,"rb");
     if(archi)
-        {
+    {
         Paciente nuevoPaciente;
-            while(fread(&nuevoPaciente,sizeof(Paciente),1,archi)>0)
-            {
+        while(fread(&nuevoPaciente,sizeof(Paciente),1,archi)>0)
+        {
             nodoArbolPaciente * nodoAcargar=crearNodoArbol(nuevoPaciente);
             arbolPacientes=cargarArbolOrdenadoDNI(arbolPacientes,nodoAcargar);
-            }
-
         }
-fclose(archi);
-return arbolPacientes;
+        fclose(archi);
+    }
+
+    return arbolPacientes;
 }
 
 
-void cargaManualPaciente(Paciente nuevoPaciente)
-{
-    printf("INGRESE NOMBRE Y APELLIDO........: \n");
-    scanf(&nuevoPaciente.NyA);
-    printf("INGRESE DIRECCION ........: \n");
-    scanf(&nuevoPaciente.direccion);
-    printf("INGRESE DNI........: \n");
-    scanf(&nuevoPaciente.DNI);
-    printf("Desea dar de baja el paciente?\n 1-si\n2-no");
-    scanf(&nuevoPaciente.eliminado);
-    printf("INGRESE TELEFONO........: \n");
-    scanf(&nuevoPaciente.telefono);
-}
+
 
 void mostrarNodoArbol(nodoArbolPaciente * nodoAMostrar)
 {
 
-            printf("Numero de DNI:...................................... %d\n",nodoAMostrar->paciente.DNI);
-            printf("Nombre y apellido:.................................. %s\n",nodoAMostrar->paciente.NyA);
-            printf("Edad:............................................... %d\n",nodoAMostrar->paciente.edad);
-            printf("Direccion:.......................................... %s\n",nodoAMostrar->paciente.direccion);
-            printf("Telefono:........................................... %s\n",nodoAMostrar->paciente.telefono);
-            printf("Paciente eliminado:................................. %d\n",nodoAMostrar->paciente.eliminado);
-            puts("===========================================================================");
+    printf("Numero de DNI:...................................... %d\n",nodoAMostrar->paciente.DNI);
+    printf("Nombre y apellido:.................................. %s\n",nodoAMostrar->paciente.NyA);
+    printf("Edad:............................................... %d\n",nodoAMostrar->paciente.edad);
+    printf("Direccion:.......................................... %s\n",nodoAMostrar->paciente.direccion);
+    printf("Telefono:........................................... %s\n",nodoAMostrar->paciente.telefono);
+    printf("Paciente eliminado:................................. %d\n",nodoAMostrar->paciente.eliminado);
+    puts("===========================================================================");
 
 }
 
@@ -105,12 +90,99 @@ void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes)
 {
     nodoArbolPaciente * aux=arbolPacientes;
     if(aux!=NULL)
-        {
+    {
         mostrarArbolPacientes(aux->izq);
         mostrarNodoArbol(aux);
         mostrarArbolPacientes(aux->der);
 
+    }
+}
 
+nodoArbolPaciente * buscarXDni (nodoArbolPaciente * arbol, int dni)
+{
+    nodoArbolPaciente * nodoBusqueda=NULL;
+    if (arbol)
+    {
+        if (arbol->paciente.DNI==dni)
+        {
+            nodoBusqueda=crearNodoArbol(arbol->paciente);
+        }
+        else if (dni < arbol->paciente.DNI)
+        {
+            nodoBusqueda=buscarXDni (arbol->izq, dni);
+        }
+        else
+        {
+            nodoBusqueda=buscarXDni (arbol->der, dni);
+        }
+    }
+    else
+    {
+        printf ("No existe un paciente con el dni %d en el sistema \n");
+    }
+    return nodoBusqueda;
+}
+
+nodoArbolPaciente * actualizarNodoArbol (nodoArbolPaciente * arbol, int dni)
+{
+    if (arbol)
+    {
+        if (arbol->paciente.DNI==dni)
+        {
+            system("pause");
+            arbol->paciente=cargaManualPaciente();
+        }
+        else if (dni < arbol->paciente.DNI)
+        {
+            arbol->izq=actualizarNodoArbol (arbol->izq, dni);
+        }
+        else
+        {
+            arbol->der=actualizarNodoArbol (arbol->der, dni);
         }
 
+    }
+    return arbol;
 }
+
+nodoArbolPaciente * bajaNodoArbol (nodoArbolPaciente * arbol, int dni)
+{
+    if (arbol)
+    {
+        if (arbol->paciente.DNI==dni)
+        {
+            arbol->paciente.eliminado=1;
+        }
+        else if (dni < arbol->paciente.DNI)
+        {
+            arbol->izq=bajaNodoArbol (arbol->izq, dni);
+        }
+        else
+        {
+            arbol->der=bajaNodoArbol (arbol->der, dni);
+        }
+
+    }
+    return arbol;
+}
+
+void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
+{
+    FILE * buff=fopen("archivo_pacientes.bin", "wb");
+    if (buff)
+    {
+        nodoArbolPaciente * aux=arbol;
+        guardarNodoArbolPacientes(aux, buff);
+        fclose(buff);
+    }
+}
+
+void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff)
+{
+    if (nodo != NULL) {
+        guardarNodoArbolPacientes(nodo->izq, buff);
+        fwrite(&nodo->paciente, sizeof(Paciente), 1, buff);
+        guardarNodoArbolPacientes(nodo->der, buff);
+    }
+}
+
