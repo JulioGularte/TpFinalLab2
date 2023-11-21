@@ -216,7 +216,7 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngre
         scanf("%d",&nroPractica);
         practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
     }while(!practicaBuscada);
-    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso);
+    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso, paciente->paciente.DNI);
     paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
 }
 
@@ -231,6 +231,6 @@ void modificacionDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUlt
         scanf("%d",&nroPractica);
         practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
     }while(!practicaBuscada);
-    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso);
+    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso, paciente->paciente.DNI);
     paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
 }

@@ -11,12 +11,7 @@ Paciente cargaManualPaciente()
     gets(nuevoPaciente.direccion);
     printf("INGRESE DNI........: \n");
     scanf(&nuevoPaciente.DNI);
-    int opcion;
-    do
-    {
-    printf("Desea dar de baja el paciente? \n 1-si \n 0-no");
-    scanf("%d",&opcion);
-    }while (opcion != 1 && opcion !=0);
+    nuevoPaciente.eliminado==0;
     scanf(&nuevoPaciente.eliminado);
     printf("INGRESE TELEFONO........: \n");
     fflush(stdin);

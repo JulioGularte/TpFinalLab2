@@ -22,7 +22,7 @@
 1700579174 c:\tpfinallab2\nodoingreso.h
 	"Ingreso.h"
 
-1700584173 c:\tpfinallab2\ingreso.h
+1700592138 c:\tpfinallab2\ingreso.h
 	"NodoArbolPaciente.h"
 
 1700578998 c:\tpfinallab2\nodoarbolpaciente.h
@@ -124,7 +124,7 @@
 
 1700454506 d:\tp final lab 2\practicas.h
 
-1700588691 source:c:\tpfinallab2\login.c
+1700591967 source:c:\tpfinallab2\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -542,7 +542,7 @@
 
 1700518021 source:c:\users\nacho\documents\tp final lab 2\nodoarbolpaciente.c
 
-1700584153 source:c:\tpfinallab2\ingreso.c
+1700592145 source:c:\tpfinallab2\ingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -572,7 +572,7 @@
 
 1700506311 c:\tpfinallab2\registrogeneral.h
 
-1700586405 source:c:\tpfinallab2\nodoarbolpaciente.c
+1700592164 source:c:\tpfinallab2\nodoarbolpaciente.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"

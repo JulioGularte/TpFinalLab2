@@ -1112,7 +1112,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
         buscado=buscarXDni(*arbolPaciente, dni);
         if (buscado && buscado->paciente.eliminado==0)
         {
-            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
+            altaDeIngresoPaciente(buscado, nroUltimoIngreso, *listaDePracticas, *listaPxI);
             actualizarArchivoIngreso(*buscado->listaIngresos);
         }
         else
@@ -1143,7 +1143,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     case 1:
     {
         Practica nueva=crearStPractica();
-        *listaPracticas=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
+        (*listaPracticas)=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
         system("pause");
     }
     break;
@@ -1156,7 +1156,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         char nuevoNombre [30];
         fflush(stdin);
         gets(nuevoNombre);
-        editarPractica(*listaPracticas, idEditar,nuevoNombre);
+        editarPractica((*listaPracticas), idEditar,nuevoNombre);
         system("pause");
         break;
     case 3:
@@ -1164,7 +1164,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         printf("\n Ingrese el id de la practica a eliminar:");
         int idEliminar;
         scanf("%d",&idEliminar);
-        BajaNodoPractica(idEliminar, *listaPracticas, *listaPxI);
+        BajaNodoPractica(idEliminar, (*listaPracticas), (*listaPxI));
         break;
     case 4:
         printf ("Ingrese la practica a buscar \n");
