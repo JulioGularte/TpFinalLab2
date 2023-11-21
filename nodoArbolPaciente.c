@@ -219,3 +219,18 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngre
     Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso);
     paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
 }
+
+void modificacionDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngreso, NodoPractica * listaDePracticas, NodoPxI * listaPxI)
+{
+    NodoPractica * practicaBuscada=NULL;
+    mostrarListaPracticas(listaDePracticas, 1);
+    do
+    {
+        printf("Ingresar el numero de practica a modificar, la misma debe estar en estado activo: ");
+        int nroPractica;
+        scanf("%d",&nroPractica);
+        practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
+    }while(!practicaBuscada);
+    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso);
+    paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
+}

@@ -835,7 +835,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil,archivo);
+                    swicherIngresos(opcionInterna,perfil, &arbol ,&listaPracticas, &listaPxI, &nroUltimoIngreso); ///sirve para master y administrativo
                 }
                 while(opcionInterna!=4);
             }
@@ -1074,11 +1074,36 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
     switch(duplicado)
     {
     case 0:
-        ///desreferenciado de puntero doble
-        mostrarListaIngresos((*arbolPaciente)->listaIngresos);
+        mostrarArbolPacientes(*arbolPaciente);
+        printf("Ingrese el DNI del paciente del cual desea ver sus ingresos: ");
+        scanf("%d",&dni);
+        buscado=buscarXDni(*arbolPaciente, dni);
+        if (buscado)
+        {
+            mostrarListaIngresos((*arbolPaciente)->listaIngresos);
+        }
+        else
+        {
+            printf("El DNI %d no es valido  \n");
+            system("pause");
+        }
+        system("pause");
         break;
     case 1:
-        ///modificar Ingresos
+        mostrarArbolPacientes(*arbolPaciente);
+        printf("Ingrese el DNI del paciente al cual desea modificar el ingreso \n el mismo debe estar en estado activo:");
+        scanf("%d",&dni);
+        buscado=buscarXDni(*arbolPaciente, dni);
+        if (buscado && buscado->paciente.eliminado==0)
+        {
+            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
+            actualizarArchivoIngreso(*buscado->listaIngresos);
+        }
+        else
+        {
+            printf("El DNI %d no es valido para realizar una modificacion de ingreso \n");
+            system("pause");
+        }
         break;
     case 2:
         mostrarArbolPacientes(*arbolPaciente);

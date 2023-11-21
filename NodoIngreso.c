@@ -117,7 +117,7 @@ void mostrarListaIngresos(NodoIngresos* listaIng)
     NodoIngresos * aux = listaIng;
     if(aux==NULL)
     {
-        puts("La lista está vacia");
+        puts("La lista esta vacia");
     }
     else
     {

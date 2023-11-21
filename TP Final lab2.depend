@@ -124,7 +124,7 @@
 
 1700454506 d:\tp final lab 2\practicas.h
 
-1700584122 source:c:\tpfinallab2\login.c
+1700586733 source:c:\tpfinallab2\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -572,7 +572,7 @@
 
 1700506311 c:\tpfinallab2\registrogeneral.h
 
-1700583863 source:c:\tpfinallab2\nodoarbolpaciente.c
+1700586405 source:c:\tpfinallab2\nodoarbolpaciente.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
