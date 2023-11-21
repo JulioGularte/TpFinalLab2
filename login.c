@@ -641,7 +641,7 @@ int menuPracticas() ///menu principal de practicas
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 5;
+    nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver practicas";
     nuevoMenu.opciones[1] = "Alta de Practica";
@@ -846,7 +846,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuPracticas();
                     swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
                 }
-                while(opcionInterna!=5);
+                while(opcionInterna!=6);
             }
             else if(opcion==4)
             {
@@ -1131,12 +1131,6 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
 }
 void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI)  ///sirve para solo para master master
 {
-    Menu nuevoMenu;
-    nuevoMenu.opciones[0] = "Ver practicas";
-    nuevoMenu.opciones[1] = "Alta de Practica";
-    nuevoMenu.opciones[2] = "Modificacion de Practica";
-    nuevoMenu.opciones[3] = "Baja de practica";
-
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     switch(duplicado)
     {

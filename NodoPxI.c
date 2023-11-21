@@ -157,3 +157,9 @@ void bajaPxICascada (NodoPxI * listaPxI, Ingreso ingresoActualizado)
         }
     }
 }
+/*
+void verPracticasPorIngreso (NodoPxi * listaPxI, NodoIngresos * listaIngresos)
+{
+
+}
+*/
