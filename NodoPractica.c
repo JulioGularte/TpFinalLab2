@@ -138,7 +138,7 @@ void BajaNodoPractica (int idPractica, NodoPractica * lista, NodoPxI * listaPxI)
     }
 }
 
-void actualizarArchivoPracticas (NodoPractica * lista)
+void actualizarArchivoPracticas (NodoPractica ** lista)
 {
     FILE * buff=fopen(archivoPracticas, "wb");
     if (buff)

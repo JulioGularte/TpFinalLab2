@@ -17,5 +17,5 @@ void BajaNodoPractica (int idPractica, NodoPractica * lista, NodoPxI * listaPxI)
 void mostrarListaPracticas(NodoPractica * lista, int esAdmin);
 NodoPractica * altaDePractica (NodoPractica * lista, NodoPractica * nuevo);
 NodoPractica * cargarListaPracticaDesdeArchivo (NodoPractica * lista);
-void actualizarArchivoPracticas (NodoPractica * lista);
+void actualizarArchivoPracticas (NodoPractica ** lista);
 #endif // NODOPRACTICA_H_INCLUDED

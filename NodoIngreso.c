@@ -80,9 +80,9 @@ NodoIngresos * eliminarNodoIngPorNroIngreso(NodoIngresos * listaIng, int nroIngr
     {
         nodoIngAEliminar->ingreso.Eliminado=1;
     }
-    return listaIng; ///retorno la lista con el nodo modificado(o igual si es que no se encontro el dato buscado)
-
+return listaIng; ///retorno la lista sin el nodo borrado (o igual si es que no se encontro el dato buscado)
 }
+
 NodoIngresos * eliminarNodoIngPorDNI(NodoIngresos * listaIng, int DNI)
 {
     NodoIngresos * nodoIngAEliminar=buscarNodoIngresoPorNroDNI(listaIng,DNI); ///cargo el nodo a eliminar en una variable
@@ -145,3 +145,4 @@ while (fread(&nuevoIngreso,sizeof(Ingreso),1,archi)>0)
     }
 return listaIngresos;
 }
+
