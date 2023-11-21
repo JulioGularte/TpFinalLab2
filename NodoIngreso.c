@@ -115,7 +115,7 @@ void mostrarNodoIngreso(NodoIngresos * nodoAMostrar)
 
 void mostrarListaIngresos(NodoIngresos* listaIng)
 {
-    NodoIngresos * aux=listaIng;
+    NodoIngresos * aux = listaIng;
     if(aux==NULL)
     {
         puts("La lista está vacia");
@@ -130,19 +130,24 @@ void mostrarListaIngresos(NodoIngresos* listaIng)
     }
 }
 
-NodoIngresos * leerArchivoYCargarLista(char archivoIngreso[], NodoIngresos * listaIngresos)
+NodoIngresos * leerArchivoYCargarLista(char archivoIngreso[],nodoArbolPaciente*arbolPacientes)
 {
-FILE * archi=fopen(archivoIngreso,"rb");
+FILE * archi=fopen(archivoIngreso,"rb"); ///abro el archivo de ingresos con todos los ingresos
 if (archi)
     {
+    nodoArbolPaciente * aux=arbolPacientes; ///tengo en el auxiliar el arbol
     Ingreso nuevoIngreso;
-while (fread(&nuevoIngreso,sizeof(Ingreso),1,archi)>0)
-    {
-    listaIngresos=cargarListaIngreso_inicio(listaIngresos,nuevoIngreso);
 
+while (fread(&nuevoIngreso,sizeof(Ingreso),1,archi)>0) ///leo el archivo
+    {
+    if(arbolPacientes->paciente.DNI==nuevoIngreso.DNI) ///omparo el archivo con el dni del arbol
+        {
+
+    arbolPacientes->listaIngresos=cargarListaIngreso_inicio(arbolPacientes->listaIngresos,nuevoIngreso); ///si el dni coincide, creo y guardo el nodo en la lista del paciente
+    }
     }
     fclose(archi);
     }
-return listaIngresos;
+return arbolPacientes->listaIngresos; ///devuelvo esa lista actualizada
 }
 

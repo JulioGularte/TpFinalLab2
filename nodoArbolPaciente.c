@@ -88,21 +88,14 @@ void mostrarNodoArbol(nodoArbolPaciente * nodoAMostrar)
 
 void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes)
 {
-<<<<<<< HEAD
 
-    if(arbolPacientes!=NULL)
-        {
-        mostrarArbolPacientes(arbolPacientes->izq);
-        mostrarNodoArbol(arbolPacientes);
-        mostrarArbolPacientes(arbolPacientes->der);
-=======
     nodoArbolPaciente * aux=arbolPacientes;
     if(aux!=NULL)
     {
         mostrarArbolPacientes(aux->izq);
         mostrarNodoArbol(aux);
         mostrarArbolPacientes(aux->der);
->>>>>>> Practicas
+
 
     }
 }
@@ -188,10 +181,27 @@ void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
 
 void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff)
 {
-    if (nodo != NULL) {
+    if (nodo != NULL)
+    {
         guardarNodoArbolPacientes(nodo->izq, buff);
         fwrite(&nodo->paciente, sizeof(Paciente), 1, buff);
         guardarNodoArbolPacientes(nodo->der, buff);
     }
 }
 
+void cargarTodasListasIngresoDesdeArchi(char archivoIngreso[],nodoArbolPaciente*arbolPacientes)
+{
+    if (arbolPacientes != NULL)
+    {
+        cargarTodasListasIngresoDesdeArchi(archivoIngreso,arbolPacientes->izq);
+        arbolPacientes->listaIngresos=leerArchivoYCargarLista(archivoIngreso,arbolPacientes);
+        cargarTodasListasIngresoDesdeArchi(archivoIngreso,arbolPacientes->der);
+    }
+}
+void mostrarTodasListasIngresoDesdeArbol(nodoArbolPaciente * arbolPacientes)
+{
+    mostrarTodasListasIngresoDesdeArbol(arbolPacientes->izq);
+    mostrarListaIngresos(arbolPacientes->listaIngresos);
+    mostrarTodasListasIngresoDesdeArbol(arbolPacientes->der);
+
+}

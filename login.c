@@ -16,7 +16,7 @@ int loguear (char archivo[])///pide usuario y clave con 3 intentos y manda al sw
     int intentos=4;
     char usuario[20];
     char clave[20];
-    printf("\t -- Hospital HP --\n");
+    printf("\t -- Laboratorio C --\n");
     do
     {
         printf("\n\tUsuario: ");
@@ -30,7 +30,7 @@ int loguear (char archivo[])///pide usuario y clave con 3 intentos y manda al sw
         if(perfil==-1)
         {
             system("cls");
-            printf("\t -- Hospital HP --\n\tLa clave o usuario no existen...\n/tLe quedan %i intentos...",intentos-1);
+            printf("\t -- Laboratorio C --\n\tLa clave o usuario no existen...\n/tLe quedan %i intentos...",intentos-1);
         }
     }
     while(intentos!=0 && perfil==-1);
@@ -344,7 +344,7 @@ void buscar_empleado_en_archivo_DNI(char archivo[],int perfil) ///solo busca coi
         do
         {
             system("cls");
-            printf("\t -- Hospital HP --\n\t  -Busqueda de empleados-\n");
+            printf("\t -- Laboratorio C --\n\t  -Busqueda de empleados-\n");
             printf("\nIngrese el DNI buscado: ");
             fflush(stdin);
             gets(dni_buscado);
@@ -394,7 +394,7 @@ void buscar_empleado_en_archivo_NYA(char archivo[],int perfil) ///solo busca coi
         do
         {
             system("cls");
-            printf("\t -- Hospital HP --\n\t  -Busqueda de empleados-\n");
+            printf("\t -- Laboratorio C --\n\t  -Busqueda de empleados-\n");
             printf("\nIngrese el usuario buscado: ");
             fflush(stdin);
             gets(usuario_buscado);
@@ -512,7 +512,7 @@ void dar_de_baja_alta_archivo(char archivo[],int perfil) ///solo busca coinciden
         do
         {
             system("cls");
-            printf("\t -- Hospital HP --\n\t  -Busqueda de empleados-\n");
+            printf("\t -- Laboratorio C --\n\t  -Busqueda de empleados-\n");
             printf("\nIngrese el DNI buscado: ");
             fflush(stdin);
             gets(dni_buscado);
@@ -560,7 +560,7 @@ int menuADMIN() ///menu principal del admin
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Menu Empleados";
@@ -576,7 +576,7 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 5;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Menu Pacientes";
@@ -591,7 +591,7 @@ int menuEmpleados() ///menu principal de Empleados
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 8;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Listado general de empleados";
@@ -609,7 +609,7 @@ int menuPacientes() ///menu principal de Empleados
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver paciente";
@@ -625,7 +625,7 @@ int menuIngresos() ///menu principal de ingresos
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 5;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver ingresos";
@@ -640,7 +640,7 @@ int menuPracticas() ///menu principal de practicas
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 5;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver practicas";
@@ -655,7 +655,7 @@ int menuPracticasXIngresos() ///sub menu de practicas por ingresos (solo para ma
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 5;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver Practicas en cada ingreso";
@@ -670,7 +670,7 @@ int menuPracticasXIngresosTecnico() ///sub menu de practicas por ingresos (solo 
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver Practicas en cada ingreso";
@@ -683,7 +683,7 @@ int menuPERFIL()  ///menu carga perfil
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 2;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "ADMINISTRATIVO";
@@ -695,7 +695,7 @@ int menuMODIFICAR() ///menu modificar
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 8;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Modificar nombre y apellido";
@@ -713,7 +713,7 @@ int menuMostrarAltaBaja() ///menu baja/alta
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Empleados en estado de Baja";
@@ -726,7 +726,7 @@ int menuBUSCAR() ///menu de opciones para buscar
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Modificar empleado buscando por DNI";
@@ -739,7 +739,7 @@ int menuSI_NO() ///menu si/no
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP --\n\t-- Desea modificar los datos?";
+    nuevoMenu.titulo = "Laboratorio C --\n\t-- Desea modificar los datos?";
     nuevoMenu.cantidadOpciones = 2;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "SI";
@@ -751,7 +751,7 @@ int menuVerPaciente() ///sub menu ver pasiente
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Consultar paciente por DNI";
@@ -764,7 +764,7 @@ int menuIngresosTecnicos() ///sub menu ingresos tecnicos
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver por numero de ingesos";
@@ -777,7 +777,7 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
 {
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Hospital HP";
+    nuevoMenu.titulo = "Laboratorio C";
     nuevoMenu.cantidadOpciones = 3;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver Practicas";
@@ -793,6 +793,8 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     ///carga de arbol de pacientes
     nodoArbolPaciente * arbol=inicArbol();
     arbol=cargarArbolDesdeArchi("archivo_pacientes.bin", arbol);
+    ///carga de ingresos
+    cargarTodasListasIngresoDesdeArchi("archivoIngresos.bin",arbol);
     ///carga de lista de practicas
     NodoPractica * listaPracticas=inicListaPractica();
     listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
@@ -939,7 +941,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
     {
     case 0:
         system("cls");
-        printf("\t -- Hospital HP --\n\t   -Lista de empleados-\n");
+        printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
         mostrar_lista_entera(lista,perfil);
         printf("\n");
         system("pause");
@@ -948,11 +950,11 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         aux=menuMostrarAltaBaja();
         if(aux==0)
         {
-            printf("\t -- Hospital HP --\n\t   -Lista estado de Baja- \n");
+            printf("\t -- Laboratorio C --\n\t   -Lista estado de Baja- \n");
         }
         else if(aux==1)
         {
-            printf("\t -- Hospital HP --\n\t   -Lista estado de Alta- \n");
+            printf("\t -- Laboratorio C --\n\t   -Lista estado de Alta- \n");
         }
         if(aux!=2)
         {
@@ -979,7 +981,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         break;
     case 5:
         system("cls");
-        printf("\t -- Hospital HP --\n\t   -Alta de empleado-\n");
+        printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
         cargar_empleado_to_archivo(archivo);
         system("cls");
         printf("\nEmpleado cargado con exito\n");
@@ -1060,13 +1062,13 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         break;
     }
 }
-void swicherIngresos (int opcion,int perfil,char archivo[])  ///sirve para master y administrativo
+void swicherIngresos (int opcion,int perfil,char archivo[], nodoArbolPaciente ** arbolPaciente)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     switch(duplicado)
     {
     case 0:
-        ///ver Ingresos
+       mostrarListaIngresos(&arbolPaciente->listaIngresos);
         break;
     case 1:
         ///modificar Ingresos
