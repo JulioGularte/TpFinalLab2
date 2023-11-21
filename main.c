@@ -12,6 +12,12 @@ int main()
 {
     char archivo[40];
     int a=loguear(archivo);
+
+    /*
+    char fecha1[30]="20/11/1994";
+    char fecha2[30]="15/10/1994";
+    int aux=compararFechas(fecha1,fecha2);
+    printf("\n%i",aux);*/
     return 0;
 }
 

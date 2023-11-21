@@ -34,7 +34,7 @@ int loguear (char archivo[])///pide usuario y clave con 3 intentos y manda al sw
         }
     }
     while(intentos!=0 && perfil==-1);
-    menu_opciones_gerarquia(perfil,archivo);
+    //menu_opciones_gerarquia(perfil,archivo);
     return perfil;/// retorna el int correspondiente a la gerarquia para los distintos menues
 }
 
@@ -788,6 +788,7 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
 }
 
 ///=================================================================================================================swichs menus
+/*
 void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar los distintos menues dependiendo la gerarquia
 {
     ///carga de arbol de pacientes
@@ -927,7 +928,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     actualizarArchivoPracticas(listaPracticas);
     actualizarPacientesEnArchivo (arbol);
 }
-
+*/
 
 void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
 {
@@ -995,7 +996,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         break;
     }
 }
-
+/*
 void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente ** arbol)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
@@ -1060,6 +1061,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         break;
     }
 }
+*/
 void swicherIngresos (int opcion,int perfil,char archivo[])  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.

@@ -141,12 +141,14 @@ int validarFormatoFecha(char fecha[])  ///si hay tiempo, validar meses que no ti
 }
 
 
-int compararFechas(char fecha1[], char fecha2[])
+int compararFechas(const char fecha1[],const char fecha2[])
 {
-    struct tm tmFecha1, tmFecha2;
+    struct tm tmFecha1 = {0}; // es necesario Inicializa la estructura con valores predeterminados sino la fecha se modifica siempre
+    struct tm tmFecha2 = {0};
 
     sscanf(fecha1, "%d/%d/%d", &tmFecha1.tm_mday, &tmFecha1.tm_mon, &tmFecha1.tm_year);
     sscanf(fecha2, "%d/%d/%d", &tmFecha2.tm_mday, &tmFecha2.tm_mon, &tmFecha2.tm_year);
+
 
     tmFecha1.tm_mon -= 1;
     tmFecha2.tm_mon -= 1;
@@ -154,10 +156,14 @@ int compararFechas(char fecha1[], char fecha2[])
     tmFecha1.tm_year -= 1900;
     tmFecha2.tm_year -= 1900;
 
+
     time_t timeFecha1 = mktime(&tmFecha1);
     time_t timeFecha2 = mktime(&tmFecha2);
 
-    return timeFecha1 <= timeFecha2 ? 1 : 0; // si la fecha 2 (la de retiro) es mayor a la de ingreso retorna 1 y si no, 0
+    printf("Fecha 1: %d/%d/%d\n", tmFecha1.tm_mday, tmFecha1.tm_mon + 1, tmFecha1.tm_year + 1900);
+    printf("Fecha 2: %d/%d/%d\n", tmFecha2.tm_mday, tmFecha2.tm_mon + 1, tmFecha2.tm_year + 1900);
+
+    return timeFecha1 < timeFecha2 ? 1 : 0; // si la fecha 2 (la de retiro) es mayor a la de ingreso retorna 1 y si no, 0
 
 }
 int validarDniPaciente(int nroDni, nodoArbolPaciente * arbolDePacientes)

@@ -579,3 +579,123 @@
 	<string.h>
 	<time.h>
 
+1700107175 source:c:\users\g\documents\nueva carpeta\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1700538701 source:c:\users\g\documents\nueva carpeta\ingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	"NodoPxI.h"
+	"Ingreso.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
+1700536961 c:\users\g\documents\nueva carpeta\nodoingreso.h
+	"Ingreso.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\ingreso.h
+
+1700536961 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
+	"Pacientes.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\pacientes.h
+
+1700536961 c:\users\g\documents\nueva carpeta\nodopxi.h
+	"PracticasXIngreso.h"
+	"NodoIngreso.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\practicasxingreso.h
+
+1700537364 source:c:\users\g\documents\nueva carpeta\login.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"EmpleadosLaboratorio.h"
+	"NodoPractica.h"
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\menu.h
+
+1700411593 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
+
+1700536961 c:\users\g\documents\nueva carpeta\nodopractica.h
+	"Practicas.h"
+	"NodoPxI.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\practicas.h
+
+1700538921 source:c:\users\g\documents\nueva carpeta\main.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"NodoArbolPaciente.h"
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+
+1700536961 source:c:\users\g\documents\nueva carpeta\menu.c
+	"menu.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+	"NodoPractica.h"
+
+1700107175 c:\users\g\documents\nueva carpeta\gotoxy.h
+
+1700536961 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	"NodoPxI.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1700536961 source:c:\users\g\documents\nueva carpeta\nodopractica.c
+	"nodoPractica.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"NodoPxI.h"
+
+1700536961 source:c:\users\g\documents\nueva carpeta\nodopxi.c
+	"nodoPxi.h"
+	"NodoPractica.h"
+	"NodoIngreso.h"
+	<stdio.h>
+	<stdlib.h>
+
+1700536961 source:c:\users\g\documents\nueva carpeta\pacientes.c
+	"NodoArbolPaciente.h"
+	<stdio.h>
+	<string.h>
+
+1700536961 source:c:\users\g\documents\nueva carpeta\practicas.c
+	"Practicas.h"
+	<stdio.h>
+
+1700536961 source:c:\users\g\documents\nueva carpeta\practicasxingreso.c
+	"PracticasXIngreso.h"
+	<string.h>
+
+1700536961 source:c:\users\g\documents\nueva carpeta\registrogeneral.c
+	"NodoIngreso.h"
+	"NodoArbolPaciente.h"
+	"NodoPxI.h"
+	"Ingreso.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"registroGeneral.h"
+
+1700536961 c:\users\g\documents\nueva carpeta\registrogeneral.h
+
