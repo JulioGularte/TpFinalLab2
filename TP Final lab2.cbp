@@ -32,6 +32,9 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="EmpleadosLaboratorio.h" />
+		<Unit filename="Ingreso.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Ingreso.h" />
 		<Unit filename="NodoArbolPaciente.h" />
 		<Unit filename="NodoIngreso.c">
@@ -69,6 +72,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
+		<Unit filename="nodoArbolPaciente.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="registroGeneral.c">
 			<Option compilerVar="CC" />
 		</Unit>

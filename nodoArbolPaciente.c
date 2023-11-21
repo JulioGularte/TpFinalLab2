@@ -103,12 +103,12 @@ void mostrarNodoArbol(nodoArbolPaciente * nodoAMostrar)
 
 void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes)
 {
-    nodoArbolPaciente * aux=arbolPacientes;
-    if(aux!=NULL)
+
+    if(arbolPacientes!=NULL)
         {
-        mostrarArbolPacientes(aux->izq);
-        mostrarNodoArbol(aux);
-        mostrarArbolPacientes(aux->der);
+        mostrarArbolPacientes(arbolPacientes->izq);
+        mostrarNodoArbol(arbolPacientes);
+        mostrarArbolPacientes(arbolPacientes->der);
 
 
         }
