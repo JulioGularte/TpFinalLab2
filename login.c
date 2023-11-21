@@ -641,13 +641,14 @@ int menuPracticas() ///menu principal de practicas
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Hospital HP";
-    nuevoMenu.cantidadOpciones = 5;
+    nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
     nuevoMenu.opciones[0] = "Ver practicas";
     nuevoMenu.opciones[1] = "Alta de Practica";
     nuevoMenu.opciones[2] = "Modificacion de Practica";
     nuevoMenu.opciones[3] = "Baja de practica";
-    nuevoMenu.opciones[4] = "Volver al menu";
+    nuevoMenu.opciones[4] = "Filtrado de practicas por iniciales";
+    nuevoMenu.opciones[5] = "Volver al menu";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
@@ -843,7 +844,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuPracticas();
                     swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
                 }
-                while(opcionInterna!=4);
+                while(opcionInterna!=5);
             }
             else if(opcion==4)
             {
@@ -1127,6 +1128,12 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         BajaNodoPractica(idEliminar, *listaPracticas, *listaPxI);
         break;
     case 4:
+        printf ("Ingrese la practica a buscar \n");
+        char busqueda[30];
+        gets(busqueda);
+        NodoPractica * listaFiltrada=filtrarPracticasPorIniciales(*listaPracticas, busqueda);
+        mostrarListaPracticas(listaFiltrada, 1);
+        system("pause");
         break;
     default:
         break;

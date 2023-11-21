@@ -205,3 +205,21 @@ NodoPractica * cargarListaPracticaDesdeArchivo (NodoPractica * lista)
     }
     return lista;
 }
+
+NodoPractica * filtrarPracticasPorIniciales(NodoPractica *lista, char nombre[])
+{
+
+    NodoPractica *listaFiltrada = inicListaPractica();
+    if (lista) {
+        int longitudCadenaBusqueda = strlen(nombre);
+        NodoPractica *seg = lista;
+        while (seg) {
+            // Comparo las iniciales y la cantidad de caracteres a buscar
+            if (strncmp(nombre, seg->practica.NombrePractica, longitudCadenaBusqueda) == 0) {
+                listaFiltrada=agregarPracticaEnOrden(listaFiltrada, crearNodoPractica(seg->practica));
+            }
+            seg = seg->siguiente;
+        }
+    }
+    return listaFiltrada;
+}

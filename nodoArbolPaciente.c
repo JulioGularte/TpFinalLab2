@@ -98,29 +98,28 @@ void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes)
     }
 }
 
-nodoArbolPaciente * buscarXDni (nodoArbolPaciente * arbol, int dni)
+nodoArbolPaciente* buscarXDni(nodoArbolPaciente* arbol, int dni)
 {
-    nodoArbolPaciente * nodoBusqueda=NULL;
     if (arbol)
     {
-        if (arbol->paciente.DNI==dni)
+        if (arbol->paciente.DNI == dni)
         {
-            nodoBusqueda=crearNodoArbol(arbol->paciente);
+            return arbol;
         }
         else if (dni < arbol->paciente.DNI)
         {
-            nodoBusqueda=buscarXDni (arbol->izq, dni);
+            return buscarXDni(arbol->izq, dni);
         }
         else
         {
-            nodoBusqueda=buscarXDni (arbol->der, dni);
+            return buscarXDni(arbol->der, dni);
         }
     }
     else
     {
-        printf ("No existe un paciente con el dni %d en el sistema \n");
+        // Retorna NULL si el árbol está vacío o el paciente no se encuentra.
+        return NULL;
     }
-    return nodoBusqueda;
 }
 
 nodoArbolPaciente * actualizarNodoArbol (nodoArbolPaciente * arbol, int dni)
@@ -179,7 +178,8 @@ void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
 
 void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff)
 {
-    if (nodo != NULL) {
+    if (nodo != NULL)
+    {
         guardarNodoArbolPacientes(nodo->izq, buff);
         fwrite(&nodo->paciente, sizeof(Paciente), 1, buff);
         guardarNodoArbolPacientes(nodo->der, buff);
