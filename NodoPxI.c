@@ -163,3 +163,28 @@ void verPracticasPorIngreso (NodoPxi * listaPxI, NodoIngresos * listaIngresos)
 
 }
 */
+void AltaDePracticaPxI (NodoPxI * listaPxI, nodoArbolPaciente * paciente, NodoPractica * listaDePracticas)
+{
+    mostrarListaIngresos(paciente->listaIngresos);
+    NodoIngresos * buscado=NULL;
+    NodoPractica * buscada=NULL;
+    do
+    {
+    printf("Ingrese el numero de ingreso en el que desea cargar la practica: \n");
+    int nroIngresoBuscado;
+    scanf("%d",&nroIngresoBuscado);
+    buscado=buscarNodoIngresoPorNroIngreso(paciente->listaIngresos, nroIngresoBuscado);
+    }while (!buscado);
+    do
+    {
+    printf("Ingrese el nro de practica que desea cargar: \n");
+    int nroPracticaBuscada;
+    scanf("%d",&nroPracticaBuscada);
+    buscada=encontrarNodoPracticaXId(listaDePracticas, nroPracticaBuscada);
+    }while(!buscada);
+    NodoIngresos * nodoIngresoDelPaciente=paciente->listaIngresos;
+    nodoIngresoDelPaciente->listaPxI=agregarPrincipioPxI(nodoIngresoDelPaciente->listaPxI, crearNodoPxI(crearPxI(nodoIngresoDelPaciente->ingreso.NroIngreso, buscada->practica.nroPractica)));
+    listaPxI=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nodoIngresoDelPaciente->ingreso.NroIngreso, buscada->practica.nroPractica)));
+    printf("Practica agregada exitosamente \n");
+    system("pause");
+}

@@ -846,7 +846,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuPracticas();
                     swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
                 }
-                while(opcionInterna!=6);
+                while(opcionInterna!=5);
             }
             else if(opcion==4)
             {
@@ -1178,10 +1178,11 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         break;
     }
 }
-void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * listaPracticas, NodoIngresos * listaIngresos, NodoPxI * listaPxI)  ///sirve para solo para master master
+void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI, nodoArbolPaciente ** pacientes)  ///sirve para solo para master master
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-
+    nodoArbolPaciente * buscado=NULL;
+    int dni;
     switch(duplicado)
     {
     case 0:
@@ -1194,7 +1195,20 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
         ///baja practicas
         break;
     case 3:
-        ///alta practicas
+        mostrarArbolPacientes(*pacientes);
+        printf("Ingrese el DNI del paciente al cual desea dar de alta una practica \n el mismo debe estar en estado activo:");
+        scanf("%d",&dni);
+        buscado=buscarXDni(*pacientes, dni);
+        if (buscado && buscado->paciente.eliminado==0)
+        {
+            AltaDePracticaPxI (*listaPxI, buscado, *listaPracticas);
+            actualizarArchivoIngreso(buscado->listaIngresos);
+        }
+        else
+        {
+            printf("El DNI %d no es valido para realizar un alta de practica \n");
+            system("pause");
+        }
         break;
     default:
         break;

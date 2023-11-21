@@ -124,7 +124,7 @@
 
 1700454506 d:\tp final lab 2\practicas.h
 
-1700586733 source:c:\tpfinallab2\login.c
+1700588691 source:c:\tpfinallab2\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -153,7 +153,7 @@
 	"Practicas.h"
 	<stdio.h>
 
-1700587413 source:c:\tpfinallab2\nodopxi.c
+1700590103 source:c:\tpfinallab2\nodopxi.c
 	"nodoPxi.h"
 	"NodoPractica.h"
 	"NodoIngreso.h"
