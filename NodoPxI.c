@@ -104,17 +104,18 @@ void verPracticasPorIngreso (NodoPxI * listaPxI, NodoPractica * listaPracticas, 
 ///funcion para guardar las Practica por ingreso del paciente
 void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngresosPaciente)
 {
-    FILE * buff=fopen(archivoPxi, "r+b");
+    FILE * buff=fopen(archivoPxi, "a+b"); ///a+b por si el archivo no existe asi se crea
     if (buff)
     {
+        fseek(buff, 0, SEEK_SET); ///al abrir el modo a+b el puntero del archivo se posiciona al final, lo vuelvo al principio para leer
         PracticasXIngreso rg;
         NodoIngresos * segIngreso=listaDeIngresosPaciente;
         int registrosLeidos=0;
         while (segIngreso) ///recorro la lista de ingresos para guardar las pxi en el archivo
         {
-            NodoPxI * PxIEncontrada=NULL; ///nodo auxiliar
             while (fread(&rg, sizeof(PracticasXIngreso),1, buff)>0) ///recorro el archivo buscando el PxI
             {
+                NodoPxI * PxIEncontrada=NULL; ///nodo auxiliar
                 registrosLeidos++; ///contador de posicion para retomar la ultima posicion por si tengo que ir al final del archivo y agregar
                 NodoPxI * segPxI=segIngreso->listaPxI;
                 while (segPxI) ///recorro la lista de practicas por ingreso
@@ -126,8 +127,6 @@ void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngreso
                         fwrite(&segPxI->PxI, sizeof(PracticasXIngreso), 1, buff); ///grabo en el archivo
                     }
 
-                    segPxI=segPxI->siguiente;
-
                     if (!PxIEncontrada) ///si no hay coincidencias agrego al final del archivo
                     {
                         fseek(buff, 0, SEEK_END);
@@ -135,6 +134,7 @@ void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngreso
                         fseek(buff, registrosLeidos*sizeof(PracticasXIngreso), SEEK_SET); ///retorno a la posicion del ultimo registro leido
                         PxIEncontrada=NULL;
                     }
+                    segPxI=segPxI->siguiente;
                 }
             }
             segIngreso=segIngreso->siguiente;
@@ -142,3 +142,18 @@ void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngreso
     }
 }
 
+void bajaPxICascada (NodoPxI * listaPxI, Ingreso ingresoActualizado)
+{
+    if (listaPxI)
+    {
+        NodoPxI * seg=listaPxI;
+        while (seg)
+        {
+            if (seg->PxI.nroIngreso==ingresoActualizado.NroIngreso)
+            {
+                seg->PxI.eliminado=1;
+            }
+            seg=seg->siguiente;
+        }
+    }
+}

@@ -16,13 +16,13 @@ time_t devuelveFechaActual()
 
 }
 
-Ingreso cargarIngresoManual(int * nroUltimoIngreso,nodoArbolPaciente * arbolPacientes) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
+Ingreso cargarIngresoManual(int * nroUltimoIngreso) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
 {
     Ingreso nuevoIngreso;
     puts("Ingrese el DNI del paciente:"); ///falta validar que solo ingresen numeros enteros y positivos
     scanf("%d",&nuevoIngreso.DNI);
     int pacienteExiste=0;
-    pacienteExiste=validarDniPaciente(nuevoIngreso.DNI,arbolPacientes);
+    //pacienteExiste=validarDniPaciente(nuevoIngreso.DNI,arbolPacientes);
     if(pacienteExiste==1)
     {
 
@@ -72,13 +72,8 @@ Ingreso cargarIngresoManual(int * nroUltimoIngreso,nodoArbolPaciente * arbolPaci
                 {
                     puts("La fecha debe tener un formato dd/mm/aaaa y ser una fecha valida");
                 }
-
             }
-
         }
-
-
-
         return nuevoIngreso;
     }
 
@@ -180,4 +175,20 @@ int validarDniPaciente(int nroDni, nodoArbolPaciente * arbolDePacientes)
     }
     return flag;*/
 
+}
+
+int contarIngresosEnArchivo ()
+{
+    FILE * buff=fopen(archivoIngresos, "rb");
+    int ingresos=0;
+    if (buff)
+    {
+        Ingreso rg;
+        while (fread(&rg, sizeof(Ingreso), 1, buff)>0)
+        {
+            ingresos++;
+        }
+        fclose(buff);
+    }
+    return ingresos;
 }

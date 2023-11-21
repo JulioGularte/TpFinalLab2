@@ -193,7 +193,7 @@ void cargarTodasListasIngresoDesdeArchi(char archivoIngreso[],nodoArbolPaciente*
     if (arbolPacientes != NULL)
     {
         cargarTodasListasIngresoDesdeArchi(archivoIngreso,arbolPacientes->izq);
-        arbolPacientes->listaIngresos=leerArchivoYCargarLista(archivoIngreso,arbolPacientes);
+        arbolPacientes->listaIngresos=cargarListaDeIngresosDelPaciente(archivoIngreso,arbolPacientes);
         cargarTodasListasIngresoDesdeArchi(archivoIngreso,arbolPacientes->der);
     }
 }
@@ -203,4 +203,19 @@ void mostrarTodasListasIngresoDesdeArbol(nodoArbolPaciente * arbolPacientes)
     mostrarListaIngresos(arbolPacientes->listaIngresos);
     mostrarTodasListasIngresoDesdeArbol(arbolPacientes->der);
 
+}
+
+void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngreso, NodoPractica * listaDePracticas, NodoPxI * listaPxI)
+{
+    NodoPractica * practicaBuscada=NULL;
+    mostrarListaPracticas(listaDePracticas, 1);
+    do
+    {
+        printf("Ingresar el numero de practica a realizar el alta, la misma debe estar en estado activo: ");
+        int nroPractica;
+        scanf("%d",&nroPractica);
+        practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
+    }while(!practicaBuscada);
+    Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso);
+    paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
 }

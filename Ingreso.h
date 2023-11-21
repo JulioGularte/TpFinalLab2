@@ -1,5 +1,6 @@
 #ifndef Ingreso_H_INCLUDED
 #define Ingreso_H_INCLUDED
+#define archivoIngresos "archivo_ingresos.bin"
 #include "NodoArbolPaciente.h"
 typedef struct _Ingreso
 {
@@ -11,8 +12,8 @@ typedef struct _Ingreso
     int Eliminado;
 }Ingreso;
 
-Ingreso cargarIngresoManual(int * nroUltimoIngreso, nodoArbolPaciente * arbolPacientes);
-
+Ingreso cargarIngresoManual(int * nroUltimoIngreso);
+int contarIngresosEnArchivo ();
 
 
 #endif // Ingreso_H_INCLUDED

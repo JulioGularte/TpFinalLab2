@@ -8,6 +8,7 @@ typedef struct _nodoIngresos
     struct _nodoIngresos * anterior;
     struct _NodoPxI * listaPxI;
 }NodoIngresos;
+void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngresosPaciente);
 
 
 #endif // NODOINGRESO_H_INCLUDED

@@ -34,7 +34,7 @@ int loguear (char archivo[])///pide usuario y clave con 3 intentos y manda al sw
         }
     }
     while(intentos!=0 && perfil==-1);
-    //menu_opciones_gerarquia(perfil,archivo);
+    menu_opciones_gerarquia(perfil,archivo);
     return perfil;/// retorna el int correspondiente a la gerarquia para los distintos menues
 }
 
@@ -789,7 +789,7 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
 }
 
 ///=================================================================================================================swichs menus
-/*
+
 void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar los distintos menues dependiendo la gerarquia
 {
     ///carga de arbol de pacientes
@@ -804,6 +804,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     NodoPxI * listaPxI=inicListaPxI();
     int opcion;
     int opcionInterna;
+    int nroUltimoIngreso=contarIngresosEnArchivo();
     switch(perfil)
     {
 
@@ -811,7 +812,6 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         do
         {
             opcion=menuADMIN();
-
             if(opcion==0)
             {
                 do ///empleados
@@ -905,7 +905,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             else if(opcion==1)
             {
                 opcionInterna=menuIngresosTecnicos();
-                swicherIngresosTecnicos(opcionInterna,perfil,archivo);
+                swicherIngresosTecnicos(opcion,perfil, &arbol, &listaPracticas, &listaPxI, &nroUltimoIngreso);
             }
             else if(opcion==2)
             {
@@ -930,8 +930,9 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     }
     actualizarArchivoPracticas(listaPracticas);
     actualizarPacientesEnArchivo (arbol);
+    actualizarArchivoPxI(listaPxI);
 }
-*/
+
 
 void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
 {
@@ -999,7 +1000,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         break;
     }
 }
-/*
+
 void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente ** arbol)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
@@ -1064,10 +1065,12 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         break;
     }
 }
-*/
-void swicherIngresos (int opcion,int perfil,char archivo[], nodoArbolPaciente ** arbolPaciente)  ///sirve para master y administrativo
+
+void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente, NodoPractica ** listaDePracticas, NodoPxI ** listaPxI, int * nroUltimoIngreso)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
+    nodoArbolPaciente * buscado=NULL;
+    int dni;
     switch(duplicado)
     {
     case 0:
@@ -1078,10 +1081,24 @@ void swicherIngresos (int opcion,int perfil,char archivo[], nodoArbolPaciente **
         ///modificar Ingresos
         break;
     case 2:
-        ///alta Ingresos
+        mostrarArbolPacientes(*arbolPaciente);
+        printf("Ingrese el DNI del paciente al cual desea realizar el ingreso \n el mismo debe estar en estado activo:");
+        scanf("%d",&dni);
+        buscado=buscarXDni(*arbolPaciente, dni);
+        if (buscado && buscado->paciente.eliminado==0)
+        {
+            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
+            actualizarArchivoIngreso(*buscado->listaIngresos);
+        }
+        else
+        {
+            printf("El DNI %d no es valido para realizar un alta de ingreso \n");
+            system("pause");
+        }
         break;
     case 3:
-        ///baja Ingresos
+        BajaDeIngresos (*arbolPaciente, *listaPxI);
+        system("pause");
         break;
     default:
         break;
@@ -1089,12 +1106,12 @@ void swicherIngresos (int opcion,int perfil,char archivo[], nodoArbolPaciente **
 }
 void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI)  ///sirve para solo para master master
 {
-    /*
+    Menu nuevoMenu;
     nuevoMenu.opciones[0] = "Ver practicas";
     nuevoMenu.opciones[1] = "Alta de Practica";
     nuevoMenu.opciones[2] = "Modificacion de Practica";
     nuevoMenu.opciones[3] = "Baja de practica";
-    */
+
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     switch(duplicado)
     {
