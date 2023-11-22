@@ -18,7 +18,7 @@ nodoArbolPaciente * cargarArbolDesdeArchi(char archivoPacientes[], nodoArbolPaci
 void mostrarNodoArbol(nodoArbolPaciente * nodoAMostrar);
 void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes);
 nodoArbolPaciente * buscarXDni (nodoArbolPaciente * arbol, int dni);
-nodoArbolPaciente * bajaNodoArbol (nodoArbolPaciente * arbol, int dni);
+void bajaNodoArbol (nodoArbolPaciente * arbol, int dni);
 void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol);
 void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngreso, NodoPractica * listaDePracticas, NodoPxI * listaPxI);
 #endif // NODOARBOLPACIENTE_H_INCLUDED

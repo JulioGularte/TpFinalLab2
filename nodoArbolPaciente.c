@@ -146,7 +146,7 @@ nodoArbolPaciente * actualizarNodoArbol (nodoArbolPaciente * arbol, int dni)
     return arbol;
 }
 
-nodoArbolPaciente * bajaNodoArbol (nodoArbolPaciente * arbol, int dni)
+void bajaNodoArbol (nodoArbolPaciente * arbol, int dni)
 {
     if (arbol)
     {
@@ -156,15 +156,13 @@ nodoArbolPaciente * bajaNodoArbol (nodoArbolPaciente * arbol, int dni)
         }
         else if (dni < arbol->paciente.DNI)
         {
-            arbol->izq=bajaNodoArbol (arbol->izq, dni);
+            bajaNodoArbol (arbol->izq, dni);
         }
         else
         {
-            arbol->der=bajaNodoArbol (arbol->der, dni);
+            bajaNodoArbol (arbol->der, dni);
         }
-
     }
-    return arbol;
 }
 
 void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
@@ -234,3 +232,14 @@ void modificacionDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUlt
     Ingreso nuevoIngreso=cargarIngresoManual(numeroUltimoIngreso, paciente->paciente.DNI);
     paciente->listaIngresos=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
 }
+/*
+void cargarListaPxIEnPaciente (nodoArbolPaciente * paciente, NodoPxI * listaPxI)
+{
+    nodoArbolPaciente * segArbol=arbol;
+    nodoArbolPaciente * segLista=listaPxI;
+    if (segArbol && segLista)
+    {
+
+    }
+}
+*/
