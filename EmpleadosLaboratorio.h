@@ -31,7 +31,7 @@ void cargar_empleado_to_archivo (char archivo[]);
 nodo_lista* agregar_al_final_ordenado_nya(nodo_lista*lista, empleados_laboratorio dato);
 nodo_lista* pasar_archivo_to_lista(char archivo[]); ///pasa todos los datos a una lista
 
-void buscar_empleado_en_archivo_DNI(char archivo[],int perfil); ///solo busca coincidencia con dni
+void buscar_empleado_en_archivo_DNI(char archivo[],int perfil, nodo_lista* lista);///solo busca coincidencia con dni
 empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archivo[]);
 
 nodo_lista* agregar_al_final (nodo_lista* lista, empleados_laboratorio dato);
