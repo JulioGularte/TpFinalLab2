@@ -173,7 +173,7 @@ void mostrarListaPracticas (NodoPractica * lista, int esAdmin)
 {
     if (!lista)
     {
-        printf ("La lista de practicas esta vacia \n");
+        printf ("\n\tLa lista de practicas esta vacia \n");
     }
     else
     {

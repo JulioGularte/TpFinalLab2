@@ -354,6 +354,7 @@ void buscar_empleado_en_archivo_DNI(char archivo[],int perfil, nodo_lista* lista
             {
                 if(strcmp(aux.dni,dni_buscado)==0)
                 {
+                    printf("cls");
                     printf("\nEmpleado encontrado: \n");
                     mostrar_empleado(aux,perfil);
                     encontrado='s';
@@ -383,12 +384,12 @@ void buscar_empleado_en_archivo_DNI(char archivo[],int perfil, nodo_lista* lista
         fclose(arch);
     }
 }
-void buscar_empleado_en_archivo_NYA(char archivo[],int perfil) ///solo busca coincidencia con usuario y modifica si el usuario lo pide
+void buscar_empleado_en_archivo_NYA(char archivo[],int perfil, nodo_lista* lista) ///solo busca coincidencia con usuario y modifica si el usuario lo pide
 {
     FILE*arch=fopen(archivo,"r+b");
     empleados_laboratorio aux;
     empleados_laboratorio nuevo;
-    char usuario_buscado[40];
+    char nombre_buscado[40];
     char encontrado='n';
     int modifificar;
     if(arch)
@@ -396,13 +397,15 @@ void buscar_empleado_en_archivo_NYA(char archivo[],int perfil) ///solo busca coi
         do
         {
             system("cls");
-            printf("\t -- Laboratorio C --\n\t  -Busqueda de empleados-\n");
-            printf("\nIngrese el usuario buscado: ");
+            printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
+            mostrar_lista_entera(lista,perfil);
+            printf("\n\n\t-Busqueda de empleados-\n");
+            printf("\n\tIngrese el nombre buscado: ");
             fflush(stdin);
-            gets(usuario_buscado);
+            gets(nombre_buscado);
             while(fread(&aux,sizeof(empleados_laboratorio),1,arch)>0 && encontrado!='s')
             {
-                if(strcmpi(aux.NyA,usuario_buscado)==0)
+                if(strcmpi(aux.NyA,nombre_buscado)==0)
                 {
                     printf("\nEmpleado encontrado: \n");
                     mostrar_empleado(aux,perfil);
@@ -483,6 +486,7 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
         {
             strcpy(dato.perfil,"tecnico");
         }
+        break;
     case 5:
         if(dato.baja==1)
         {
@@ -585,6 +589,22 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
     nuevoMenu.opciones[0] = "Ver listado general de empleados";
     nuevoMenu.opciones[1] = "Menu Pacientes";
     nuevoMenu.opciones[2] = "Menu Ingresos";
+    nuevoMenu.opciones[3] = "Ver Practicas";
+    nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
+    nuevoMenu.opciones[5] = "Salir";
+    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
+    return nuevoMenu.opcionSeleccionada;
+}
+int menuTECNICO() ///menu principal del administrativo
+{
+    Menu nuevoMenu;
+    nuevoMenu.opcionSeleccionada = 0;
+    nuevoMenu.titulo = "Laboratorio C";
+    nuevoMenu.cantidadOpciones = 6;
+    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
+    nuevoMenu.opciones[0] = "Ver listado general de empleados";
+    nuevoMenu.opciones[1] = "Ver Pacientes";
+    nuevoMenu.opciones[2] = "Ver Ingresos";
     nuevoMenu.opciones[3] = "Menu Practicas";
     nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
     nuevoMenu.opciones[5] = "Salir";
@@ -937,6 +957,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             else if(opcion==3)
             {
                 mostrarListaPracticas(listaPracticas, 0);
+                system("pause");
             }
             else if(opcion==4)
             {
@@ -949,7 +970,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     case 2:              ///<---- tecnico
         do
         {
-            opcion=menuADMINISTRATIVO(); ///se utiliza el mismo menu dado que cumple con los mismos parametros
+            opcion=menuTECNICO(); ///se utiliza el mismo menu dado que cumple con los mismos parametros
             if(opcion==0)
             {
                 system("cls");
@@ -973,13 +994,14 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 {
                     opcionInterna=menuPracticas();
                     swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
-                }
-                while(opcionInterna!=5);
+                }while(opcionInterna!=0);
             }
             else if(opcion==4)
             {
-                opcionInterna=menuPracticasXIngresosTecnico();
-                swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
+                do{
+                    opcionInterna=menuPracticasXIngresosTecnico();
+                    swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
+                }while(opcionInterna!=0);
             }
         }
         while(opcion!=5);
@@ -1013,10 +1035,12 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         aux=menuMostrarAltaBaja();
         if(aux==0)
         {
+            system("cls");
             printf("\t -- Laboratorio C --\n\t   -Lista estado de Baja- \n");
         }
         else if(aux==1)
         {
+            system("cls");
             printf("\t -- Laboratorio C --\n\t   -Lista estado de Alta- \n");
         }
         if(aux!=2)
@@ -1031,9 +1055,8 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         system("cls");
         printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
         mostrar_lista_entera(lista,perfil);
-        system("pause");
 
-        buscar_empleado_en_archivo_NYA(archivo,perfil);
+        buscar_empleado_en_archivo_NYA(archivo,perfil,lista);
         break;
     case 5:
         aux=menuBUSCAR();
@@ -1042,7 +1065,6 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
             system("cls");
             printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
             mostrar_lista_entera(lista,perfil);
-            system("pause");
 
             buscar_empleado_en_archivo_DNI(archivo,perfil,lista);
         }
@@ -1051,9 +1073,8 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
             system("cls");
             printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
             mostrar_lista_entera(lista,perfil);
-            system("pause");
 
-            buscar_empleado_en_archivo_NYA(archivo,perfil);
+            buscar_empleado_en_archivo_NYA(archivo,perfil,lista);
         }
         break;
     case 6:
@@ -1207,12 +1228,14 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     {
     case 1:
     {
+        system("cls");
         mostrarListaPracticas(*listaPracticas, 1);
         system("pause");
     }
     break;
     case 2:
     {
+        system("cls");
         Practica nueva=crearStPractica();
         (*listaPracticas)=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
         system("pause");
