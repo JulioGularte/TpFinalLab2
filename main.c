@@ -10,7 +10,7 @@
 
 int main()
 {
-    char archivo[40];
+    char archivo[40]="archivo_empleados.bin";
     int a=loguear(archivo);
 
     /*

@@ -577,108 +577,128 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
     Menu nuevoMenu;
     nuevoMenu.opcionSeleccionada = 0;
     nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 5;
+    nuevoMenu.cantidadOpciones = 6;
     nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Menu Pacientes";
-    nuevoMenu.opciones[1] = "Menu Ingresos";
-    nuevoMenu.opciones[2] = "Menu Practicas";
-    nuevoMenu.opciones[3] = "Menu Practicas por ingresos";
-    nuevoMenu.opciones[4] = "Salir";
+    nuevoMenu.opciones[0] = "Ver listado general de empleados";
+    nuevoMenu.opciones[1] = "Menu Pacientes";
+    nuevoMenu.opciones[2] = "Menu Ingresos";
+    nuevoMenu.opciones[3] = "Menu Practicas";
+    nuevoMenu.opciones[4] = "Menu Practicas por ingresos";
+    nuevoMenu.opciones[5] = "Salir";
     nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
     return nuevoMenu.opcionSeleccionada;
 }
 int menuEmpleados() ///menu principal de Empleados
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 8;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Listado general de empleados";
-    nuevoMenu.opciones[1] = "Listado Altas / Bajas";
-    nuevoMenu.opciones[2] = "Consultar empleado (DNI)";
-    nuevoMenu.opciones[3] = "Consultar empleado (Nombre y Apellido)";
-    nuevoMenu.opciones[4] = "Modificar empleado";
-    nuevoMenu.opciones[5] = "Dar de Alta un empleado";
-    nuevoMenu.opciones[6] = "Modificar estado de empleado (Alta/Baja)";
-    nuevoMenu.opciones[7] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver listado general de empleados");
+        printf("\n2)Ver listado Altas / Bajas");
+        printf("\n3)Consultar empleado (DNI)");
+        printf("\n4)Consultar empleado (Nombre y Apellido)");
+        printf("\n5)Modificar empleado");
+        printf("\n6)Dar de Alta un empleado");
+        printf("\n7)Modificar estado de empleado (Alta/Baja)");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>7);
+
+    return opcion;
 }
 int menuPacientes() ///menu principal de Empleados
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 6;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver paciente";
-    nuevoMenu.opciones[1] = "Modificar paciente";
-    nuevoMenu.opciones[2] = "Alta de paciente";
-    nuevoMenu.opciones[3] = "Baja de paciente";
-    nuevoMenu.opciones[4] = "Listado General";
-    nuevoMenu.opciones[5] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver paciente");
+        printf("\n2)Modificar paciente");
+        printf("\n3)Alta de paciente");
+        printf("\n4)Baja de paciente");
+        printf("\n5)Listado General");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>5);
+
+    return opcion;
 }
 int menuIngresos() ///menu principal de ingresos
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 5;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver ingresos";
-    nuevoMenu.opciones[1] = "Modificar ingreso";
-    nuevoMenu.opciones[2] = "Alta de ingreso";
-    nuevoMenu.opciones[3] = "Baja de ingreso";
-    nuevoMenu.opciones[4] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver paciente");
+        printf("\n2)Modificar paciente");
+        printf("\n3)Alta de paciente");
+        printf("\n4)Baja de paciente");
+        printf("\n5)Listado General");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>5);
+
+    return opcion;
 }
 int menuPracticas() ///menu principal de practicas
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 6;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver practicas";
-    nuevoMenu.opciones[1] = "Alta de Practica";
-    nuevoMenu.opciones[2] = "Modificacion de Practica";
-    nuevoMenu.opciones[3] = "Baja de practica";
-    nuevoMenu.opciones[4] = "Filtrado de practicas por iniciales";
-    nuevoMenu.opciones[5] = "Volver al menu";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver practicas");
+        printf("\n2)Alta de Practica");
+        printf("\n3)Modificacion de Practica");
+        printf("\n4)Baja de practica");
+        printf("\n5)Filtrado de practicas por iniciales");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>5);
+
+    return opcion;
 }
 int menuPracticasXIngresos() ///sub menu de practicas por ingresos (solo para master)
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 5;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver Practicas en cada ingreso";
-    nuevoMenu.opciones[1] = "Modificar practicas en cada ingreso";
-    nuevoMenu.opciones[2] = "Baja de practicas en cada ingreso";
-    nuevoMenu.opciones[3] = "Alta de practicas en cada ingreso";
-    nuevoMenu.opciones[4] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver Practicas en cada ingreso");
+        printf("\n2)Modificar practicas en cada ingreso");
+        printf("\n3)Baja de practicas en cada ingreso");
+        printf("\n4)Alta de practicas en cada ingreso");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>4);
+
+    return opcion;
 }
 int menuPracticasXIngresosTecnico() ///sub menu de practicas por ingresos (solo para tencicos)
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 3;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver Practicas en cada ingreso";
-    nuevoMenu.opciones[1] = "Modificar practicas en cada ingreso";
-    nuevoMenu.opciones[2] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver Practicas en cada ingreso");
+        printf("\n2)Modificar practicas en cada ingreso");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>2);
+
+    return opcion;
 }
 int menuPERFIL()  ///menu carga perfil
 {
@@ -750,42 +770,52 @@ int menuSI_NO() ///menu si/no
 }
 int menuVerPaciente() ///sub menu ver pasiente
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 3;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Consultar paciente por DNI";
-    nuevoMenu.opciones[1] = "Consultar paciente por nombre y apellido";
-    nuevoMenu.opciones[2] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Consultar paciente por DNI");
+        printf("\n2)Consultar paciente por nombre y apellido");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>2);
+
+    return opcion;
 }
 int menuIngresosTecnicos() ///sub menu ingresos tecnicos
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 3;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver por numero de ingesos";
-    nuevoMenu.opciones[1] = "Ver por numero de DNI";
-    nuevoMenu.opciones[2] = "Volver";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver por numero de ingesos");
+        printf("\n2)Ver por numero de DNI");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>2);
+
+    return opcion;
 }
 int menuPracticasTecnicos() ///sub menu practicas tecnicos
 {
-    Menu nuevoMenu;
-    nuevoMenu.opcionSeleccionada = 0;
-    nuevoMenu.titulo = "Laboratorio C";
-    nuevoMenu.cantidadOpciones = 3;
-    nuevoMenu.opciones = malloc(nuevoMenu.cantidadOpciones * sizeof(char *));
-    nuevoMenu.opciones[0] = "Ver Practicas";
-    nuevoMenu.opciones[1] = "Alta de practicas";
-    nuevoMenu.opciones[2] = "Baja de practicas";
-    nuevoMenu.opcionSeleccionada = gestionarMenu(nuevoMenu);
-    return nuevoMenu.opcionSeleccionada;
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("\n1)Ver Practicas");
+        printf("\n2)Alta de practicas");
+        printf("\n3)Baja de practicas");
+        printf("\n0)Volver al menu");
+        printf("\nIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>3);
+
+    return opcion;
 }
 
 ///=================================================================================================================swichs menus
@@ -819,7 +849,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuEmpleados();
                     swicherAdmin(opcionInterna,perfil,archivo);
                 }
-                while(opcionInterna!=7);
+                while(opcionInterna!=0);
             }
             else if(opcion==1)
             {
@@ -828,7 +858,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuPacientes();
                     swicherPacientes(opcionInterna,perfil,archivo, &arbol);
                 }
-                while(opcionInterna!=5);
+                while(opcionInterna!=0);
             }
             else if(opcion==2)
             {
@@ -837,7 +867,93 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                     opcionInterna=menuIngresos();
                     swicherIngresos(opcionInterna,perfil, &arbol ,&listaPracticas, &listaPxI, &nroUltimoIngreso); ///sirve para master y administrativo
                 }
-                while(opcionInterna!=4);
+                while(opcionInterna!=0);
+            }
+            else if(opcion==3)
+            {
+                do ///practicas
+                {
+                    opcionInterna=menuPracticas();
+                    swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
+                }
+                while(opcionInterna!=0);
+            }
+            else if(opcion==4)
+            {
+                do ///practica x ingreso
+                {
+                    opcionInterna=menuPracticasXIngresos();
+                    swicherPracticasXIngresosMaster(opcionInterna,perfil,archivo);
+                }
+                while(opcionInterna!=0);
+            }
+        }
+        while(opcion!=5);
+        break;
+    case 1:              ///<---- administrador
+        do
+        {
+            opcion=menuADMINISTRATIVO();
+            if(opcion==0)
+            {
+                system("cls");
+                printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
+                nodo_lista* lista=pasar_archivo_to_lista(archivo);
+                mostrar_lista_entera(lista,perfil);
+                printf("\n");
+                system("pause");
+            }
+            else if(opcion==1)
+            {
+                do ///pacientes
+                {
+                    opcionInterna=menuPacientes();
+                    swicherPacientes(opcionInterna,perfil,archivo);
+                }
+                while(opcionInterna!=0);
+            }
+            else if(opcion==2)
+            {
+                do ///ingresos
+                {
+                    opcionInterna=menuIngresos();
+                    swicherIngresos(opcionInterna,perfil,archivo);
+                }
+                while(opcionInterna!=0);
+            }
+            else if(opcion==3)
+            {
+                mostrarListaPracticas(listaPracticas, 0);
+            }
+            else if(opcion==4)
+            {
+                opcionInterna=menuPracticasXIngresos();
+                swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
+            }
+        }
+        while(opcion!=5);
+        break;
+    case 2:              ///<---- tecnico
+        do
+        {
+            opcion=menuADMINISTRATIVO(); ///se utiliza el mismo menu dado que cumple con los mismos parametros
+            if(opcion==0)
+            {
+                system("cls");
+                printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
+                nodo_lista* lista=pasar_archivo_to_lista(archivo);
+                mostrar_lista_entera(lista,perfil);
+                printf("\n");
+                system("pause");
+            }
+            else if(opcion==1)
+            {
+                ///ver pacientes funcion sola
+            }
+            else if(opcion==2)
+            {
+                opcionInterna=menuIngresosTecnicos();
+                swicherIngresosTecnicos(opcion,perfil, &arbol, &listaPracticas, &listaPxI, &nroUltimoIngreso);
             }
             else if(opcion==3)
             {
@@ -850,79 +966,11 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==4)
             {
-                do ///practica x ingreso
-                {
-                    opcionInterna=menuPracticasXIngresos();
-                    swicherPracticasXIngresosMaster(opcionInterna,perfil,archivo);
-                }
-                while(opcionInterna!=4);
-            }
-        }
-        while(opcion!=5);
-        break;
-    case 1:              ///<---- administrador
-        do
-        {
-            opcion=menuADMINISTRATIVO();
-            if(opcion==0)
-            {
-                do ///pacientes
-                {
-                    opcionInterna=menuPacientes();
-                    swicherPacientes(opcionInterna,perfil,archivo);
-                }
-                while(opcionInterna!=5);
-            }
-            else if(opcion==1)
-            {
-                do ///ingresos
-                {
-                    opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil,archivo);
-                }
-                while(opcionInterna!=4);
-            }
-            else if(opcion==2)
-            {
-                mostrarListaPracticas(listaPracticas, 0);
-            }
-            else if(opcion==3)
-            {
-                opcionInterna=menuPracticasXIngresos();
-                swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
-            }
-        }
-        while(opcion!=4);
-        break;
-    case 2:              ///<---- tecnico
-        do
-        {
-            opcion=menuADMINISTRATIVO(); ///se utiliza el mismo menu dado que cumple con los mismos parametros
-            if(opcion==0)
-            {
-                ///ver pacientes funcion sola
-            }
-            else if(opcion==1)
-            {
-                opcionInterna=menuIngresosTecnicos();
-                swicherIngresosTecnicos(opcion,perfil, &arbol, &listaPracticas, &listaPxI, &nroUltimoIngreso);
-            }
-            else if(opcion==2)
-            {
-                do ///practicas
-                {
-                    opcionInterna=menuPracticas();
-                    swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
-                }
-                while(opcionInterna!=5);
-            }
-            else if(opcion==3)
-            {
                 opcionInterna=menuPracticasXIngresosTecnico();
                 swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
             }
         }
-        while(opcion!=4);
+        while(opcion!=5);
         break;
     default:
         system("cls");
@@ -942,14 +990,14 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
     lista=pasar_archivo_to_lista(archivo);
     switch(duplicado)
     {
-    case 0:
+    case 1:
         system("cls");
         printf("\t -- Laboratorio C --\n\t   -Lista de empleados-\n");
         mostrar_lista_entera(lista,perfil);
         printf("\n");
         system("pause");
         break;
-    case 1:
+    case 2:
         aux=menuMostrarAltaBaja();
         if(aux==0)
         {
@@ -964,14 +1012,14 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
             mostrar_lista_baja_alta(lista,perfil,aux);
         }
         break;
-    case 2:
+    case 3:
 
         buscar_empleado_en_archivo_DNI(archivo,perfil);
         break;
-    case 3:
+    case 4:
         buscar_empleado_en_archivo_NYA(archivo,perfil);
         break;
-    case 4:
+    case 5:
         aux=menuBUSCAR();
         if(aux==0)
         {
@@ -982,7 +1030,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
             buscar_empleado_en_archivo_NYA(archivo,perfil);
         }
         break;
-    case 5:
+    case 6:
         system("cls");
         printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
         cargar_empleado_to_archivo(archivo);
@@ -990,11 +1038,8 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         printf("\nEmpleado cargado con exito\n");
         system("pause");
         break;
-    case 6:
-        dar_de_baja_alta_archivo(archivo,perfil);
-        break;
     case 7:
-        printf("\nDeslogueando...\n");
+        dar_de_baja_alta_archivo(archivo,perfil);
         break;
     default:
         break;
@@ -1008,7 +1053,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
     nodoArbolPaciente * buscado=NULL;
     switch(duplicado)
     {
-    case 0:
+    case 1:
         buscado=NULL;
         printf ("Ingrese un dni para buscar :");
         scanf("%d",&dni);
@@ -1023,7 +1068,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         }
         system("pause");
         break;
-    case 1:
+    case 2:
         buscado=NULL;
         mostrarArbolPacientes(*arbol);
         printf ("Ingrese un dni del paciente a modificar :");
@@ -1039,10 +1084,10 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         }
         system("pause");
         break;
-    case 2:
+    case 3:
         *arbol=cargarArbolOrdenadoDNI(*arbol, crearNodoArbol(cargaManualPaciente()));
         break;
-    case 3:
+    case 4:
         buscado=NULL;
         mostrarArbolPacientes(*arbol);
         printf ("Ingrese un dni del paciente a eliminar :");
@@ -1058,7 +1103,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         }
         system("pause");
         break;
-    case 4:
+    case 5:
         mostrarArbolPacientes(*arbol);
         system("pause");
     default:
@@ -1073,7 +1118,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
     int dni;
     switch(duplicado)
     {
-    case 0:
+    case 1:
         mostrarArbolPacientes(*arbolPaciente);
         printf("Ingrese el DNI del paciente del cual desea ver sus ingresos: ");
         scanf("%d",&dni);
@@ -1089,7 +1134,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
         }
         system("pause");
         break;
-    case 1:
+    case 2:
         mostrarArbolPacientes(*arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea modificar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
@@ -1105,7 +1150,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
             system("pause");
         }
         break;
-    case 2:
+    case 3:
         mostrarArbolPacientes(*arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea realizar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
@@ -1121,7 +1166,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
             system("pause");
         }
         break;
-    case 3:
+    case 4:
         BajaDeIngresos (*arbolPaciente, *listaPxI);
         system("pause");
         break;
@@ -1134,20 +1179,20 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     switch(duplicado)
     {
-    case 0:
+    case 1:
     {
         mostrarListaPracticas(*listaPracticas, 1);
         system("pause");
     }
     break;
-    case 1:
+    case 2:
     {
         Practica nueva=crearStPractica();
         (*listaPracticas)=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
         system("pause");
     }
     break;
-    case 2:
+    case 3:
         mostrarListaPracticas(*listaPracticas, 1);
         printf("\n Ingrese el id de la practica a modificar:");
         int idEditar;
@@ -1159,14 +1204,14 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         editarPractica((*listaPracticas), idEditar,nuevoNombre);
         system("pause");
         break;
-    case 3:
+    case 4:
         mostrarListaPracticas(*listaPracticas, 1);
         printf("\n Ingrese el id de la practica a eliminar:");
         int idEliminar;
         scanf("%d",&idEliminar);
         BajaNodoPractica(idEliminar, (*listaPracticas), (*listaPxI));
         break;
-    case 4:
+    case 5:
         printf ("Ingrese la practica a buscar \n");
         char busqueda[30];
         gets(busqueda);
@@ -1185,16 +1230,16 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** li
     int dni;
     switch(duplicado)
     {
-    case 0:
+    case 1:
         ///ver practicas x ingreso
         break;
-    case 1:
+    case 2:
         ///modificar practicas
         break;
-    case 2:
+    case 3:
         ///baja practicas
         break;
-    case 3:
+    case 4:
         mostrarArbolPacientes(*pacientes);
         printf("Ingrese el DNI del paciente al cual desea dar de alta una practica \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
@@ -1220,16 +1265,16 @@ void swicherPracticasXIngresosAdministrativo (int opcion,int perfil,char archivo
 
     switch(duplicado)
     {
-    case 0:
+    case 1:
         ///ver practicas x ingreso
         break;
-    case 1:
+    case 2:
         ///modificar practicas
         break;
-    case 2:
+    case 3:
         ///baja practicas
         break;
-    case 3:
+    case 4:
         ///alta practicas
         break;
     default:
@@ -1242,10 +1287,10 @@ void swicherIngresosTecnicos(int opcion,int perfil,char archivo[])  ///sirve par
 
     switch(duplicado)
     {
-    case 0:
+    case 1:
         ///ver ingreso por numero
         break;
-    case 1:
+    case 2:
         ///ver ingreso por dni
         break;
     default:
@@ -1258,13 +1303,13 @@ void swicherPracticasTecnicos(int opcion,int perfil,char archivo[])  ///sirve pa
 
     switch(duplicado)
     {
-    case 0:
+    case 1:
         ///ver practicas
         break;
-    case 1:
+    case 2:
         ///alta practicas
         break;
-    case 2:
+    case 3:
         ///baja practicas
         break;
     default:
@@ -1277,10 +1322,10 @@ void swicherPracticasXIngresosTecnicos(int opcion,int perfil,char archivo[])  //
 
     switch(duplicado)
     {
-    case 0:
+    case 1:
         ///ver practicas en cada ingreso
         break;
-    case 1:
+    case 2:
         ///modificar practicas en cada ingreso
         break;
     default:
