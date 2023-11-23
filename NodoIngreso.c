@@ -130,11 +130,7 @@ void mostrarNodoIngreso(NodoIngresos * nodoAMostrar)
 void mostrarListaIngresos(NodoIngresos* listaIng)
 {
     NodoIngresos * aux = listaIng;
-    if(aux==NULL)
-    {
-        puts("La lista esta vacia");
-    }
-    else
+    if (aux)
     {
         while(aux)
         {

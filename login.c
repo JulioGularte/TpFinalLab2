@@ -1440,18 +1440,16 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     NodoIngresos * ingresoBuscado=inicListaI();
     int ingreso;
-    NodoIngresos * ingresosTodosLosPacientes=inicListaI();
-    ingresosTodosLosPacientes=obtenerIngresosDeTodosLosPacientes(pacientes);
     switch(duplicado)
     {
     case 1:
-        mostrarListaIngresos(ingresosTodosLosPacientes);
+        mostrarNodosIngresosTodosLosPacientes (pacientes);
         printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
         scanf ("%d",&ingreso);
-        ingresoBuscado=buscarNodoIngresoPorNroIngreso(ingresosTodosLosPacientes, ingreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, ingreso);
         if (ingresoBuscado)
         {
-            mostrarPracticasXIngresos (ingresosTodosLosPacientes, ingreso, listaPracticas);
+            mostrarPracticasXIngresos (ingresoBuscado, ingreso, listaPracticas);
         }
         system("pause");
         break;

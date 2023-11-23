@@ -373,6 +373,38 @@ int contarIngresosDeTodosLosPacientes(nodoArbolPaciente *arbol)
     return cantidad;
 }
 
+
+void mostrarNodosIngresosTodosLosPacientes (nodoArbolPaciente * arbol)
+{
+    if (arbol)
+    {
+        mostrarNodosIngresosTodosLosPacientes (arbol -> izq);
+        mostrarListaIngresos(arbol->listaIngresos);
+        mostrarNodosIngresosTodosLosPacientes (arbol -> der);
+    }
+}
+
+NodoIngresos * buscarNodoIngresoEnArbol (nodoArbolPaciente * arbol, NodoIngresos * buscado, int nroIngreso)
+{
+   if (arbol == NULL) {
+       return NULL;
+   }
+   buscado = buscarNodoIngresoEnArbol(arbol->izq, buscado, nroIngreso);
+
+   if (buscado != NULL) {
+       return buscado;
+   }
+
+   buscado = buscarNodoIngresoPorNroIngreso(arbol->listaIngresos, nroIngreso);
+
+   if (buscado != NULL) {
+       return buscado;
+   }
+
+   return buscarNodoIngresoEnArbol(arbol->der, buscado, nroIngreso);
+}
+
+/*
 NodoIngresos * obtenerIngresosDeTodosLosPacientes (nodoArbolPaciente * arbol)
 {
     NodoIngresos * nodoIngresosPaciente=inicListaI();
@@ -390,24 +422,23 @@ void arbolToIngresosPaciente(nodoArbolPaciente * arbol, NodoIngresos ** nodoIngr
     {
         arbolToIngresosPaciente(arbol->izq, nodoIngresosPaciente);
 
-
-        arbolToIngresosPaciente(arbol->der, nodoIngresosPaciente);
-
         NodoIngresos * seg=arbol->listaIngresos;
         while (seg)
         {
-            (*nodoIngresosPaciente)=cargarListaIngreso_inicio_nodo((*nodoIngresosPaciente), seg);
+            (*nodoIngresosPaciente)=cargarListaIngreso_inicio_nodo((*nodoIngresosPaciente), crearNodoI(seg->ingreso));
             seg=seg->siguiente;
         }
+
+
+        arbolToIngresosPaciente(arbol->der, nodoIngresosPaciente);
     }
 }
-
+*/
 void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIngreso, NodoPractica * listaPracticas)
 {
     NodoIngresos * seg=ingresosDeLosPacientes;
     while(seg)
     {
-        mostrarNodoIngreso(seg);
         NodoPxI * PxI=seg->listaPxI;
         if (seg->ingreso.NroIngreso==nroIngreso)
         {
@@ -416,7 +447,7 @@ void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIn
                 NodoPractica * nodo=encontrarNodoPracticaXId (listaPracticas, PxI->PxI.nroPractica);
                 mostrarUnaPractica(nodo->practica, 1);
                 printf ("Practicas: \n");
-                printf ("Resultado: %s", PxI->PxI.resultado);
+                printf ("Resultado: %s \n", PxI->PxI.resultado);
                 PxI=PxI->siguiente;
             }
         }
