@@ -1378,6 +1378,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
                 printf ("El paciente no tiene ingresos para modificar \n");
             }
         }
+        system("pause");
         break;
     default:
         break;

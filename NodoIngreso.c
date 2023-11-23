@@ -248,12 +248,12 @@ void BajaDeIngresos (NodoIngresos * ingresosDelPaciente)
         }
     }
     while(!buscado);
-    buscado->ingreso.Eliminado=0;
+    buscado->ingreso.Eliminado=1;
     NodoPxI * PxIBuscado=buscado->listaPxI;
     NodoPxI * seg=PxIBuscado;
     while(seg)
     {
-        seg->PxI.eliminado=0;
+        seg->PxI.eliminado=1;
         seg=seg->siguiente;
     }
     printf ("Ingreso %d y sus practicas dadas de baja exitosamente \n", nroIngreso);
