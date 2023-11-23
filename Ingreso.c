@@ -20,12 +20,8 @@ Ingreso cargarIngresoManual(int * nroUltimoIngreso, int documentoPaciente) ///ac
 {
     Ingreso nuevoIngreso;
     nuevoIngreso.DNI=documentoPaciente;
-    int pacienteExiste=0;
-    //pacienteExiste=validarDniPaciente(nuevoIngreso.DNI,arbolPacientes);
-    if(pacienteExiste==1)
-    {
 
-        *nroUltimoIngreso=*nroUltimoIngreso+1;
+    (*nroUltimoIngreso)++;
         nuevoIngreso.NroIngreso=*nroUltimoIngreso;
 
         ///crea y guarda el tiempo actual como string en el la variable fecha de ingreso
@@ -45,14 +41,15 @@ Ingreso cargarIngresoManual(int * nroUltimoIngreso, int documentoPaciente) ///ac
         puts("Ingrese la matricula del profesional que solicita el estudio:"); ///falta validar que solo ingresen numeros enteros y positivos
         scanf("%d",&nuevoIngreso.MatriculaPersonalSolicitante);
 
-        strcpy(nuevoIngreso.FechaRetiro," ");
+    ///strcpy(nuevoIngreso.FechaRetiro," ");
+        int formatoFechaValida;
+        int fechaValida;
+   do{
 
-        while(nuevoIngreso.FechaRetiro!=" ")
-        {
+
             puts("Ingrese la fecha estimada de retiro: (dd/mm/aaaa)");
             scanf("%s",fechaRetiro);
-            int formatoFechaValida;
-            int fechaValida;
+
             formatoFechaValida=validarFormatoFecha(fechaRetiro);
             fechaValida=compararFechas(nuevoIngreso.FechaIngreso,fechaRetiro);
             if (fechaValida==1 && formatoFechaValida==1)
@@ -63,18 +60,18 @@ Ingreso cargarIngresoManual(int * nroUltimoIngreso, int documentoPaciente) ///ac
             {
                 if (fechaValida!=1)
                 {
-                    printf("%d\n",fechaValida);
+
                     puts("La fecha de retiro no puede ser anterior a la fecha de ingreso");
                     printf("La fecha de ingreso es %s \n",nuevoIngreso.FechaIngreso);
                 }
-                else
+            else if (formatoFechaValida!=1)
                 {
                     puts("La fecha debe tener un formato dd/mm/aaaa y ser una fecha valida");
                 }
             }
-        }
+   } while(fechaValida!=1 || formatoFechaValida!=1);
+
         return nuevoIngreso;
-    }
 
 }
 
@@ -151,8 +148,8 @@ int compararFechas(const char fecha1[],const char fecha2[])
     time_t timeFecha1 = mktime(&tmFecha1);
     time_t timeFecha2 = mktime(&tmFecha2);
 
-    printf("Fecha 1: %d/%d/%d\n", tmFecha1.tm_mday, tmFecha1.tm_mon + 1, tmFecha1.tm_year + 1900);
-    printf("Fecha 2: %d/%d/%d\n", tmFecha2.tm_mday, tmFecha2.tm_mon + 1, tmFecha2.tm_year + 1900);
+    //printf("Fecha 1: %d/%d/%d\n", tmFecha1.tm_mday, tmFecha1.tm_mon + 1, tmFecha1.tm_year + 1900);
+    //printf("Fecha 2: %d/%d/%d\n", tmFecha2.tm_mday, tmFecha2.tm_mon + 1, tmFecha2.tm_year + 1900);
 
     return timeFecha1 < timeFecha2 ? 1 : 0; // si la fecha 2 (la de retiro) es mayor a la de ingreso retorna 1 y si no, 0
 
