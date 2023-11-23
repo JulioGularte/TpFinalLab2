@@ -1017,7 +1017,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///practica x ingreso
                 {
                     opcionInterna=menuPracticasXIngresos();
-                    swicherPracticasXIngresosMaster(opcionInterna,perfil,archivo);
+                    swicherPracticasXIngresosMaster(opcionInterna,perfil, listaPracticas, arbol);
                 }
                 while(opcionInterna!=0);
             }
@@ -1112,36 +1112,28 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         system("cls");
         printf("\n*ERROR: INTENTOS MAXIMOS ALCANZADOS... \nCERRANDO PROGRAMA...");
     }
-
     NodoIngresos * ingresosDeTodosLosPacientes=actualizarPacientesEnArchivo(arbol);
-    NodoPxI * PxIDeLosPacientes=inicListaPxI();
     mostrarListaIngresos(ingresosDeTodosLosPacientes);
-    PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes);
-    //guardarPxIEnArchivo(PxIDeLosPacientes);
+    NodoPxI * PxIDeLosPacientes =actualizarArchivoIngreso(ingresosDeTodosLosPacientes, &PxIDeLosPacientes);
+
+    NodoPxI * segPxi=PxIDeLosPacientes;
+
+    while (segPxi)
+    {
+        printf("Nro Practica: %d \n", segPxi->PxI.nroPractica);
+        printf("Nro Ingreso: %d \n", segPxi->PxI.nroIngreso);
+        printf("Resultado: %s \n", segPxi->PxI.resultado);
+        segPxi=segPxi->siguiente;
+    }
+
+
+    guardarPxIEnArchivo(PxIDeLosPacientes);
 
     //actualizarArchivoPracticas(listaPracticas);
     //actualizarPacientesEnArchivo (arbol);
     //actualizarArchivoPxI(listaPxI);
 }
-/*
-void leerArchivoIngresos ()
-{
-    FILE * buff=fopen(archivoIngresos, "rb");
-    if (buff)
-    {
-        Ingreso rg;
-        while (fread(&rg,sizeof(Ingreso),1, buff)> 0)
-        {
-                printf("El numero de ingreso es:......................... %d\n",rg.NroIngreso);
-                printf("La fecha de ingreso es:.......................... %s\n",rg.FechaIngreso);
-                printf("La fecha de ingreso es:.......................... %s\n",rg.FechaRetiro);
-                printf("El numero de DNI del paciente es:................ %d\n",rg.DNI);
-                printf("La matricula del medico solicitante es:.......... %d\n",rg.MatriculaPersonalSolicitante);
-        }
-        fclose(buff);
-    }
-}
-*/
+
 void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
 {
     int aux;
@@ -1302,7 +1294,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
         }
         else
         {
-            printf("El DNI %d no es valido  \n");
+            printf("El DNI %d no es valido \n", dni);
             system("pause");
         }
         system("pause");
@@ -1423,15 +1415,25 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         break;
     }
 }
-void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI, nodoArbolPaciente ** pacientes)  ///sirve para solo para master master
+void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * listaPracticas, nodoArbolPaciente * pacientes)  ///sirve para solo para master master
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-    nodoArbolPaciente * buscado=NULL;
-    int dni;
+    NodoIngresos * ingresoBuscado=inicListaI();
+    int ingreso;
+    NodoIngresos * ingresosTodosLosPacientes=inicListaI();
+    ingresosTodosLosPacientes=obtenerIngresosDeTodosLosPacientes(pacientes);
     switch(duplicado)
     {
     case 1:
-        ///ver practicas x ingreso
+        mostrarListaIngresos(ingresosTodosLosPacientes);
+        printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
+        scanf ("%d",&ingreso);
+        ingresoBuscado=buscarNodoIngresoPorNroIngreso(ingresosTodosLosPacientes, ingreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresosTodosLosPacientes, ingreso, listaPracticas);
+        }
+        system("pause");
         break;
     case 2:
         ///modificar practicas
@@ -1440,7 +1442,8 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** li
         ///baja practicas
         break;
     case 4:
-        mostrarArbolPacientes(*pacientes);
+        /*
+        mostrarArbolPacientes(pacientes);
         printf("Ingrese el DNI del paciente al cual desea dar de alta una practica \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
         buscado=buscarXDni(*pacientes, dni);
@@ -1453,6 +1456,8 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** li
             printf("El DNI %d no es valido para realizar un alta de practica \n");
             system("pause");
         }
+        break;
+        */
         break;
     default:
         break;

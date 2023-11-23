@@ -221,7 +221,7 @@ void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff, NodoIngreso
         NodoIngresos * seg=nodo->listaIngresos;
         while (seg)
         {
-            (*nodoIngresosPaciente)=cargarListaIngreso_inicio((*nodoIngresosPaciente), crearNodoI(seg->ingreso));
+            (*nodoIngresosPaciente)=cargarListaIngreso_inicio((*nodoIngresosPaciente), seg);
             seg=seg->siguiente;
         }
 
@@ -247,6 +247,7 @@ void mostrarTodasListasIngresoDesdeArbol(nodoArbolPaciente * arbolPacientes)
 
 void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso, NodoPractica * listaDePracticas)
 {
+    int nroPractica;
     NodoPractica * practicaBuscada=NULL;
     Ingreso nuevoIngreso=cargarIngresoManual(paciente->paciente.DNI);
     nuevoIngreso.NroIngreso=numeroUltimoIngreso+1;
@@ -262,7 +263,6 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso
         {
             mostrarListaPracticas(listaDePracticas, 1);
             printf("Ingresar el numero de practica a realizar el alta, la misma debe estar en estado activo: ");
-            int nroPractica;
             scanf("%d",&nroPractica);
             practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
             if (!practicaBuscada)
@@ -279,16 +279,14 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso
             }
         }
         while(!practicaBuscada || practicaBuscada->practica.eliminado==1);
-        nuevoNodoIngreso->listaPxI=agregarPrincipioPxI(nuevoNodoIngreso->listaPxI, crearNodoPxI(crearPxI(nuevoIngreso.NroIngreso, practicaBuscada->practica.nroPractica)));
+        PracticasXIngreso pxi=crearPxI(nuevoIngreso.NroIngreso, nroPractica);
+        NodoPxI * nuevaPxI=crearNodoPxI(pxi);
+        nuevoNodoIngreso->listaPxI=agregarPrincipioPxI(nuevoNodoIngreso->listaPxI, crearNodoPxI(pxi));
         printf ("Ingrese 's' para contunuar cargando practicas \n");
         fflush(stdin);
         scanf("%c",&control);
     }
-    paciente->listaIngresos=cargarListaIngreso_inicio(paciente->listaIngresos, nuevoNodoIngreso);
-    /*
-    mostrarListaIngresos(paciente->listaIngresos);
-    system("pause");
-    */
+    paciente->listaIngresos=cargarListaIngreso_inicio_nodo(paciente->listaIngresos, nuevoNodoIngreso);
 }
 
 void modificacionDeIngresoPaciente(nodoArbolPaciente * paciente)
@@ -373,4 +371,55 @@ int contarIngresosDeTodosLosPacientes(nodoArbolPaciente *arbol)
     }
 
     return cantidad;
+}
+
+NodoIngresos * obtenerIngresosDeTodosLosPacientes (nodoArbolPaciente * arbol)
+{
+    NodoIngresos * nodoIngresosPaciente=inicListaI();
+    if (arbol)
+    {
+        nodoArbolPaciente * aux=arbol;
+        arbolToIngresosPaciente(aux, &nodoIngresosPaciente);
+    }
+    return nodoIngresosPaciente;
+}
+
+void arbolToIngresosPaciente(nodoArbolPaciente * arbol, NodoIngresos ** nodoIngresosPaciente)
+{
+    if (arbol != NULL)
+    {
+        arbolToIngresosPaciente(arbol->izq, nodoIngresosPaciente);
+
+
+        arbolToIngresosPaciente(arbol->der, nodoIngresosPaciente);
+
+        NodoIngresos * seg=arbol->listaIngresos;
+        while (seg)
+        {
+            (*nodoIngresosPaciente)=cargarListaIngreso_inicio_nodo((*nodoIngresosPaciente), seg);
+            seg=seg->siguiente;
+        }
+    }
+}
+
+void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIngreso, NodoPractica * listaPracticas)
+{
+    NodoIngresos * seg=ingresosDeLosPacientes;
+    while(seg)
+    {
+        mostrarNodoIngreso(seg);
+        NodoPxI * PxI=seg->listaPxI;
+        if (seg->ingreso.NroIngreso==nroIngreso)
+        {
+            while (PxI)
+            {
+                NodoPractica * nodo=encontrarNodoPracticaXId (listaPracticas, PxI->PxI.nroPractica);
+                mostrarUnaPractica(nodo->practica, 1);
+                printf ("Practicas: \n");
+                printf ("Resultado: %s", PxI->PxI.resultado);
+                PxI=PxI->siguiente;
+            }
+        }
+        seg=seg->siguiente;
+    }
 }

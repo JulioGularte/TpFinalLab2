@@ -74,14 +74,14 @@ NodoPxI * cargarListaPxIDesdeArchivo (int nroIngreso)
         {
             if (stPxI.nroIngreso == nroIngreso)
             {
+                if (nroIngreso == 1)
+                {
+                    printf ("");
+                }
                 listaPxiPaciente=agregarPrincipioPxI(listaPxiPaciente, crearNodoPxI(stPxI));
             }
         }
         fclose(buff);
-    }
-    else
-    {
-        printf ("Error al leer desde el archivo de practicas %s", archivoPxi);
     }
     return listaPxiPaciente;
 }
@@ -202,7 +202,7 @@ void guardarPxIEnArchivo (NodoPxI * PxIDeLosPacientes)
         NodoPxI * seg =PxIDeLosPacientes;
         while (seg)
         {
-            fwrite(&rg, sizeof(PracticasXIngreso), 1, buff);
+            fwrite(&seg->PxI, sizeof(PracticasXIngreso), 1, buff);
             seg=seg->siguiente;
         }
         fclose(buff);

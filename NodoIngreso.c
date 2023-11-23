@@ -37,6 +37,21 @@ NodoIngresos * cargarListaIngreso_inicio(NodoIngresos * listaIng, Ingreso datoIn
     return listaIng;
 }
 
+NodoIngresos * cargarListaIngreso_inicio_nodo(NodoIngresos * listaIng, NodoIngresos * nuevoNodoIngreso)
+{
+    if(listaIng==NULL)
+    {
+        listaIng=nuevoNodoIngreso;
+    }
+    else
+    {
+        nuevoNodoIngreso->siguiente=listaIng;
+        listaIng->anterior=nuevoNodoIngreso;
+        listaIng=nuevoNodoIngreso;
+    }
+    return listaIng;
+}
+
 
 NodoIngresos * buscarNodoIngresoPorNroIngreso(NodoIngresos * listaIng, int nroIngresoBuscado)
 {
@@ -125,7 +140,6 @@ void mostrarListaIngresos(NodoIngresos* listaIng)
         {
             mostrarNodoIngreso(aux);
             aux=aux->siguiente;
-
         }
     }
 }
@@ -185,30 +199,28 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDePaciente)
 /// Recibo todos los ingresos de los pacientes y los guardo en el archivo, luego de guardar el arbol de pacientes
 /// al terminar retorno los NodosPxI para su persistencia
 
-NodoPxI * actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes)
+void actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes, NodoPxI ** PxiDeLosPacientes)
 {
     FILE * buff=fopen(archivoIngresos, "wb");
-    NodoPxI * PxiDeLosPacientes=inicListaPxI();
     if (buff)
     {
         NodoIngresos * seg=ingresosDeLosPacientes;
         Ingreso rg;
         if (seg)
         {
-            system("cls");
-            printf ("Ingresos guardados: \n");
-            printf ("\n");
             while (seg)
             {
                 NodoPxI * segPxI=seg->listaPxI;
                 while (segPxI)
                 {
-                    PxiDeLosPacientes=agregarPrincipioPxI(PxiDeLosPacientes, crearNodoPxI(segPxI->PxI));
+                    printf("Nro Practica: %d \n", segPxI->PxI.nroPractica);
+                    printf("Nro Ingreso: %d \n", segPxI->PxI.nroIngreso);
+                    printf("Resultado: %s \n", segPxI->PxI.resultado);
+                    (*PxiDeLosPacientes)=agregarPrincipioPxI((*PxiDeLosPacientes), crearNodoPxI(segPxI->PxI));
                     segPxI=segPxI->siguiente;
+
                 }
                 fwrite(&seg->ingreso, sizeof(Ingreso), 1, buff);
-
-                mostrarNodoIngreso(seg);
                 seg=seg->siguiente;
             }
             system("pause");
@@ -234,7 +246,8 @@ void BajaDeIngresos (NodoIngresos * ingresosDelPaciente)
             system("pause");
             system("cls");
         }
-    }while(!buscado);
+    }
+    while(!buscado);
     buscado->ingreso.Eliminado=0;
     NodoPxI * PxIBuscado=buscado->listaPxI;
     NodoPxI * seg=PxIBuscado;
