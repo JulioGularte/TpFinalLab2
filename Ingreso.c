@@ -16,14 +16,10 @@ time_t devuelveFechaActual()
 
 }
 
-Ingreso cargarIngresoManual(int * nroUltimoIngreso, int documentoPaciente) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
+Ingreso cargarIngresoManual(int documentoPaciente) ///aca debería enviarme el ultimo numero de ingreso del archivo asi le aumento uno y no se repiten.
 {
     Ingreso nuevoIngreso;
     nuevoIngreso.DNI=documentoPaciente;
-
-    (*nroUltimoIngreso)++;
-        nuevoIngreso.NroIngreso=*nroUltimoIngreso;
-
         ///crea y guarda el tiempo actual como string en el la variable fecha de ingreso
         time_t t=time(NULL);
         char fecha1[11];

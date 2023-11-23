@@ -958,19 +958,17 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     ///carga de arbol de pacientes
     nodoArbolPaciente * arbol=inicArbol();
     arbol=cargarArbolDesdeArchi(arbol);
-    system("pause");
-    ///carga de ingresos
+    //carga de ingresos
     //cargarTodasListasIngresoDesdeArchi("archivoIngresos.bin",arbol);
     ///carga de lista de practicas
     NodoPractica * listaPracticas=inicListaPractica();
-    //listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
+    listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
     ///carga de listaPxI
     NodoPxI * listaPxI=inicListaPxI();
     ///carga de empleados
     nodo_lista* lista=pasar_archivo_to_lista(archivo);
     int opcion;
     int opcionInterna;
-    int nroUltimoIngreso=contarIngresosEnArchivo();
     switch(perfil)
     {
 
@@ -1001,7 +999,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas, listaPxI, nroUltimoIngreso); ///sirve para master y administrativo
+                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas, listaPxI); ///sirve para master y administrativo
                 }
                 while(opcionInterna!=0);
             }
@@ -1052,7 +1050,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil,archivo);
+                    swicherIngresos(opcionInterna,perfil, arbol,listaPracticas);
                 }
                 while(opcionInterna!=0);
             }
@@ -1090,7 +1088,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             else if(opcion==3)
             {
                 opcionInterna=menuIngresosTecnicos();
-                swicherIngresosTecnicos(opcion,perfil, &arbol, &listaPracticas, &listaPxI, &nroUltimoIngreso);
+                swicherIngresosTecnicos(opcion,perfil, arbol, listaPracticas, listaPxI);
             }
             else if(opcion==4)
             {
@@ -1114,17 +1112,36 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         system("cls");
         printf("\n*ERROR: INTENTOS MAXIMOS ALCANZADOS... \nCERRANDO PROGRAMA...");
     }
-/*
+
     NodoIngresos * ingresosDeTodosLosPacientes=actualizarPacientesEnArchivo(arbol);
-    NodoPxI * PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes);
-    guardarPxIEnArchivo(PxIDeLosPacientes);
-*/
+    NodoPxI * PxIDeLosPacientes=inicListaPxI();
+    mostrarListaIngresos(ingresosDeTodosLosPacientes);
+    PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes);
+    //guardarPxIEnArchivo(PxIDeLosPacientes);
+
     //actualizarArchivoPracticas(listaPracticas);
     //actualizarPacientesEnArchivo (arbol);
     //actualizarArchivoPxI(listaPxI);
 }
-
-
+/*
+void leerArchivoIngresos ()
+{
+    FILE * buff=fopen(archivoIngresos, "rb");
+    if (buff)
+    {
+        Ingreso rg;
+        while (fread(&rg,sizeof(Ingreso),1, buff)> 0)
+        {
+                printf("El numero de ingreso es:......................... %d\n",rg.NroIngreso);
+                printf("La fecha de ingreso es:.......................... %s\n",rg.FechaIngreso);
+                printf("La fecha de ingreso es:.......................... %s\n",rg.FechaRetiro);
+                printf("El numero de DNI del paciente es:................ %d\n",rg.DNI);
+                printf("La matricula del medico solicitante es:.......... %d\n",rg.MatriculaPersonalSolicitante);
+        }
+        fclose(buff);
+    }
+}
+*/
 void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
 {
     int aux;
@@ -1232,7 +1249,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         buscado=buscarXDni(arbol, dni);
         if (buscado)
         {
-            *arbol=actualizarNodoArbol (arbol, dni);
+            arbol=actualizarNodoArbol (arbol, dni);
         }
         else
         {
@@ -1267,7 +1284,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
     }
 }
 
-void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, NodoPractica * listaDePracticas, NodoPxI * listaPxI, int * nroUltimoIngreso)  ///sirve para master y administrativo
+void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, NodoPractica * listaDePracticas)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     nodoArbolPaciente * buscado=NULL;
@@ -1281,7 +1298,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
         buscado=buscarXDni(arbolPaciente, dni);
         if (buscado)
         {
-            mostrarListaIngresos(arbolPaciente->listaIngresos);
+            mostrarListaIngresos(buscado->listaIngresos);
         }
         else
         {
@@ -1295,36 +1312,61 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
         printf("Ingrese el DNI del paciente al cual desea modificar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
         buscado=buscarXDni(arbolPaciente, dni);
-        if (buscado && buscado->paciente.eliminado==0)
+        if (buscado)
         {
-            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
-            actualizarArchivoIngreso(buscado->listaIngresos);
+            if (buscado->paciente.eliminado==1)
+            {
+                printf ("El paciente se encuentra eliminado \n");
+            }
+            if (buscado->listaIngresos)
+            {
+                modificacionDeIngresoPaciente(buscado);
+            }
+            else
+            {
+                printf ("El paciente no tiene ingresos para modificar \n");
+            }
         }
-        else
-        {
-            printf("El DNI %d no es valido para realizar una modificacion de ingreso \n");
-            system("pause");
-        }
+        system("pause");
         break;
     case 3:
+        {
+        int nroUltimoIngreso=contarIngresosDeTodosLosPacientes(arbolPaciente);
         mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea realizar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
         buscado=buscarXDni(arbolPaciente, dni);
         if (buscado && buscado->paciente.eliminado==0)
         {
-            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
-            actualizarArchivoIngreso(*buscado->listaIngresos);
+            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas);
         }
         else
         {
             printf("El DNI %d no es valido para realizar un alta de ingreso \n");
             system("pause");
         }
+        }
         break;
     case 4:
-        BajaDeIngresos (arbolPaciente, listaPxI);
-        system("pause");
+        mostrarArbolPacientes(arbolPaciente);
+        printf("Ingrese el DNI del paciente al cual desea eliminar el ingreso \n el mismo debe estar en estado activo:");
+        scanf("%d",&dni);
+        buscado=buscarXDni(arbolPaciente, dni);
+        if (buscado)
+        {
+            if (buscado->paciente.eliminado==1)
+            {
+                printf ("El paciente se encuentra eliminado \n");
+            }
+            if (buscado->listaIngresos)
+            {
+                BajaDeIngresos(buscado->listaIngresos);
+            }
+            else
+            {
+                printf ("El paciente no tiene ingresos para modificar \n");
+            }
+        }
         break;
     default:
         break;
@@ -1405,7 +1447,6 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica ** li
         if (buscado && buscado->paciente.eliminado==0)
         {
             AltaDePracticaPxI (*listaPxI, buscado, *listaPracticas);
-            actualizarArchivoIngreso(buscado->listaIngresos);
         }
         else
         {

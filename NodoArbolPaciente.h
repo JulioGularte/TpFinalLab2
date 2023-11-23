@@ -19,7 +19,7 @@ void mostrarNodoArbol(nodoArbolPaciente * nodoAMostrar);
 void mostrarArbolPacientes(nodoArbolPaciente * arbolPacientes);
 nodoArbolPaciente * buscarXDni (nodoArbolPaciente * arbol, int dni);
 void bajaNodoArbol (nodoArbolPaciente * arbol, int dni);
-void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int * numeroUltimoIngreso, NodoPractica * listaDePracticas, NodoPxI * listaPxI);
+void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso, NodoPractica * listaDePracticas);
 nodoArbolPaciente * cargarArbolDesdeArchi(nodoArbolPaciente * arbolPacientes);
 
 

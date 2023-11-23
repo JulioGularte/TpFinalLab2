@@ -12,7 +12,7 @@ typedef struct _Ingreso
     int Eliminado;
 }Ingreso;
 
-Ingreso cargarIngresoManual(int * nroUltimoIngreso, int documentoPaciente);
+Ingreso cargarIngresoManual(int documentoPaciente);
 int contarIngresosEnArchivo ();
 
 

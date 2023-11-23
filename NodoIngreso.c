@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define archivoIngreso "archivoIngresos.bin"
 NodoIngresos * inicListaI()
 {
     return NULL;
@@ -122,32 +121,32 @@ void mostrarListaIngresos(NodoIngresos* listaIng)
     }
     else
     {
-        while(aux->siguiente!=NULL)
+        while(aux)
         {
             mostrarNodoIngreso(aux);
             aux=aux->siguiente;
+
         }
     }
 }
 
-NodoIngresos * cargarListaDeIngresosDelPaciente(nodoArbolPaciente * nodoPaciente)
+NodoIngresos * cargarListaDeIngresosDelPaciente(nodoArbolPaciente ** nodoPaciente)
 {
-    FILE * archi=fopen(archivoIngreso,"rb"); ///abro el archivo de ingresos con todos los ingresos
+    FILE * archi=fopen(archivoIngresos,"rb"); ///abro el archivo de ingresos con todos los ingresos
     if (archi)
     {
-        nodoArbolPaciente * aux=nodoPaciente; ///tengo en el auxiliar el arbol
         Ingreso nuevoIngreso;
-
         while (fread(&nuevoIngreso,sizeof(Ingreso),1,archi)>0) ///leo el archivo
         {
-            if(nodoPaciente->paciente.DNI==nuevoIngreso.DNI) ///omparo el archivo con el dni del arbol
+            if((*nodoPaciente)->paciente.DNI==nuevoIngreso.DNI) ///omparo el archivo con el dni del arbol
             {
-                nodoPaciente->listaIngresos=cargarListaIngreso_inicio(nodoPaciente->listaIngresos,nuevoIngreso); ///si el dni coincide, creo y guardo el nodo en la lista del paciente
+                (*nodoPaciente)->listaIngresos=cargarListaIngreso_inicio((*nodoPaciente)->listaIngresos,nuevoIngreso); ///si el dni coincide, creo y guardo el nodo en la lista del paciente
             }
         }
+
         fclose(archi);
     }
-    return nodoPaciente->listaIngresos; ///devuelvo esa lista actualizada
+    return ((*nodoPaciente)->listaIngresos); ///devuelvo esa lista actualizada
 }
 /*
 void actualizarArchivoIngreso(NodoIngresos * ingresosDePaciente)
@@ -196,6 +195,9 @@ NodoPxI * actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes)
         Ingreso rg;
         if (seg)
         {
+            system("cls");
+            printf ("Ingresos guardados: \n");
+            printf ("\n");
             while (seg)
             {
                 NodoPxI * segPxI=seg->listaPxI;
@@ -204,51 +206,42 @@ NodoPxI * actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes)
                     PxiDeLosPacientes=agregarPrincipioPxI(PxiDeLosPacientes, crearNodoPxI(segPxI->PxI));
                     segPxI=segPxI->siguiente;
                 }
-                fwrite(&rg, sizeof(Ingreso), 1, buff);
+                fwrite(&seg->ingreso, sizeof(Ingreso), 1, buff);
+
+                mostrarNodoIngreso(seg);
+                seg=seg->siguiente;
             }
-            seg=seg->siguiente;
+            system("pause");
         }
         fclose(buff);
     }
     return PxiDeLosPacientes;
 }
 
-void BajaDeIngresos (nodoArbolPaciente * listaDePacientes, NodoPxI * listaPxI)
+void BajaDeIngresos (NodoIngresos * ingresosDelPaciente)
 {
-    mostrarArbolPacientes(listaDePacientes);
-    printf ("Ingrese el dni del paciente para ver sus practicas:");
-    int dni;
-    scanf("%d",&dni);
-    nodoArbolPaciente * buscado=buscarXDni(listaDePacientes, dni);
-    if (!buscado)
+    mostrarListaIngresos(ingresosDelPaciente);
+    NodoIngresos * buscado=NULL;
+    int nroIngreso;
+    do
     {
-        printf ("No existe un paciente con el dni %d", dni);
-    }
-    else if (buscado->paciente.eliminado==1)
-    {
-        printf ("No se pueden modificar los ingresos de un paciente eliminado \n");
-    }
-    else
-    {
-        mostrarListaIngresos(buscado->listaIngresos);
-        printf ("Desea dar de baja todos los ingresos de este paciente? 1-Si 2-No \n");
-        int opcion;
-        scanf("%d",&opcion);
-        while(opcion != 1 && opcion !=2)
+        printf ("Seleccione el nro de ingreso que desea dar de baja \n");
+        scanf("%d",&nroIngreso);
+        buscado=buscarNodoIngresoPorNroIngreso(ingresosDelPaciente, nroIngreso);
+        if (!buscado)
         {
-            printf ("Ingrese una opcion valida \n");
+            printf ("Numero de ingreso inexsitante \n");
+            system("pause");
+            system("cls");
         }
-        if (opcion == 1)
-        {
-            NodoIngresos * segIngresos=buscado->listaIngresos;
-            while (segIngresos)
-            {
-                segIngresos->ingreso.Eliminado=0;
-                segIngresos=segIngresos->siguiente;
-                bajaPxICascada(listaPxI, segIngresos->ingreso);
-            }
-            actualizarArchivoIngreso(buscado->listaIngresos);
-            printf("Baja exitosa \n");
-        }
+    }while(!buscado);
+    buscado->ingreso.Eliminado=0;
+    NodoPxI * PxIBuscado=buscado->listaPxI;
+    NodoPxI * seg=PxIBuscado;
+    while(seg)
+    {
+        seg->PxI.eliminado=0;
+        seg=seg->siguiente;
     }
+    printf ("Ingreso %d y sus practicas dadas de baja exitosamente \n", nroIngreso);
 }
