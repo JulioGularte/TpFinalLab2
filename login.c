@@ -1279,7 +1279,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         buscado=buscarXDni(arbol, dni);
         if (buscado)
         {
-///            *arbol=bajaNodoArbol (*arbol, dni);
+            bajaNodoArbol (arbol, dni);
         }
         else
         {
