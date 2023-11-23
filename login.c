@@ -957,7 +957,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
 {
     ///carga de arbol de pacientes
     nodoArbolPaciente * arbol=inicArbol();
-    arbol=cargarArbolDesdeArchi("archivo_pacientes.bin", arbol);
+    arbol=cargarArbolDesdeArchi(arbol);
     ///carga de ingresos
     cargarTodasListasIngresoDesdeArchi("archivoIngresos.bin",arbol);
     ///carga de lista de practicas
@@ -1113,9 +1113,13 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         system("cls");
         printf("\n*ERROR: INTENTOS MAXIMOS ALCANZADOS... \nCERRANDO PROGRAMA...");
     }
-    actualizarArchivoPracticas(listaPracticas);
-    actualizarPacientesEnArchivo (arbol);
-    actualizarArchivoPxI(listaPxI);
+    NodoIngresos * ingresosDeTodosLosPacientes=actualizarPacientesEnArchivo(arbol);
+    NodoPxI * PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes);
+    guardarPxIEnArchivo(PxIDeLosPacientes);
+
+    //actualizarArchivoPracticas(listaPracticas);
+    //actualizarPacientesEnArchivo (arbol);
+    //actualizarArchivoPxI(listaPxI);
 }
 
 

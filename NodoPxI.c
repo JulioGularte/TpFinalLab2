@@ -46,7 +46,7 @@ int ExisteIngresoActivoEnPractica (NodoPxI * lista, int PracticaId)
     }
     return flag;
 }
-
+/*
 void actualizarArchivoPxI (NodoPxI * lista)
 {
     FILE * buff=fopen(archivoPxi, "wb");
@@ -62,16 +62,19 @@ void actualizarArchivoPxI (NodoPxI * lista)
         fclose(buff);
     }
 }
-
-NodoPxI * cargarListaPxIDesdeArchivo (NodoPxI * lista)
+*/
+NodoPxI * cargarListaPxIDesdeArchivo (NodoPxI * listaDePxIngresos, int nroIngreso)
 {
     FILE * buff=fopen(archivoPxi, "rb");
+    PracticasXIngreso stPxI;
     if (buff)
     {
-        PracticasXIngreso stPxI;
         while (fread(&stPxI, sizeof(PracticasXIngreso), 1, buff)>0)
         {
-            lista=agregarPrincipioPxI(lista, crearNodoPxI(stPxI));
+            if (stPxI.nroIngreso == nroIngreso)
+            {
+                listaDePxIngresos=agregarPrincipioPxI(listaDePxIngresos, crearNodoPxI(stPxI));
+            }
         }
         fclose(buff);
     }
@@ -79,7 +82,7 @@ NodoPxI * cargarListaPxIDesdeArchivo (NodoPxI * lista)
     {
         printf ("Error al leer desde el archivo de practicas %s", archivoPxi);
     }
-    return lista;
+    return listaDePxIngresos;
 }
 /*
 void verPracticasPorIngreso (NodoPxI * listaPxI, NodoPractica * listaPracticas, NodoIngresos * listaIngresos)
@@ -187,4 +190,20 @@ void AltaDePracticaPxI (NodoPxI * listaPxI, nodoArbolPaciente * paciente, NodoPr
     listaPxI=agregarPrincipioPxI(listaPxI, crearNodoPxI(crearPxI(nodoIngresoDelPaciente->ingreso.NroIngreso, buscada->practica.nroPractica)));
     printf("Practica agregada exitosamente \n");
     system("pause");
+}
+
+void guardarPxIEnArchivo (NodoPxI * PxIDeLosPacientes)
+{
+    FILE * buff=fopen(archivoPxi, "wb");
+    if (buff)
+    {
+        PracticasXIngreso rg;
+        NodoPxI * seg =PxIDeLosPacientes;
+        while (seg)
+        {
+            fwrite(&rg, sizeof(PracticasXIngreso), 1, buff);
+            seg=seg->siguiente;
+        }
+        fclose(buff);
+    }
 }

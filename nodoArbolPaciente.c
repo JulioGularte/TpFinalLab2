@@ -8,7 +8,7 @@
 #include <time.h>
 #define PAUSA system("pause");
 #define BORRAR system("cls");
-
+#define archivoPacientes "archivo_pacientes.bin"
 nodoArbolPaciente *inicArbol()
 {
     return NULL;
@@ -53,7 +53,8 @@ nodoArbolPaciente * cargarArbolOrdenadoDNI(nodoArbolPaciente * arbolPacientes, n
     return arbolPacientes;
 }
 
-nodoArbolPaciente * cargarArbolDesdeArchi(char archivoPacientes[], nodoArbolPaciente * arbolPacientes)
+
+nodoArbolPaciente * cargarArbolDesdeArchi(nodoArbolPaciente * arbolPacientes)
 {
     FILE * archi=fopen(archivoPacientes,"rb");
     if(archi)
@@ -62,7 +63,11 @@ nodoArbolPaciente * cargarArbolDesdeArchi(char archivoPacientes[], nodoArbolPaci
         while(fread(&nuevoPaciente,sizeof(Paciente),1,archi)>0)
         {
             nodoArbolPaciente * nodoAcargar=crearNodoArbol(nuevoPaciente);
+            nodoAcargar->listaIngresos=cargarListaDeIngresosDelPaciente(nodoAcargar);
+            NodoIngresos * listaIngresos=nodoAcargar->listaIngresos;
+            listaIngresos->listaPxI=cargarListaPxIDesdeArchivo (listaIngresos->listaPxI, listaIngresos->ingreso.NroIngreso);
             arbolPacientes=cargarArbolOrdenadoDNI(arbolPacientes,nodoAcargar);
+
         }
         fclose(archi);
     }
@@ -164,7 +169,7 @@ void bajaNodoArbol (nodoArbolPaciente * arbol, int dni)
         }
     }
 }
-
+/*
 void actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
 {
     FILE * buff=fopen("archivo_pacientes.bin", "wb");
@@ -183,6 +188,37 @@ void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff)
         guardarNodoArbolPacientes(nodo->izq, buff);
         fwrite(&nodo->paciente, sizeof(Paciente), 1, buff);
         guardarNodoArbolPacientes(nodo->der, buff);
+    }
+}
+*/
+
+NodoIngresos * actualizarPacientesEnArchivo (nodoArbolPaciente * arbol)
+{
+    FILE * buff=fopen(archivoPacientes, "wb");
+        NodoIngresos * nodoIngresosPaciente=inicListaI();
+    if (buff)
+    {
+        nodoArbolPaciente * aux=arbol;
+        guardarNodoArbolPacientes(aux, buff, &nodoIngresosPaciente);
+        fclose(buff);
+    }
+    return nodoIngresosPaciente;
+}
+
+void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff, NodoIngresos ** nodoIngresosPaciente)
+{
+    if (nodo != NULL)
+    {
+        guardarNodoArbolPacientes(nodo->izq, buff, nodoIngresosPaciente);
+
+        NodoIngresos * seg=nodo->listaIngresos;
+        while (seg)
+        {
+            *nodoIngresosPaciente=cargarListaIngreso_inicio(*nodoIngresosPaciente, crearNodoI(seg->ingreso));
+            seg=seg->siguiente;
+        }
+        fwrite(&nodo->paciente, sizeof(Paciente), 1, buff);
+        guardarNodoArbolPacientes(nodo->der, buff, nodoIngresosPaciente);
     }
 }
 
