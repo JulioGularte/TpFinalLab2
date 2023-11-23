@@ -587,7 +587,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700630965 source:c:\users\g\documents\nueva carpeta\ingreso.c
+1700686407 source:c:\users\g\documents\nueva carpeta\ingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -597,25 +597,25 @@
 	<string.h>
 	<time.h>
 
-1700585566 c:\users\g\documents\nueva carpeta\nodoingreso.h
+1700686407 c:\users\g\documents\nueva carpeta\nodoingreso.h
 	"Ingreso.h"
 
-1700630965 c:\users\g\documents\nueva carpeta\ingreso.h
+1700686407 c:\users\g\documents\nueva carpeta\ingreso.h
 	"NodoArbolPaciente.h"
 
-1700585566 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
+1700686407 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
 	"Pacientes.h"
 	"NodoPractica.h"
 	"NodoPxI.h"
 
-1700536961 c:\users\g\documents\nueva carpeta\pacientes.h
+1700686407 c:\users\g\documents\nueva carpeta\pacientes.h
 
-1700585566 c:\users\g\documents\nueva carpeta\nodopxi.h
+1700686407 c:\users\g\documents\nueva carpeta\nodopxi.h
 	"PracticasXIngreso.h"
 
-1700585567 c:\users\g\documents\nueva carpeta\practicasxingreso.h
+1700686407 c:\users\g\documents\nueva carpeta\practicasxingreso.h
 
-1700670612 source:c:\users\g\documents\nueva carpeta\login.c
+1700695327 source:c:\users\g\documents\nueva carpeta\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -625,17 +625,17 @@
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 
-1700536961 c:\users\g\documents\nueva carpeta\menu.h
+1700686407 c:\users\g\documents\nueva carpeta\menu.h
 
-1700668044 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
+1700686407 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
 
-1700536961 c:\users\g\documents\nueva carpeta\nodopractica.h
+1700686407 c:\users\g\documents\nueva carpeta\nodopractica.h
 	"Practicas.h"
 	"NodoPxI.h"
 
-1700536961 c:\users\g\documents\nueva carpeta\practicas.h
+1700686407 c:\users\g\documents\nueva carpeta\practicas.h
 
-1700631114 source:c:\users\g\documents\nueva carpeta\main.c
+1700686407 source:c:\users\g\documents\nueva carpeta\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -643,7 +643,7 @@
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 
-1700536961 source:c:\users\g\documents\nueva carpeta\menu.c
+1700686407 source:c:\users\g\documents\nueva carpeta\menu.c
 	"menu.h"
 	<stdio.h>
 	<stdlib.h>
@@ -656,7 +656,7 @@
 
 1700107175 c:\users\g\documents\nueva carpeta\gotoxy.h
 
-1700587037 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
+1700686407 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -664,35 +664,35 @@
 	<stdlib.h>
 	<string.h>
 
-1700585566 source:c:\users\g\documents\nueva carpeta\nodopractica.c
+1700686407 source:c:\users\g\documents\nueva carpeta\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"NodoPxI.h"
 
-1700590282 source:c:\users\g\documents\nueva carpeta\nodopxi.c
+1700686407 source:c:\users\g\documents\nueva carpeta\nodopxi.c
 	"nodoPxi.h"
 	"NodoPractica.h"
 	"NodoIngreso.h"
 	<stdio.h>
 	<stdlib.h>
 
-1700630965 source:c:\users\g\documents\nueva carpeta\pacientes.c
+1700686407 source:c:\users\g\documents\nueva carpeta\pacientes.c
 	"NodoArbolPaciente.h"
 	<stdio.h>
 	<string.h>
 
-1700536961 source:c:\users\g\documents\nueva carpeta\practicas.c
+1700686407 source:c:\users\g\documents\nueva carpeta\practicas.c
 	"Practicas.h"
 	<stdio.h>
 
-1700585566 source:c:\users\g\documents\nueva carpeta\practicasxingreso.c
+1700686407 source:c:\users\g\documents\nueva carpeta\practicasxingreso.c
 	"PracticasXIngreso.h"
 	<string.h>
 	<stdio.h>
 
-1700536961 source:c:\users\g\documents\nueva carpeta\registrogeneral.c
+1700686407 source:c:\users\g\documents\nueva carpeta\registrogeneral.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -703,9 +703,9 @@
 	<time.h>
 	"registroGeneral.h"
 
-1700536961 c:\users\g\documents\nueva carpeta\registrogeneral.h
+1700686407 c:\users\g\documents\nueva carpeta\registrogeneral.h
 
-1700630965 source:c:\users\g\documents\nueva carpeta\nodoarbolpaciente.c
+1700686407 source:c:\users\g\documents\nueva carpeta\nodoarbolpaciente.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
