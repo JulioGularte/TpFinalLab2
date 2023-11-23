@@ -176,16 +176,27 @@ void eliminar_espacios(char * dato) ///quita espacio del usuario
     }
     dato[aux] = '\0'; /// Agregar el carácter nulo al final del nuevo string
 }
-int verificar_nombre_apellido(const char arreglo[]) ///verificar que el nombre y apellido no tenga numeros
-{
+int verificar_nombre_apellido(char arreglo[]) {
     int i = 0;
+    int espacio = 0; /// Variable para contabilizar espacios
+
     while (arreglo[i] != '\0') {
-        if (!isalpha(arreglo[i])) {
-            return 1; /// Si se encuentra un carácter que no es una letra
+        if (!isalpha(arreglo[i]) && arreglo[i] != ' ') {
+            return 1; /// Si se encuentra un carácter que no es una letra ni espacio
         }
+
+        if (arreglo[i] == ' ') {
+            espacio++; /// Contabilizar los espacios encontrados
+        }
+
         i++;
     }
-    return 0; /// Si todos los caracteres son letras
+
+    if (espacio == 0) {
+        return 1; /// Si no se ha encontrado ningún espacio entre nombre y apellido
+    }
+
+    return 0; /// Si todos los caracteres son letras o espacios
 }
 int verificar_empleado_duplicado_usuario (char archivo[],char usuario[]) /// 1o0 si encuentra duplicado o no
 {
@@ -507,15 +518,21 @@ void buscar_empleado_en_archivo_NYA(char archivo[],int perfil, nodo_lista* lista
 empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archivo[])
 {
     int num=menuMODIFICAR();
+    int validar=1;
     int perfil;
     int encontrado;
     empleados_laboratorio aux=dato;
     switch(num)
     {
     case 1:
+
+        do{
+        validar=1;
         printf("\nIngrese el nombre: ");
         fflush(stdin);
         gets(aux.NyA);
+        validar=verificar_nombre_apellido(aux.NyA);
+        }while(validar!=0);
         break;
     case 2:
         encontrado=0;
@@ -535,6 +552,7 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
             printf("\nIngrese el nuevo usuario: ");
             fflush(stdin);
             gets(aux.usuario);
+            eliminar_espacios(aux.usuario);
             encontrado=verificar_empleado_duplicado_usuario(archivo,aux.usuario);
         }
         while(encontrado!=0);
@@ -543,6 +561,7 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
         printf("\nIngrese la clave nueva: ");
         fflush(stdin);
         gets(aux.clave);
+        eliminar_espacios(aux.clave);
         break;
     case 5:
         num=menuPERFIL();;
