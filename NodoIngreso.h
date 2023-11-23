@@ -1,6 +1,7 @@
 #ifndef NODOINGRESO_H_INCLUDED
 #define NODOINGRESO_H_INCLUDED
 #include "Ingreso.h"
+#include "NodoArbolPaciente.h"
 typedef struct _nodoIngresos
 {
     Ingreso ingreso;
@@ -9,6 +10,5 @@ typedef struct _nodoIngresos
     struct _NodoPxI * listaPxI;
 }NodoIngresos;
 void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngresosPaciente);
-
 
 #endif // NODOINGRESO_H_INCLUDED

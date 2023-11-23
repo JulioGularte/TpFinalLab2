@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define archivoIngreso "archivoIngresos.bin"
 NodoIngresos * inicListaI()
 {
     return NULL;
@@ -129,28 +130,27 @@ void mostrarListaIngresos(NodoIngresos* listaIng)
     }
 }
 
-NodoIngresos * cargarListaDeIngresosDelPaciente(char archivoIngreso[],nodoArbolPaciente*arbolPacientes)
+NodoIngresos * cargarListaDeIngresosDelPaciente(nodoArbolPaciente * nodoPaciente)
 {
     FILE * archi=fopen(archivoIngreso,"rb"); ///abro el archivo de ingresos con todos los ingresos
     if (archi)
     {
-        nodoArbolPaciente * aux=arbolPacientes; ///tengo en el auxiliar el arbol
+        nodoArbolPaciente * aux=nodoPaciente; ///tengo en el auxiliar el arbol
         Ingreso nuevoIngreso;
 
         while (fread(&nuevoIngreso,sizeof(Ingreso),1,archi)>0) ///leo el archivo
         {
-            if(arbolPacientes->paciente.DNI==nuevoIngreso.DNI) ///omparo el archivo con el dni del arbol
+            if(nodoPaciente->paciente.DNI==nuevoIngreso.DNI) ///omparo el archivo con el dni del arbol
             {
-
-                arbolPacientes->listaIngresos=cargarListaIngreso_inicio(arbolPacientes->listaIngresos,nuevoIngreso); ///si el dni coincide, creo y guardo el nodo en la lista del paciente
+                nodoPaciente->listaIngresos=cargarListaIngreso_inicio(nodoPaciente->listaIngresos,nuevoIngreso); ///si el dni coincide, creo y guardo el nodo en la lista del paciente
             }
         }
         fclose(archi);
     }
-    return arbolPacientes->listaIngresos; ///devuelvo esa lista actualizada
+    return nodoPaciente->listaIngresos; ///devuelvo esa lista actualizada
 }
-
-void actualizarArchivoIngreso(NodoIngresos * ingresosDelPaciente)
+/*
+void actualizarArchivoIngreso(NodoIngresos * ingresosDePaciente)
 {
     FILE * buff=fopen(archivoIngresos, "a+b");
     if (buff)
@@ -182,6 +182,36 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDelPaciente)
     }
     fclose(buff);
 }
+*/
+/// Recibo todos los ingresos de los pacientes y los guardo en el archivo, luego de guardar el arbol de pacientes
+/// al terminar retorno los NodosPxI para su persistencia
+
+NodoPxI * actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes)
+{
+    FILE * buff=fopen(archivoIngresos, "wb");
+    NodoPxI * PxiDeLosPacientes=inicListaPxI();
+    if (buff)
+    {
+        NodoIngresos * seg=ingresosDeLosPacientes;
+        Ingreso rg;
+        if (seg)
+        {
+            while (seg)
+            {
+                NodoPxI * segPxI=seg->listaPxI;
+                while (segPxI)
+                {
+                    PxiDeLosPacientes=agregarPrincipioPxI(PxiDeLosPacientes, crearNodoPxI(segPxI->PxI));
+                    segPxI=segPxI->siguiente;
+                }
+                fwrite(&rg, sizeof(Ingreso), 1, buff);
+            }
+            seg=seg->siguiente;
+        }
+        fclose(buff);
+    }
+    return PxiDeLosPacientes;
+}
 
 void BajaDeIngresos (nodoArbolPaciente * listaDePacientes, NodoPxI * listaPxI)
 {
@@ -210,13 +240,13 @@ void BajaDeIngresos (nodoArbolPaciente * listaDePacientes, NodoPxI * listaPxI)
         }
         if (opcion == 1)
         {
-                NodoIngresos * segIngresos=buscado->listaIngresos;
-                while (segIngresos)
-                {
-                    segIngresos->ingreso.Eliminado=0;
-                    segIngresos=segIngresos->siguiente;
-                    bajaPxICascada(listaPxI, segIngresos->ingreso);
-                }
+            NodoIngresos * segIngresos=buscado->listaIngresos;
+            while (segIngresos)
+            {
+                segIngresos->ingreso.Eliminado=0;
+                segIngresos=segIngresos->siguiente;
+                bajaPxICascada(listaPxI, segIngresos->ingreso);
+            }
             actualizarArchivoIngreso(buscado->listaIngresos);
             printf("Baja exitosa \n");
         }
