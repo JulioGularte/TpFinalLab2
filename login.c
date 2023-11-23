@@ -101,35 +101,57 @@ int comparar_perfil (empleados_laboratorio usuario) ///retorna 3-no se encontro 
 empleados_laboratorio crear_empleado (char archivo[])
 {
     empleados_laboratorio nuevo;
+    int valido;
 
     nuevo.baja=1; ///alta
     int encontrado;
     ///verificando usuario
     do
     {
+        system("cls");
+        printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
         printf("\n\tIngrese el nuevo usuario: ");
         fflush(stdin);
         gets(nuevo.usuario);
+        eliminar_espacios(nuevo.usuario);
         encontrado=verificar_empleado_duplicado_usuario(archivo,nuevo.usuario);
     }
     while(encontrado!=0);
 
+    system("cls");
+    printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
     printf("\n\tIngrese la clave nueva: ");
     fflush(stdin);
     gets(nuevo.clave);
+    eliminar_espacios(nuevo.clave);
 
-    printf("\n\tIngrese el nombre: ");
-    fflush(stdin);
-    gets(nuevo.NyA);
+    ///verificar nombre y apellido
+    do
+    {
+        encontrado=1;
+        system("cls");
+        printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
+        printf("\n\tIngrese el nombre y apellido: ");
+        fflush(stdin);
+        gets(nuevo.NyA);
+        encontrado=verificar_nombre_apellido(nuevo.NyA);
+    }while(encontrado!=0);
     ///verificando dni
     do
     {
+        system("cls");
+        printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
+        encontrado=1;
         printf("\n\tIngrese el DNI: ");
         fflush(stdin);
         gets(nuevo.dni);
-        encontrado=verificar_empleado_duplicado_DNI(archivo,nuevo.dni);
-    }
-    while(encontrado!=0);
+        valido=verificar_DNI_valido(nuevo.dni);
+        if(valido!=0)
+        {
+            encontrado=verificar_empleado_duplicado_DNI(archivo,nuevo.dni);
+        }
+        else{printf("\n\tINGRESO UN DATO QUE NO ES UN DNI...\n\t");system("pause");}
+    }while(encontrado!=0);
     ///cargnado perfil
     int perfil=menuPERFIL();
     if(perfil==1)
@@ -142,7 +164,29 @@ empleados_laboratorio crear_empleado (char archivo[])
     }
     return nuevo;
 }
+void eliminar_espacios(char * dato) ///quita espacio del usuario
+{
+    int longitud = strlen(dato);
+    int aux = 0;
 
+    for (int i = 0; i < longitud; i++) {
+        if (dato[i] != ' ') {
+            dato[aux++] = dato[i];
+        }
+    }
+    dato[aux] = '\0'; /// Agregar el carácter nulo al final del nuevo string
+}
+int verificar_nombre_apellido(const char arreglo[]) ///verificar que el nombre y apellido no tenga numeros
+{
+    int i = 0;
+    while (arreglo[i] != '\0') {
+        if (!isalpha(arreglo[i])) {
+            return 1; /// Si se encuentra un carácter que no es una letra
+        }
+        i++;
+    }
+    return 0; /// Si todos los caracteres son letras
+}
 int verificar_empleado_duplicado_usuario (char archivo[],char usuario[]) /// 1o0 si encuentra duplicado o no
 {
     FILE*arch= fopen(archivo,"rb");
@@ -176,7 +220,7 @@ int verificar_empleado_duplicado_DNI (char archivo[],char dni[]) /// 1o0 si encu
             if(strcmp(aux.dni,dni)==0)
             {
                 encontrado=1;
-                printf("\nDNI EN USO, ELIJA OTRO...\n");
+                printf("\n\tDNI EN USO, ELIJA OTRO...\n");
                 system("pause");
                 system("cls");
             }
@@ -184,6 +228,20 @@ int verificar_empleado_duplicado_DNI (char archivo[],char dni[]) /// 1o0 si encu
         fclose(arch);
         return encontrado;
     }
+}
+int verificar_DNI_valido (char dni[])
+{
+    /// Verificar la longitud del DNI
+    if (strlen(dni) != 8) {
+        return 0;
+    }
+    /// Verificar que todos los caracteres sean dígitos
+    for (int i = 0; i < 8; ++i) {
+        if (!isdigit(dni[i])) {
+            return 0;
+        }
+    }
+    return 1;
 }
 void cargar_empleado_to_archivo (char archivo[]) ///carga un empleado en el archivo
 {
@@ -201,26 +259,30 @@ void cargar_empleado_to_archivo (char archivo[]) ///carga un empleado en el arch
 void mostrar_empleado (empleados_laboratorio aux,int perfil)
 {
     printf("\n=============================================");
-    printf("\n\tUsuario:....................%s",aux.usuario);
+
     if(perfil == 0)
     {
+        printf("\n\tUsuario:....................%s",aux.usuario);
         printf("\n\tClave:......................%s",aux.clave);
+        printf("\n\tNyA:........................%s",aux.NyA);
+        printf("\n\tDNI:........................%s",aux.dni);
+        printf("\n\tPerfil:.....................%s",aux.perfil);
+        if(aux.baja == 0)
+        {
+            printf("\n\tEstado:.....................Baja\n");
+        }
+        else
+        {
+            printf("\n\tEstado:.....................Alta\n");
+        }
     }
-    else
+    else if(perfil!=0 && aux.baja==1)
     {
+        printf("\n\tUsuario:....................%s",aux.usuario);
         printf("\n\tClave:........................********");
-    }
-    printf("\n\tNyA:........................%s",aux.NyA);
-    printf("\n\tDNI:........................%s",aux.dni);
-    printf("\n\tPerfil:.....................%s",aux.perfil);
-    printf("\n\tEstado:.....................%i",aux.baja);
-    if(aux.baja == 0)
-    {
-        printf("\n\tEstado:.....................Baja\n");
-    }
-    else
-    {
-        printf("\n\tEstado:.....................Alta\n");
+        printf("\n\tNyA:........................%s",aux.NyA);
+        printf("\n\tDNI:........................%s",aux.dni);
+        printf("\n\tPerfil:.....................%s",aux.perfil);
     }
 }
 void mostrar_empleados_en_archivo (char archivo[],int perfil)  ///muestra todos los empleados
@@ -245,8 +307,8 @@ nodo_lista* pasar_archivo_to_lista(char archivo[]) ///pasa todos los datos a una
     {
         while(fread(&aux,sizeof(empleados_laboratorio),1,arch)>0)
         {
-            lista=agregar_al_final(lista,aux);
-            //lista=agregar_al_final_ordenado_nya(lista,aux);
+            //lista=agregar_al_final(lista,aux);
+            lista=agregar_al_final_ordenado_nya(lista,aux);
         }
         fclose(arch);
     }
@@ -550,7 +612,6 @@ void dar_de_baja_alta_archivo(char archivo[],int perfil,nodo_lista* lista) ///so
                         {
                             aux.baja=0;
                         }
-                        aux=modificar_empleado(aux,archivo);
                         long int posicion_actual = ftell(arch);
                         fseek(arch, posicion_actual - sizeof(empleados_laboratorio), SEEK_SET);
                         fwrite(&aux, sizeof(empleados_laboratorio), 1, arch);
@@ -577,19 +638,19 @@ int menuADMIN() ///menu principal del admin
 {
     int opcion;
 
-        do
-        {
-            system("cls");
-            printf("\t -- Laboratorio C --\n\t   -Menu MASTER-\n");
-            printf("\n\t1)Menu Empleados");
-            printf("\n\t2)Menu Pacientes");
-            printf("\n\t3)Menu Ingresos");
-            printf("\n\t4)Menu Practicas");
-            printf("\n\t5)Menu Practicas por ingreso");
-            printf("\n\t0)Salir");
-            printf("\n\n\tIngrese la opcion que desea ver: ");
-            scanf("%i",&opcion);
-        }while (opcion<0 && opcion>5);
+    do
+    {
+        system("cls");
+        printf("\t -- Laboratorio C --\n\t   -Menu MASTER-\n");
+        printf("\n\t1)Menu Empleados");
+        printf("\n\t2)Menu Pacientes");
+        printf("\n\t3)Menu Ingresos");
+        printf("\n\t4)Menu Practicas");
+        printf("\n\t5)Menu Practicas por ingreso");
+        printf("\n\t0)Salir");
+        printf("\n\n\tIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -597,18 +658,19 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
 {
     int opcion;
 
-        do
-        {
-            system("cls");
-            printf("\t -- Laboratorio C --\n\t   -Menu ADMINISTRATIVO-\n");
-            printf("\n\t1)Ver listado general de empleados");
-            printf("\n\t2)Menu Pacientes");
-            printf("\n\t3)Menu Ingresos");
-            printf("\n\t4)Menu Ver Practicas");
-            printf("\n\t0)Salir");
-            printf("\n\n\tIngrese la opcion que desea ver: ");
-            scanf("%i",&opcion);
-        }while (opcion<0 && opcion>4);
+    do
+    {
+        system("cls");
+        printf("\t -- Laboratorio C --\n\t   -Menu ADMINISTRATIVO-\n");
+        printf("\n\t1)Ver listado general de empleados");
+        printf("\n\t2)Menu Pacientes");
+        printf("\n\t3)Menu Ingresos");
+        printf("\n\t4)Ver Practicas");
+        printf("\n\t5)Menu Practicas por ingresos");
+        printf("\n\t0)Salir");
+        printf("\n\n\tIngrese la opcion que desea ver: ");
+        scanf("%i",&opcion);
+    }while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -666,7 +728,6 @@ int menuPacientes() ///menu principal de Empleados
         printf("\n\t2)Modificar paciente");
         printf("\n\t3)Alta de paciente");
         printf("\n\t4)Baja de paciente");
-        printf("\n\t5)Listado General");
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
@@ -682,15 +743,14 @@ int menuIngresos() ///menu principal de ingresos
     {
         system("cls");
         printf("\t -- Laboratorio C --\n\t   -Menu Ingresos-\n");
-        printf("\n\t1)Ver paciente");
-        printf("\n\t2)Modificar paciente");
-        printf("\n\t3)Alta de paciente");
-        printf("\n\t4)Baja de paciente");
-        printf("\n\t5)Listado General");
+        printf("\n\t1)Ver ingresos");
+        printf("\n\t2)Modificar ingresos");
+        printf("\n\t3)Alta de ingresos");
+        printf("\n\t4)Baja de ingresos");
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }while (opcion<0 && opcion>4);
 
     return opcion;
 }
@@ -757,7 +817,7 @@ int menuPERFIL()  ///menu carga perfil
     do
     {
         system("cls");
-        printf("\t -- Laboratorio C --\n\t   -Menu Perfil-\n");
+        printf("\t -- Laboratorio C --\n\t   -Alta de empleado-\n");
         printf("\n\t1)ADMINISTRATIVO");
         printf("\n\t2)TECNICO");
         printf("\n\n\tIngrese la opcion que desea ver: ");
@@ -1003,8 +1063,10 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==5)
             {
-                opcionInterna=menuPracticasXIngresos();
-                swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
+                do{
+                    opcionInterna=menuPracticasXIngresos();
+                    swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
+                }while(opcionInterna!=0);
             }
         }
         while(opcion!=0);
@@ -1092,7 +1154,7 @@ void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el
         }
         if(aux!=0)
         {
-            mostrar_lista_baja_alta(lista,perfil,aux);
+            mostrar_lista_baja_alta(lista,perfil,aux-1);
         }
         break;
     case 3:
