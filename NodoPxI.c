@@ -63,17 +63,18 @@ void actualizarArchivoPxI (NodoPxI * lista)
     }
 }
 */
-NodoPxI * cargarListaPxIDesdeArchivo (NodoPxI * listaDePxIngresos, int nroIngreso)
+NodoPxI * cargarListaPxIDesdeArchivo (int nroIngreso)
 {
     FILE * buff=fopen(archivoPxi, "rb");
     PracticasXIngreso stPxI;
+    NodoPxI * listaPxiPaciente=inicListaPxI();
     if (buff)
     {
         while (fread(&stPxI, sizeof(PracticasXIngreso), 1, buff)>0)
         {
             if (stPxI.nroIngreso == nroIngreso)
             {
-                listaDePxIngresos=agregarPrincipioPxI(listaDePxIngresos, crearNodoPxI(stPxI));
+                listaPxiPaciente=agregarPrincipioPxI(listaPxiPaciente, crearNodoPxI(stPxI));
             }
         }
         fclose(buff);
@@ -82,7 +83,7 @@ NodoPxI * cargarListaPxIDesdeArchivo (NodoPxI * listaDePxIngresos, int nroIngres
     {
         printf ("Error al leer desde el archivo de practicas %s", archivoPxi);
     }
-    return listaDePxIngresos;
+    return listaPxiPaciente;
 }
 /*
 void verPracticasPorIngreso (NodoPxI * listaPxI, NodoPractica * listaPracticas, NodoIngresos * listaIngresos)

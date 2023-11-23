@@ -898,11 +898,12 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
     ///carga de arbol de pacientes
     nodoArbolPaciente * arbol=inicArbol();
     arbol=cargarArbolDesdeArchi(arbol);
+    system("pause");
     ///carga de ingresos
-    cargarTodasListasIngresoDesdeArchi("archivoIngresos.bin",arbol);
+    //cargarTodasListasIngresoDesdeArchi("archivoIngresos.bin",arbol);
     ///carga de lista de practicas
     NodoPractica * listaPracticas=inicListaPractica();
-    listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
+    //listaPracticas=cargarListaPracticaDesdeArchivo(listaPracticas);
     ///carga de listaPxI
     NodoPxI * listaPxI=inicListaPxI();
     ///carga de empleados
@@ -931,7 +932,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///pacientes
                 {
                     opcionInterna=menuPacientes();
-                    swicherPacientes(opcionInterna,perfil,archivo, &arbol);
+                    swicherPacientes(opcionInterna,perfil,archivo, arbol);
                 }
                 while(opcionInterna!=0);
             }
@@ -940,7 +941,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil, &arbol ,&listaPracticas, &listaPxI, &nroUltimoIngreso); ///sirve para master y administrativo
+                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas, listaPxI, nroUltimoIngreso); ///sirve para master y administrativo
                 }
                 while(opcionInterna!=0);
             }
@@ -949,7 +950,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///practicas
                 {
                     opcionInterna=menuPracticas();
-                    swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
+                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, listaPxI);
                 }
                 while(opcionInterna!=0);
             }
@@ -1051,10 +1052,11 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         system("cls");
         printf("\n*ERROR: INTENTOS MAXIMOS ALCANZADOS... \nCERRANDO PROGRAMA...");
     }
+/*
     NodoIngresos * ingresosDeTodosLosPacientes=actualizarPacientesEnArchivo(arbol);
     NodoPxI * PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes);
     guardarPxIEnArchivo(PxIDeLosPacientes);
-
+*/
     //actualizarArchivoPracticas(listaPracticas);
     //actualizarPacientesEnArchivo (arbol);
     //actualizarArchivoPxI(listaPxI);
@@ -1149,7 +1151,7 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         buscado=NULL;
         printf ("Ingrese un dni para buscar :");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbol, dni);
+        buscado=buscarXDni(arbol, dni);
         if (buscado)
         {
             mostrarNodoArbol(buscado);
@@ -1162,13 +1164,13 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         break;
     case 2:
         buscado=NULL;
-        mostrarArbolPacientes(*arbol);
+        mostrarArbolPacientes(arbol);
         printf ("Ingrese un dni del paciente a modificar :");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbol, dni);
+        buscado=buscarXDni(arbol, dni);
         if (buscado)
         {
-            *arbol=actualizarNodoArbol (*arbol, dni);
+            *arbol=actualizarNodoArbol (arbol, dni);
         }
         else
         {
@@ -1177,14 +1179,14 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         system("pause");
         break;
     case 3:
-        *arbol=cargarArbolOrdenadoDNI(*arbol, crearNodoArbol(cargaManualPaciente()));
+        arbol=cargarArbolOrdenadoDNI(arbol, crearNodoArbol(cargaManualPaciente()));
         break;
     case 4:
         buscado=NULL;
-        mostrarArbolPacientes(*arbol);
+        mostrarArbolPacientes(arbol);
         printf ("Ingrese un dni del paciente a eliminar :");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbol, dni);
+        buscado=buscarXDni(arbol, dni);
         if (buscado)
         {
 ///            *arbol=bajaNodoArbol (*arbol, dni);
@@ -1196,14 +1198,14 @@ void swicherPacientes (int opcion,int perfil,char archivo[], nodoArbolPaciente *
         system("pause");
         break;
     case 5:
-        mostrarArbolPacientes(*arbol);
+        mostrarArbolPacientes(arbol);
         system("pause");
     default:
         break;
     }
 }
 
-void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente, NodoPractica ** listaDePracticas, NodoPxI ** listaPxI, int * nroUltimoIngreso)  ///sirve para master y administrativo
+void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, NodoPractica * listaDePracticas, NodoPxI * listaPxI, int * nroUltimoIngreso)  ///sirve para master y administrativo
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     nodoArbolPaciente * buscado=NULL;
@@ -1211,13 +1213,13 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
     switch(duplicado)
     {
     case 1:
-        mostrarArbolPacientes(*arbolPaciente);
+        mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente del cual desea ver sus ingresos: ");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbolPaciente, dni);
+        buscado=buscarXDni(arbolPaciente, dni);
         if (buscado)
         {
-            mostrarListaIngresos((*arbolPaciente)->listaIngresos);
+            mostrarListaIngresos(arbolPaciente->listaIngresos);
         }
         else
         {
@@ -1227,14 +1229,14 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
         system("pause");
         break;
     case 2:
-        mostrarArbolPacientes(*arbolPaciente);
+        mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea modificar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbolPaciente, dni);
+        buscado=buscarXDni(arbolPaciente, dni);
         if (buscado && buscado->paciente.eliminado==0)
         {
             altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
-            actualizarArchivoIngreso(*buscado->listaIngresos);
+            actualizarArchivoIngreso(buscado->listaIngresos);
         }
         else
         {
@@ -1243,13 +1245,13 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
         }
         break;
     case 3:
-        mostrarArbolPacientes(*arbolPaciente);
+        mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea realizar el ingreso \n el mismo debe estar en estado activo:");
         scanf("%d",&dni);
-        buscado=buscarXDni(*arbolPaciente, dni);
+        buscado=buscarXDni(arbolPaciente, dni);
         if (buscado && buscado->paciente.eliminado==0)
         {
-            altaDeIngresoPaciente(buscado, nroUltimoIngreso, *listaDePracticas, *listaPxI);
+            altaDeIngresoPaciente(buscado, nroUltimoIngreso, listaDePracticas, listaPxI);
             actualizarArchivoIngreso(*buscado->listaIngresos);
         }
         else
@@ -1259,7 +1261,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente ** arbolPaciente,
         }
         break;
     case 4:
-        BajaDeIngresos (*arbolPaciente, *listaPxI);
+        BajaDeIngresos (arbolPaciente, listaPxI);
         system("pause");
         break;
     default:
@@ -1274,7 +1276,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     case 1:
     {
         system("cls");
-        mostrarListaPracticas(*listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1);
         system("pause");
     }
     break;
@@ -1282,12 +1284,12 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     {
         system("cls");
         Practica nueva=crearStPractica();
-        (*listaPracticas)=altaDePractica(*listaPracticas, crearNodoPractica(nueva));
+        (listaPracticas)=altaDePractica(listaPracticas, crearNodoPractica(nueva));
         system("pause");
     }
     break;
     case 3:
-        mostrarListaPracticas(*listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1);
         printf("\n Ingrese el id de la practica a modificar:");
         int idEditar;
         scanf("%d",&idEditar);
@@ -1295,21 +1297,21 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         char nuevoNombre [30];
         fflush(stdin);
         gets(nuevoNombre);
-        editarPractica((*listaPracticas), idEditar,nuevoNombre);
+        editarPractica((listaPracticas), idEditar,nuevoNombre);
         system("pause");
         break;
     case 4:
-        mostrarListaPracticas(*listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1);
         printf("\n Ingrese el id de la practica a eliminar:");
         int idEliminar;
         scanf("%d",&idEliminar);
-        BajaNodoPractica(idEliminar, (*listaPracticas), (*listaPxI));
+        BajaNodoPractica(idEliminar, listaPracticas, listaPxI);
         break;
     case 5:
         printf ("Ingrese la practica a buscar \n");
         char busqueda[30];
         gets(busqueda);
-        NodoPractica * listaFiltrada=filtrarPracticasPorIniciales(*listaPracticas, busqueda);
+        NodoPractica * listaFiltrada=filtrarPracticasPorIniciales(listaPracticas, busqueda);
         mostrarListaPracticas(listaFiltrada, 1);
         system("pause");
         break;

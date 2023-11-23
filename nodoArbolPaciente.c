@@ -22,7 +22,7 @@ nodoArbolPaciente * crearNodoArbol(Paciente nuevoPaciente)
     nuevoNodo->der=NULL;
     nuevoNodo->izq=NULL;
     nuevoNodo->listaIngresos= inicListaI();
-
+    return nuevoNodo;
 }
 
 nodoArbolPaciente * cargarArbolOrdenadoDNI(nodoArbolPaciente * arbolPacientes, nodoArbolPaciente * nodoACargar)
@@ -63,9 +63,13 @@ nodoArbolPaciente * cargarArbolDesdeArchi(nodoArbolPaciente * arbolPacientes)
         while(fread(&nuevoPaciente,sizeof(Paciente),1,archi)>0)
         {
             nodoArbolPaciente * nodoAcargar=crearNodoArbol(nuevoPaciente);
+            mostrarNodoArbol(nodoAcargar);
             nodoAcargar->listaIngresos=cargarListaDeIngresosDelPaciente(nodoAcargar);
             NodoIngresos * listaIngresos=nodoAcargar->listaIngresos;
-            listaIngresos->listaPxI=cargarListaPxIDesdeArchivo (listaIngresos->listaPxI, listaIngresos->ingreso.NroIngreso);
+            if (listaIngresos)
+            {
+                listaIngresos->listaPxI=cargarListaPxIDesdeArchivo (listaIngresos->ingreso.NroIngreso);
+            }
             arbolPacientes=cargarArbolOrdenadoDNI(arbolPacientes,nodoAcargar);
 
         }
