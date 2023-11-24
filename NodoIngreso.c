@@ -36,6 +36,23 @@ NodoIngresos * cargarListaIngreso_inicio(NodoIngresos * listaIng, Ingreso datoIn
     }
     return listaIng;
 }
+//funcion que se usa al guardar, es solo para que los PxI no se pierden, es un horror pero no encontramos otra forma
+NodoIngresos * cargarListaIngreso_inicio_conservar_lista_ingresos(NodoIngresos * listaIng, NodoIngresos * nuevoNodoIngreso)
+{
+    NodoIngresos* nuevo=crearNodoI(nuevoNodoIngreso->ingreso);
+    nuevo->listaPxI=nuevoNodoIngreso->listaPxI;
+    if(listaIng==NULL)
+    {
+        listaIng=nuevo;
+    }
+    else
+    {
+        nuevo->siguiente=listaIng;
+        listaIng->anterior=nuevo;
+        listaIng=nuevo;
+    }
+    return listaIng;
+}
 
 NodoIngresos * cargarListaIngreso_inicio_nodo(NodoIngresos * listaIng, NodoIngresos * nuevoNodoIngreso)
 {
@@ -51,7 +68,6 @@ NodoIngresos * cargarListaIngreso_inicio_nodo(NodoIngresos * listaIng, NodoIngre
     }
     return listaIng;
 }
-
 
 NodoIngresos * buscarNodoIngresoPorNroIngreso(NodoIngresos * listaIng, int nroIngresoBuscado)
 {
@@ -198,6 +214,7 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDePaciente)
 void actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes, NodoPxI ** PxiDeLosPacientes)
 {
     FILE * buff=fopen(archivoIngresos, "wb");
+    FILE * buffpxi=fopen("archivo_pxi.bin", "wb");
     if (buff)
     {
         NodoIngresos * seg=ingresosDeLosPacientes;
@@ -209,10 +226,8 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes, NodoPxI ** 
                 NodoPxI * segPxI=seg->listaPxI;
                 while (segPxI)
                 {
-                    printf("Nro Practica: %d \n", segPxI->PxI.nroPractica);
-                    printf("Nro Ingreso: %d \n", segPxI->PxI.nroIngreso);
-                    printf("Resultado: %s \n", segPxI->PxI.resultado);
-                    (*PxiDeLosPacientes)=agregarPrincipioPxI((*PxiDeLosPacientes), crearNodoPxI(segPxI->PxI));
+                    PracticasXIngreso pxi=segPxI->PxI;
+                    fwrite(&pxi, sizeof(PracticasXIngreso),1,buffpxi);
                     segPxI=segPxI->siguiente;
 
                 }
@@ -221,6 +236,7 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes, NodoPxI ** 
             }
             system("pause");
         }
+        fclose(buffpxi);
         fclose(buff);
     }
     return PxiDeLosPacientes;

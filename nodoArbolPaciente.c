@@ -221,7 +221,7 @@ void guardarNodoArbolPacientes(nodoArbolPaciente* nodo, FILE * buff, NodoIngreso
         NodoIngresos * seg=nodo->listaIngresos;
         while (seg)
         {
-            (*nodoIngresosPaciente)=cargarListaIngreso_inicio((*nodoIngresosPaciente), seg);
+            (*nodoIngresosPaciente)=cargarListaIngreso_inicio_conservar_lista_ingresos((*nodoIngresosPaciente), seg);
             seg=seg->siguiente;
         }
 
@@ -445,9 +445,11 @@ void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIn
             while (PxI)
             {
                 NodoPractica * nodo=encontrarNodoPracticaXId (listaPracticas, PxI->PxI.nroPractica);
+                printf ("==================================================== \n");
                 mostrarUnaPractica(nodo->practica, 1);
                 printf ("Practicas: \n");
                 printf ("Resultado: %s \n", PxI->PxI.resultado);
+                printf ("==================================================== \n");
                 PxI=PxI->siguiente;
             }
         }

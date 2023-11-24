@@ -1132,25 +1132,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
         printf("\n*ERROR: INTENTOS MAXIMOS ALCANZADOS... \nCERRANDO PROGRAMA...");
     }
     NodoIngresos * ingresosDeTodosLosPacientes=actualizarPacientesEnArchivo(arbol);
-    mostrarListaIngresos(ingresosDeTodosLosPacientes);
-    NodoPxI * PxIDeLosPacientes =actualizarArchivoIngreso(ingresosDeTodosLosPacientes, &PxIDeLosPacientes);
-
-    NodoPxI * segPxi=PxIDeLosPacientes;
-
-    while (segPxi)
-    {
-        printf("Nro Practica: %d \n", segPxi->PxI.nroPractica);
-        printf("Nro Ingreso: %d \n", segPxi->PxI.nroIngreso);
-        printf("Resultado: %s \n", segPxi->PxI.resultado);
-        segPxi=segPxi->siguiente;
-    }
-
-
-    guardarPxIEnArchivo(PxIDeLosPacientes);
-
-    //actualizarArchivoPracticas(listaPracticas);
-    //actualizarPacientesEnArchivo (arbol);
-    //actualizarArchivoPxI(listaPxI);
+    NodoPxI * PxIDeLosPacientes=actualizarArchivoIngreso(ingresosDeTodosLosPacientes, &PxIDeLosPacientes);
 }
 
 void swicherAdmin (int opcion,int perfil,char archivo[]) ///swich menu que ve el master
