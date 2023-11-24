@@ -470,6 +470,10 @@ void BajaNodoPractica (int idPractica, NodoPractica * lista, nodoArbolPaciente *
     {
         printf ("No existe la practica con el Id ingresado");
     }
+    else if (nodoBuscado->practica.eliminado==1)
+    {
+        printf ("Opcion incorrecta \n");
+    }
     else
     {
         int flag=ExisteIngresoActivoEnPractica(arbol, idPractica);

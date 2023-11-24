@@ -106,7 +106,7 @@ void editarPractica (NodoPractica * lista, int idPractica, char nuevoNombre [])
         }
         else if (nodoBuscado->practica.eliminado==1)
         {
-            printf ("La practica esta eliminada \n");
+            printf ("La practica esta eliminada, por lo tanto no es editable \n");
         }
         else
         {
@@ -151,11 +151,7 @@ NodoPractica * altaDePractica (NodoPractica * lista, NodoPractica * nuevo)
 
 void mostrarListaPracticas (NodoPractica * lista, int esAdmin, int mostrarInactivas)
 {
-    if (!lista)
-    {
-        printf ("\n\tLa lista de practicas esta vacia \n");
-    }
-    else
+    if (lista)
     {
         NodoPractica * seg=lista;
         while (seg)

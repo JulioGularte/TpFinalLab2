@@ -1166,7 +1166,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///practicas
                 {
                     opcionInterna=menuPracticas();
-                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, listaPxI);
+                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, arbol);
                 }
                 while(opcionInterna!=0);
             }
@@ -1463,6 +1463,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica * listaPractic
     case 5:
         printf ("Ingrese la practica a buscar \n");
         char busqueda[30];
+        fflush(stdin);
         gets(busqueda);
         NodoPractica * listaFiltrada=filtrarPracticasPorIniciales(listaPracticas, busqueda);
         mostrarListaPracticas(listaFiltrada, 1, 1);
