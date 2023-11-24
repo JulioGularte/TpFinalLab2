@@ -589,7 +589,7 @@
 	<stdlib.h>
 	<windows.h>
 
-1700770487 source:c:\users\g\documents\nueva carpeta\ingreso.c
+1700783792 source:c:\users\g\documents\nueva carpeta\ingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -599,27 +599,27 @@
 	<string.h>
 	<time.h>
 
-1700770477 c:\users\g\documents\nueva carpeta\nodoingreso.h
+1700783792 c:\users\g\documents\nueva carpeta\nodoingreso.h
 	"Ingreso.h"
 	"NodoArbolPaciente.h"
 
-1700770487 c:\users\g\documents\nueva carpeta\ingreso.h
+1700783792 c:\users\g\documents\nueva carpeta\ingreso.h
 	"NodoArbolPaciente.h"
 
-1700770487 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
+1700783792 c:\users\g\documents\nueva carpeta\nodoarbolpaciente.h
 	"NodoIngreso.h"
 	"Pacientes.h"
 	"NodoPxI.h"
 	"NodoPractica.h"
 
-1700770477 c:\users\g\documents\nueva carpeta\pacientes.h
+1700783792 c:\users\g\documents\nueva carpeta\pacientes.h
 
-1700770477 c:\users\g\documents\nueva carpeta\nodopxi.h
+1700783792 c:\users\g\documents\nueva carpeta\nodopxi.h
 	"PracticasXIngreso.h"
 
-1700770477 c:\users\g\documents\nueva carpeta\practicasxingreso.h
+1700783792 c:\users\g\documents\nueva carpeta\practicasxingreso.h
 
-1700715291 source:c:\users\g\documents\nueva carpeta\login.c
+1700784316 source:c:\users\g\documents\nueva carpeta\login.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -629,17 +629,17 @@
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 
-1700770477 c:\users\g\documents\nueva carpeta\menu.h
+1700783792 c:\users\g\documents\nueva carpeta\menu.h
 
-1700686407 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
+1700783792 c:\users\g\documents\nueva carpeta\empleadoslaboratorio.h
 
-1700770477 c:\users\g\documents\nueva carpeta\nodopractica.h
+1700783792 c:\users\g\documents\nueva carpeta\nodopractica.h
 	"Practicas.h"
 	"NodoPxI.h"
 
-1700770477 c:\users\g\documents\nueva carpeta\practicas.h
+1700783792 c:\users\g\documents\nueva carpeta\practicas.h
 
-1700770477 source:c:\users\g\documents\nueva carpeta\main.c
+1700783792 source:c:\users\g\documents\nueva carpeta\main.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
@@ -647,7 +647,7 @@
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 
-1700770477 source:c:\users\g\documents\nueva carpeta\menu.c
+1700783792 source:c:\users\g\documents\nueva carpeta\menu.c
 	"menu.h"
 	<stdio.h>
 	<stdlib.h>
@@ -660,7 +660,7 @@
 
 1700107175 c:\users\g\documents\nueva carpeta\gotoxy.h
 
-1700770487 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
+1700783801 source:c:\users\g\documents\nueva carpeta\nodoingreso.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -668,35 +668,35 @@
 	<stdlib.h>
 	<string.h>
 
-1700770477 source:c:\users\g\documents\nueva carpeta\nodopractica.c
+1700783792 source:c:\users\g\documents\nueva carpeta\nodopractica.c
 	"nodoPractica.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"NodoPxI.h"
 
-1700770487 source:c:\users\g\documents\nueva carpeta\nodopxi.c
+1700783792 source:c:\users\g\documents\nueva carpeta\nodopxi.c
 	"nodoPxi.h"
 	"NodoPractica.h"
 	"NodoIngreso.h"
 	<stdio.h>
 	<stdlib.h>
 
-1700770477 source:c:\users\g\documents\nueva carpeta\pacientes.c
+1700783792 source:c:\users\g\documents\nueva carpeta\pacientes.c
 	"NodoArbolPaciente.h"
 	<stdio.h>
 	<string.h>
 
-1700770477 source:c:\users\g\documents\nueva carpeta\practicas.c
+1700783792 source:c:\users\g\documents\nueva carpeta\practicas.c
 	"Practicas.h"
 	<stdio.h>
 
-1700770477 source:c:\users\g\documents\nueva carpeta\practicasxingreso.c
+1700783792 source:c:\users\g\documents\nueva carpeta\practicasxingreso.c
 	"PracticasXIngreso.h"
 	<string.h>
 	<stdio.h>
 
-1700770477 source:c:\users\g\documents\nueva carpeta\registrogeneral.c
+1700783792 source:c:\users\g\documents\nueva carpeta\registrogeneral.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
@@ -707,9 +707,9 @@
 	<time.h>
 	"registroGeneral.h"
 
-1700770477 c:\users\g\documents\nueva carpeta\registrogeneral.h
+1700783792 c:\users\g\documents\nueva carpeta\registrogeneral.h
 
-1700770487 source:c:\users\g\documents\nueva carpeta\nodoarbolpaciente.c
+1700783801 source:c:\users\g\documents\nueva carpeta\nodoarbolpaciente.c
 	"NodoIngreso.h"
 	"NodoArbolPaciente.h"
 	"NodoPxI.h"
