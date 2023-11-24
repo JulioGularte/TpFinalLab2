@@ -135,7 +135,8 @@ empleados_laboratorio crear_empleado (char archivo[])
         fflush(stdin);
         gets(nuevo.NyA);
         encontrado=verificar_nombre_apellido(nuevo.NyA);
-    }while(encontrado!=0);
+    }
+    while(encontrado!=0);
     ///verificando dni
     do
     {
@@ -150,8 +151,13 @@ empleados_laboratorio crear_empleado (char archivo[])
         {
             encontrado=verificar_empleado_duplicado_DNI(archivo,nuevo.dni);
         }
-        else{printf("\n\tINGRESO UN DATO QUE NO ES UN DNI...\n\t");system("pause");}
-    }while(encontrado!=0);
+        else
+        {
+            printf("\n\tINGRESO UN DATO QUE NO ES UN DNI...\n\t");
+            system("pause");
+        }
+    }
+    while(encontrado!=0);
     ///cargnado perfil
     int perfil=menuPERFIL();
     if(perfil==1)
@@ -169,30 +175,37 @@ void eliminar_espacios(char * dato) ///quita espacio del usuario
     int longitud = strlen(dato);
     int aux = 0;
 
-    for (int i = 0; i < longitud; i++) {
-        if (dato[i] != ' ') {
+    for (int i = 0; i < longitud; i++)
+    {
+        if (dato[i] != ' ')
+        {
             dato[aux++] = dato[i];
         }
     }
     dato[aux] = '\0'; /// Agregar el carácter nulo al final del nuevo string
 }
-int verificar_nombre_apellido(char arreglo[]) {
+int verificar_nombre_apellido(char arreglo[])
+{
     int i = 0;
     int espacio = 0; /// Variable para contabilizar espacios
 
-    while (arreglo[i] != '\0') {
-        if (!isalpha(arreglo[i]) && arreglo[i] != ' ') {
+    while (arreglo[i] != '\0')
+    {
+        if (!isalpha(arreglo[i]) && arreglo[i] != ' ')
+        {
             return 1; /// Si se encuentra un carácter que no es una letra ni espacio
         }
 
-        if (arreglo[i] == ' ') {
+        if (arreglo[i] == ' ')
+        {
             espacio++; /// Contabilizar los espacios encontrados
         }
 
         i++;
     }
 
-    if (espacio == 0) {
+    if (espacio == 0)
+    {
         return 1; /// Si no se ha encontrado ningún espacio entre nombre y apellido
     }
 
@@ -243,12 +256,15 @@ int verificar_empleado_duplicado_DNI (char archivo[],char dni[]) /// 1o0 si encu
 int verificar_DNI_valido (char dni[])
 {
     /// Verificar la longitud del DNI
-    if (strlen(dni) != 8) {
+    if (strlen(dni) != 8)
+    {
         return 0;
     }
     /// Verificar que todos los caracteres sean dígitos
-    for (int i = 0; i < 8; ++i) {
-        if (!isdigit(dni[i])) {
+    for (int i = 0; i < 8; ++i)
+    {
+        if (!isdigit(dni[i]))
+        {
             return 0;
         }
     }
@@ -526,13 +542,15 @@ empleados_laboratorio modificar_empleado (empleados_laboratorio dato,char archiv
     {
     case 1:
 
-        do{
-        validar=1;
-        printf("\nIngrese el nombre: ");
-        fflush(stdin);
-        gets(aux.NyA);
-        validar=verificar_nombre_apellido(aux.NyA);
-        }while(validar!=0);
+        do
+        {
+            validar=1;
+            printf("\nIngrese el nombre: ");
+            fflush(stdin);
+            gets(aux.NyA);
+            validar=verificar_nombre_apellido(aux.NyA);
+        }
+        while(validar!=0);
         break;
     case 2:
         encontrado=0;
@@ -669,7 +687,8 @@ int menuADMIN() ///menu principal del admin
         printf("\n\t0)Salir");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }
+    while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -689,7 +708,8 @@ int menuADMINISTRATIVO() ///menu principal del administrativo
         printf("\n\t0)Salir");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }
+    while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -709,7 +729,8 @@ int menuTECNICO() ///menu principal del administrativo
         printf("\n\t0)Salir");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }
+    while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -731,7 +752,8 @@ int menuEmpleados() ///menu principal de Empleados
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>7);
+    }
+    while (opcion<0 && opcion>7);
 
     return opcion;
 }
@@ -750,7 +772,8 @@ int menuPacientes() ///menu principal de Empleados
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }
+    while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -769,7 +792,8 @@ int menuIngresos() ///menu principal de ingresos
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>4);
+    }
+    while (opcion<0 && opcion>4);
 
     return opcion;
 }
@@ -789,7 +813,8 @@ int menuPracticas() ///menu principal de practicas
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>5);
+    }
+    while (opcion<0 && opcion>5);
 
     return opcion;
 }
@@ -808,7 +833,8 @@ int menuPracticasXIngresos() ///sub menu de practicas por ingresos (solo para ma
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>4);
+    }
+    while (opcion<0 && opcion>4);
 
     return opcion;
 }
@@ -825,7 +851,8 @@ int menuPracticasXIngresosTecnico() ///sub menu de practicas por ingresos (solo 
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>2);
+    }
+    while (opcion<0 && opcion>2);
 
     return opcion;
 }
@@ -841,7 +868,8 @@ int menuPERFIL()  ///menu carga perfil
         printf("\n\t2)TECNICO");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<1 && opcion>2);
+    }
+    while (opcion<1 && opcion>2);
 
     return opcion;
 }
@@ -863,7 +891,8 @@ int menuMODIFICAR() ///menu modificar
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>7);
+    }
+    while (opcion<0 && opcion>7);
 
     return opcion;
 }
@@ -880,7 +909,8 @@ int menuMostrarAltaBaja() ///menu baja/alta
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>2);
+    }
+    while (opcion<0 && opcion>2);
 
     return opcion;
 }
@@ -897,7 +927,8 @@ int menuBUSCAR() ///menu de opciones para buscar
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>2);
+    }
+    while (opcion<0 && opcion>2);
 
     return opcion;
 }
@@ -913,7 +944,8 @@ int menuSI_NO() ///menu si/no
         printf("\n\t2)NO");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<1 && opcion>2);
+    }
+    while (opcion<1 && opcion>2);
 
     return opcion;
 }
@@ -930,7 +962,8 @@ int menuVerPaciente() ///sub menu ver pasiente
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>2);
+    }
+    while (opcion<0 && opcion>2);
 
     return opcion;
 }
@@ -947,7 +980,8 @@ int menuIngresosTecnicos() ///sub menu ingresos tecnicos
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>2);
+    }
+    while (opcion<0 && opcion>2);
 
     return opcion;
 }
@@ -965,7 +999,8 @@ int menuPracticasTecnicos() ///sub menu practicas tecnicos
         printf("\n\t0)Volver al menu");
         printf("\n\n\tIngrese la opcion que desea ver: ");
         scanf("%i",&opcion);
-    }while (opcion<0 && opcion>3);
+    }
+    while (opcion<0 && opcion>3);
 
     return opcion;
 }
@@ -1018,7 +1053,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas); ///sirve para master y administrativo
+                    swicherIngresos(opcionInterna,perfil, arbol,listaPracticas);  ///sirve para master y administrativo
                 }
                 while(opcionInterna!=0);
             }
@@ -1080,10 +1115,12 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==5)
             {
-                do{
+                do
+                {
                     opcionInterna=menuPracticasXIngresos();
-                    swicherPracticasXIngresosAdministrativo(opcionInterna,perfil,archivo);
-                }while(opcionInterna!=0);
+                    swicherPracticasXIngresosAdministrativo(opcion, perfil, listaPracticas, arbol);
+                }
+                while(opcionInterna!=0);
             }
         }
         while(opcion!=0);
@@ -1135,10 +1172,12 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==5)
             {
-                do{
+                do
+                {
                     opcionInterna=menuPracticasXIngresosTecnico();
                     swicherPracticasXIngresosTecnicos(opcionInterna,perfil,archivo);
-                }while(opcionInterna!=0);
+                }
+                while(opcionInterna!=0);
             }
         }
         while(opcion!=0);
@@ -1339,7 +1378,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
         system("pause");
         break;
     case 3:
-        {
+    {
         int nroUltimoIngreso=contarIngresosDeTodosLosPacientes(arbolPaciente);
         mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea realizar el ingreso \n el mismo debe estar en estado activo:");
@@ -1354,8 +1393,8 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
             printf("El DNI %d no es valido para realizar un alta de ingreso \n");
             system("pause");
         }
-        }
-        break;
+    }
+    break;
     case 4:
         mostrarArbolPacientes(arbolPaciente);
         printf("Ingrese el DNI del paciente al cual desea eliminar el ingreso \n el mismo debe estar en estado activo:");
@@ -1442,7 +1481,7 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
     switch(duplicado)
     {
     case 1:
-        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 1);
         printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
         scanf ("%d",&nroIngreso);
         ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
@@ -1453,7 +1492,7 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
         system("pause");
         break;
     case 2:
-        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 0);
         printf ("Ingrese el nroIngreso del cual modificar alguna de sus practicas: \n");
         scanf ("%d",&nroIngreso);
         ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
@@ -1478,10 +1517,18 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
                 strcpy(nodoPxIBuscado->PxI.resultado, nuevoResultado);
             }
         }
+        else if (ingresoBuscado->ingreso.Eliminado)
+        {
+            printf ("El ingreso esta eliminado \n");
+        }
+        else
+        {
+            printf ("No existe el ingreso ingresado \n");
+        }
         system("pause");
         break;
     case 3:
-        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 0);
         printf ("Ingrese el nroIngreso del cual desea de dar de baja la practica: \n");
         scanf ("%d",&nroIngreso);
         ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
@@ -1505,13 +1552,134 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
         }
         break;
     case 4:
-        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 0);
         printf ("Ingrese el nroIngreso del cual desea de dar de alta una practica: \n");
         scanf ("%d",&nroIngreso);
         ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
         if (ingresoBuscado)
         {
-            //mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            mostrarListaPracticas(listaPracticas, 1, 0);
+            printf ("Ingrese el nro practica que desea dar de alta en el ingreso: \n");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            NodoPractica * practica=encontrarNodoPracticaXId(practica, nroPractica);
+            if (!practica)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                PracticasXIngreso pxiNueva;
+                pxiNueva.eliminado==0;
+                pxiNueva.nroIngreso=nroIngreso;
+                pxiNueva.nroPractica=nroPractica;
+                printf ("Ingrese el resultado de la practica:");
+                char resultado[40];
+                gets(resultado);
+                strcpy(pxiNueva.resultado, resultado);
+                NodoPxI * nuevo=crearNodoPxI(pxiNueva);
+                int existe=existePxIEnIngreso(ingresoBuscado, nuevo);
+                if (existe==0)
+                {
+                    ingresoBuscado->listaPxI=agregarPrincipioPxI(ingresoBuscado->listaPxI, crearNodoPxI(pxiNueva));
+                }
+                else
+                {
+                    printf ("Ya existe una practica de %s en este ingreso, seleccione otra practica \n", practica->practica.NombrePractica);
+                }
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
+void swicherPracticasXIngresosAdministrativo (int opcion, int perfil, NodoPractica * listaPracticas, nodoArbolPaciente * pacientes)  ///sirve para solo para ADMINISTRATIVO
+{
+    int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
+    NodoIngresos * ingresoBuscado=inicListaI();
+    NodoPxI * nodoPxIBuscado=NULL;
+    int nroIngreso;
+    switch(duplicado)
+    {
+    case 1:
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 1);
+        printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+        }
+        system("pause");
+        break;
+    case 2:
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 0, 0);
+        printf ("Ingrese el nroIngreso del cual modificar alguna de sus practicas: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            printf ("Ingrese el nro practica a modificar");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            nodoPxIBuscado=NULL;
+            nodoPxIBuscado=obtenerPxI(ingresoBuscado, nroPractica);
+            if (!nodoPxIBuscado)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                char nuevoResultado [40];
+                printf ("Ingrese nuevo resultado: \n");
+                fflush(stdin);
+                gets(nuevoResultado);
+                strcpy(nodoPxIBuscado->PxI.resultado, nuevoResultado);
+            }
+        }
+        else if (ingresoBuscado->ingreso.Eliminado)
+        {
+            printf ("El ingreso esta eliminado \n");
+        }
+        else
+        {
+            printf ("No existe el ingreso ingresado \n");
+        }
+        system("pause");
+        break;
+    case 3:
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 0);
+        printf ("Ingrese el nroIngreso del cual desea de dar de baja la practica: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            printf ("Ingrese el nro practica a eliminar: \n");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            nodoPxIBuscado=NULL;
+            nodoPxIBuscado=obtenerPxI(ingresoBuscado, nroPractica);
+            if (!nodoPxIBuscado)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                nodoPxIBuscado->PxI.eliminado=1;
+            }
+            system("pause");
+        }
+        break;
+    case 4:
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 0);
+        printf ("Ingrese el nroIngreso del cual desea de dar de alta una practica: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
             mostrarListaPracticas(listaPracticas, 1, 0);
             printf ("Ingrese el nro practica que desea dar de alta en el ingreso: \n");
             int nroPractica;
@@ -1548,36 +1716,24 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
     }
 }
 }
-void swicherPracticasXIngresosAdministrativo (int opcion,int perfil,char archivo[])  ///sirve para solo para ADMINISTRATIVO
+void swicherIngresosTecnicos(int opcion, int perfil, NodoPractica * listaPracticas, nodoArbolPaciente * pacientes)  ///sirve para solo para tercnico
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-
+    NodoIngresos * ingresoBuscado=inicListaI();
+    NodoPxI * nodoPxIBuscado=NULL;
+    int nroIngreso;
     switch(duplicado)
     {
     case 1:
-        ///ver practicas x ingreso
-        break;
-    case 2:
-        ///modificar practicas
-        break;
-    case 3:
-        ///baja practicas
-        break;
-    case 4:
-        ///alta practicas
-        break;
-    default:
-        break;
-    }
-}
-void swicherIngresosTecnicos(int opcion,int perfil,char archivo[])  ///sirve para solo para tercnico
-{
-    int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
-
-    switch(duplicado)
-    {
-    case 1:
-        ///ver ingreso por numero
+        mostrarNodosIngresosTodosLosPacientes (pacientes, 1, 1);
+        printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+        }
+        system("pause");
         break;
     case 2:
         ///ver ingreso por dni

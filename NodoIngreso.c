@@ -123,7 +123,7 @@ NodoIngresos * eliminarNodoIngPorDNI(NodoIngresos * listaIng, int DNI)
     return listaIng; ///retorno la lista con el nodo modificado(o igual si es que no se encontro el dato buscado)
 
 }
-void mostrarNodoIngreso(NodoIngresos * nodoAMostrar)
+void mostrarNodoIngreso(NodoIngresos * nodoAMostrar, int esAdmin)
 {
 
     printf("El numero de ingreso es:......................... %d\n",nodoAMostrar->ingreso.NroIngreso);
@@ -131,6 +131,8 @@ void mostrarNodoIngreso(NodoIngresos * nodoAMostrar)
     printf("La fecha de ingreso es:.......................... %s\n",nodoAMostrar->ingreso.FechaRetiro);
     printf("El numero de DNI del paciente es:................ %d\n",nodoAMostrar->ingreso.DNI);
     printf("La matricula del medico solicitante es:.......... %d\n",nodoAMostrar->ingreso.MatriculaPersonalSolicitante);
+    if (esAdmin == 1)
+    {
     if(nodoAMostrar->ingreso.Eliminado==1)
     {
         puts("El ingreso esta dado de baja");
@@ -139,18 +141,22 @@ void mostrarNodoIngreso(NodoIngresos * nodoAMostrar)
     {
         puts("El ingreso esta activo");
     }
+    }
     puts("===========================================================================");
 
 }
 
-void mostrarListaIngresos(NodoIngresos* listaIng)
+void mostrarListaIngresos(NodoIngresos* listaIng, int esAdmin, int mostrarInactivos)
 {
     NodoIngresos * aux = listaIng;
     if (aux)
     {
         while(aux)
         {
-            mostrarNodoIngreso(aux);
+            if ((aux->ingreso.Eliminado == 1 && mostrarInactivos==1) || aux->ingreso.Eliminado == 0)
+            {
+                  mostrarNodoIngreso(aux, esAdmin);
+            }
             aux=aux->siguiente;
         }
     }
@@ -244,7 +250,7 @@ void actualizarArchivoIngreso(NodoIngresos * ingresosDeLosPacientes, NodoPxI ** 
 
 void BajaDeIngresos (NodoIngresos * ingresosDelPaciente)
 {
-    mostrarListaIngresos(ingresosDelPaciente);
+    mostrarListaIngresos(ingresosDelPaciente, 1, 0);
     NodoIngresos * buscado=NULL;
     int nroIngreso;
     do

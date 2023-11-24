@@ -381,13 +381,13 @@ int contarIngresosDeTodosLosPacientes(nodoArbolPaciente *arbol)
 }
 
 
-void mostrarNodosIngresosTodosLosPacientes (nodoArbolPaciente * arbol)
+void mostrarNodosIngresosTodosLosPacientes (nodoArbolPaciente * arbol, int esAdmin, int mostrarInactivos)
 {
     if (arbol)
     {
-        mostrarNodosIngresosTodosLosPacientes (arbol -> izq);
-        mostrarListaIngresos(arbol->listaIngresos);
-        mostrarNodosIngresosTodosLosPacientes (arbol -> der);
+        mostrarNodosIngresosTodosLosPacientes (arbol -> izq, esAdmin, mostrarInactivos);
+        mostrarListaIngresos(arbol->listaIngresos, esAdmin, mostrarInactivos);
+        mostrarNodosIngresosTodosLosPacientes (arbol -> der, esAdmin, mostrarInactivos);
     }
 }
 
