@@ -251,7 +251,6 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso
     NodoPractica * practicaBuscada=NULL;
     Ingreso nuevoIngreso=cargarIngresoManual(paciente->paciente.DNI);
     nuevoIngreso.NroIngreso=numeroUltimoIngreso+1;
-    printf("Nro ingreso %d", nuevoIngreso.NroIngreso);
     NodoIngresos * nuevoNodoIngreso=inicListaI();
     nuevoNodoIngreso=crearNodoI(nuevoIngreso);
     nuevoNodoIngreso->listaPxI=inicListaPxI();
@@ -261,7 +260,7 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso
     {
         do
         {
-            mostrarListaPracticas(listaDePracticas, 1);
+            mostrarListaPracticas(listaDePracticas, 1, 0);
             printf("Ingresar el numero de practica a realizar el alta, la misma debe estar en estado activo: ");
             scanf("%d",&nroPractica);
             practicaBuscada=encontrarNodoPracticaXId(listaDePracticas, nroPractica);
@@ -281,7 +280,15 @@ void altaDeIngresoPaciente(nodoArbolPaciente * paciente, int numeroUltimoIngreso
         while(!practicaBuscada || practicaBuscada->practica.eliminado==1);
         PracticasXIngreso pxi=crearPxI(nuevoIngreso.NroIngreso, nroPractica);
         NodoPxI * nuevaPxI=crearNodoPxI(pxi);
-        nuevoNodoIngreso->listaPxI=agregarPrincipioPxI(nuevoNodoIngreso->listaPxI, crearNodoPxI(pxi));
+        int existePxI=existePxIEnIngreso (nuevoNodoIngreso->listaPxI, nuevaPxI);
+        if (existePxI==0) ///valido que no existan dos practicas en un ingreso
+        {
+            nuevoNodoIngreso->listaPxI=agregarPrincipioPxI(nuevoNodoIngreso->listaPxI, crearNodoPxI(pxi));
+        }
+        else
+        {
+            printf ("Ya existe la practica en el ingreso, debe elegir una practica diferente \n");
+        }
         printf ("Ingrese 's' para contunuar cargando practicas \n");
         fflush(stdin);
         scanf("%c",&control);
@@ -447,8 +454,8 @@ void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIn
                 NodoPractica * nodo=encontrarNodoPracticaXId (listaPracticas, PxI->PxI.nroPractica);
                 printf ("==================================================== \n");
                 mostrarUnaPractica(nodo->practica, 1);
-                printf ("Practicas: \n");
                 printf ("Resultado: %s \n", PxI->PxI.resultado);
+                printf ("Estado PxI: %s \n", PxI->PxI.eliminado==1 ? "Eliminado" : "Activo");
                 printf ("==================================================== \n");
                 PxI=PxI->siguiente;
             }
@@ -456,3 +463,28 @@ void mostrarPracticasXIngresos (NodoIngresos * ingresosDeLosPacientes, int nroIn
         seg=seg->siguiente;
     }
 }
+void BajaNodoPractica (int idPractica, NodoPractica * lista, nodoArbolPaciente * arbol)
+{
+    NodoPractica * nodoBuscado=encontrarNodoPracticaXId (lista, idPractica);
+    if (!nodoBuscado)
+    {
+        printf ("No existe la practica con el Id ingresado");
+    }
+    else
+    {
+        int flag=ExisteIngresoActivoEnPractica(arbol, idPractica);
+        if (flag==1)
+        {
+            printf ("No se puede eliminar la practica, dado que existen ingresos asociados a la misma \n");
+        }
+        else
+        {
+            nodoBuscado->practica.eliminado=1;
+
+            printf("Practica: %s eliminada \n", nodoBuscado->practica.NombrePractica);
+            system("pause");
+            system("cls");
+        }
+    }
+}
+

@@ -49,7 +49,7 @@ void gestionarOpcionesMenuPracticasAdministradores (Menu menu, NodoPractica * li
         lista=altaDePractica(lista, crearNodoPractica(crearStPractica()));
         break;
     case 1:
-        mostrarListaPracticas(lista, 1);
+        mostrarListaPracticas(lista, 1, 0);
         int idPractica;
         scanf("%d",&idPractica);
         printf ("Ingrese nuevo nombre para la practica: \n");

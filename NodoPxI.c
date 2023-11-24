@@ -32,19 +32,29 @@ NodoPxI * agregarPrincipioPxI (NodoPxI * lista, NodoPxI * nuevoNodo)
     return lista;
 }
 ///funcion que determina si una practica existe en un ingreso (activo) para eliminacion en cascada
-int ExisteIngresoActivoEnPractica (NodoPxI * lista, int PracticaId)
+int ExisteIngresoActivoEnPractica (nodoArbolPaciente * arbol, int PracticaId)
 {
-    NodoPxI * seg=lista;
-    int flag=0;
-    while (seg && flag==0)
+    int existeIngresoEnPractica=0;
+    if (arbol && existeIngresoEnPractica==0)
     {
-        if (seg->PxI.eliminado==0 && seg->PxI.nroPractica==PracticaId)
+        existeIngresoEnPractica=ExisteIngresoActivoEnPractica(arbol->izq, PracticaId);
+        NodoIngresos * ingresosPaciente=arbol->listaIngresos;
+        while (ingresosPaciente && existeIngresoEnPractica)
         {
-            flag=1;
+            NodoPxI * segPxi=ingresosPaciente->listaPxI;
+            while (segPxi && existeIngresoEnPractica==0)
+            {
+                if (segPxi->PxI.nroPractica==PracticaId && existeIngresoEnPractica==0)
+                {
+                    existeIngresoEnPractica=1;
+                }
+                segPxi=segPxi->siguiente;
+            }
+            ingresosPaciente=ingresosPaciente->siguiente;
         }
-        seg=seg->siguiente;
+        existeIngresoEnPractica=ExisteIngresoActivoEnPractica(arbol->der, PracticaId);
     }
-    return flag;
+    return existeIngresoEnPractica;
 }
 /*
 void actualizarArchivoPxI (NodoPxI * lista)
@@ -105,47 +115,6 @@ void verPracticasPorIngreso (NodoPxI * listaPxI, NodoPractica * listaPracticas, 
 }
 */
 
-///funcion para guardar las Practica por ingreso del paciente
-void guardarPracticasXIngresoDelPacienteEnArchivo (NodoIngresos * listaDeIngresosPaciente)
-{
-    FILE * buff=fopen(archivoPxi, "a+b"); ///a+b por si el archivo no existe asi se crea
-    if (buff)
-    {
-        fseek(buff, 0, SEEK_SET); ///al abrir el modo a+b el puntero del archivo se posiciona al final, lo vuelvo al principio para leer
-        PracticasXIngreso rg;
-        NodoIngresos * segIngreso=listaDeIngresosPaciente;
-        int registrosLeidos=0;
-        while (segIngreso) ///recorro la lista de ingresos para guardar las pxi en el archivo
-        {
-            while (fread(&rg, sizeof(PracticasXIngreso),1, buff)>0) ///recorro el archivo buscando el PxI
-            {
-                NodoPxI * PxIEncontrada=NULL; ///nodo auxiliar
-                registrosLeidos++; ///contador de posicion para retomar la ultima posicion por si tengo que ir al final del archivo y agregar
-                NodoPxI * segPxI=segIngreso->listaPxI;
-                while (segPxI) ///recorro la lista de practicas por ingreso
-                {
-                    if (segPxI->PxI.nroIngreso==rg.nroIngreso && segPxI->PxI.nroPractica==rg.nroPractica) ///si la practica existe en el archivo la actualizo
-                    {
-                        PxIEncontrada=segPxI;
-                        fseek(buff, -sizeof(PracticasXIngreso), SEEK_CUR); ///me paro en la posicion del archivo para actualizar
-                        fwrite(&segPxI->PxI, sizeof(PracticasXIngreso), 1, buff); ///grabo en el archivo
-                    }
-
-                    if (!PxIEncontrada) ///si no hay coincidencias agrego al final del archivo
-                    {
-                        fseek(buff, 0, SEEK_END);
-                        fwrite(&segPxI->PxI, sizeof(PracticasXIngreso), 1, buff);
-                        fseek(buff, registrosLeidos*sizeof(PracticasXIngreso), SEEK_SET); ///retorno a la posicion del ultimo registro leido
-                        PxIEncontrada=NULL;
-                    }
-                    segPxI=segPxI->siguiente;
-                }
-            }
-            segIngreso=segIngreso->siguiente;
-        }
-    }
-}
-
 void bajaPxICascada (NodoPxI * listaPxI, Ingreso ingresoActualizado)
 {
     if (listaPxI)
@@ -161,12 +130,26 @@ void bajaPxICascada (NodoPxI * listaPxI, Ingreso ingresoActualizado)
         }
     }
 }
-/*
-void verPracticasPorIngreso (NodoPxi * listaPxI, NodoIngresos * listaIngresos)
-{
 
+int existePxIEnIngreso (NodoPxI * listaPxI, NodoPxI * nuevo)
+{
+    int existe=0;
+    if (listaPxI)
+    {
+        NodoPxI * seg=listaPxI;
+        while (seg && existe==0)
+        {
+            if ((seg->PxI.nroIngreso && seg->PxI.nroIngreso)
+                && seg->PxI.nroPractica && seg->PxI.nroPractica)
+            {
+                existe=1;
+            }
+            seg=seg->siguiente;
+        }
+    }
+    return existe;
 }
-*/
+
 void AltaDePracticaPxI (NodoPxI * listaPxI, nodoArbolPaciente * paciente, NodoPractica * listaDePracticas)
 {
     mostrarListaIngresos(paciente->listaIngresos);
@@ -207,4 +190,32 @@ void guardarPxIEnArchivo (NodoPxI * PxIDeLosPacientes)
         }
         fclose(buff);
     }
+}
+
+NodoPxI * obtenerPxI (NodoIngresos * ingreso , int nroPractica)
+{
+    NodoPxI * pxi=NULL;
+    int encontrado=0;
+    if (ingreso)
+    {
+        if (!ingreso->listaPxI)
+        {
+            printf ("NULL \n");
+        }
+        NodoPxI * seg=ingreso->listaPxI;
+        while (seg)
+        {
+            if ((seg->PxI.nroPractica==nroPractica) && (seg->PxI.nroIngreso==ingreso->ingreso.NroIngreso))
+            {
+                encontrado=1;
+                pxi=seg;
+            }
+            seg=seg->siguiente;
+        }
+    }
+    if (encontrado==0)
+    {
+        printf ("No existe la practica por ingreso ingresada \n");
+    }
+    return pxi;
 }

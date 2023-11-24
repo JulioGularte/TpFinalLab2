@@ -104,34 +104,14 @@ void editarPractica (NodoPractica * lista, int idPractica, char nuevoNombre [])
         {
             printf ("No existe la practica con el Id ingresado");
         }
+        else if (nodoBuscado->practica.eliminado==1)
+        {
+            printf ("La practica esta eliminada \n");
+        }
         else
         {
             strcpy(nodoBuscado->practica.NombrePractica, nuevoNombre);
             printf("Practica editada correctamente! \n");
-            system("pause");
-            system("cls");
-        }
-    }
-}
-
-void BajaNodoPractica (int idPractica, NodoPractica * lista, NodoPxI * listaPxI)
-{
-    NodoPractica * nodoBuscado=encontrarNodoPracticaXId (lista, idPractica);
-    if (!nodoBuscado)
-    {
-        printf ("No existe la practica con el Id ingresado");
-    }
-    else
-    {
-        int flag=ExisteIngresoActivoEnPractica(listaPxI, idPractica);
-        if (flag==1)
-        {
-            printf ("No se puede eliminar la practica, dado que existen ingresos asociados a la misma \n");
-        }
-        else
-        {
-            nodoBuscado->practica.eliminado=1;
-            printf("Practica: %s eliminada \n", nodoBuscado->practica.NombrePractica);
             system("pause");
             system("cls");
         }
@@ -169,7 +149,7 @@ NodoPractica * altaDePractica (NodoPractica * lista, NodoPractica * nuevo)
     return lista;
 }
 
-void mostrarListaPracticas (NodoPractica * lista, int esAdmin)
+void mostrarListaPracticas (NodoPractica * lista, int esAdmin, int mostrarInactivas)
 {
     if (!lista)
     {
@@ -180,8 +160,11 @@ void mostrarListaPracticas (NodoPractica * lista, int esAdmin)
         NodoPractica * seg=lista;
         while (seg)
         {
+            if ((seg->practica.eliminado==1 && mostrarInactivas == 1) || seg->practica.eliminado==0)
+            {
             mostrarUnaPractica(seg->practica, esAdmin);
             printf ("=================================================== \n");
+            }
             seg=seg->siguiente;
         }
     }

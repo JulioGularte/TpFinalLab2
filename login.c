@@ -1018,7 +1018,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///ingresos
                 {
                     opcionInterna=menuIngresos();
-                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas, listaPxI); ///sirve para master y administrativo
+                    swicherIngresos(opcionInterna,perfil, arbol ,listaPracticas); ///sirve para master y administrativo
                 }
                 while(opcionInterna!=0);
             }
@@ -1027,7 +1027,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///practicas
                 {
                     opcionInterna=menuPracticas();
-                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, listaPxI);
+                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, arbol);
                 }
                 while(opcionInterna!=0);
             }
@@ -1075,7 +1075,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==4)
             {
-                mostrarListaPracticas(listaPracticas, 0);
+                mostrarListaPracticas(listaPracticas, 0, 0);
                 system("pause");
             }
             else if(opcion==5)
@@ -1382,7 +1382,7 @@ void swicherIngresos (int opcion,int perfil, nodoArbolPaciente * arbolPaciente, 
         break;
     }
 }
-void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracticas, NodoPxI ** listaPxI)  ///sirve para solo para master master
+void swicherPracticasMaster (int opcion, int perfil, NodoPractica * listaPracticas, nodoArbolPaciente * arbol)  ///sirve para solo para master master
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     switch(duplicado)
@@ -1390,7 +1390,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     case 1:
     {
         system("cls");
-        mostrarListaPracticas(listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1, 1);
         system("pause");
     }
     break;
@@ -1403,7 +1403,7 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
     }
     break;
     case 3:
-        mostrarListaPracticas(listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1, 0);
         printf("\n Ingrese el id de la practica a modificar:");
         int idEditar;
         scanf("%d",&idEditar);
@@ -1411,22 +1411,22 @@ void swicherPracticasMaster (int opcion, int perfil, NodoPractica ** listaPracti
         char nuevoNombre [30];
         fflush(stdin);
         gets(nuevoNombre);
-        editarPractica((listaPracticas), idEditar,nuevoNombre);
+        editarPractica(listaPracticas, idEditar,nuevoNombre);
         system("pause");
         break;
     case 4:
-        mostrarListaPracticas(listaPracticas, 1);
+        mostrarListaPracticas(listaPracticas, 1, 0);
         printf("\n Ingrese el id de la practica a eliminar:");
         int idEliminar;
         scanf("%d",&idEliminar);
-        BajaNodoPractica(idEliminar, listaPracticas, listaPxI);
+        BajaNodoPractica(idEliminar, listaPracticas, arbol);
         break;
     case 5:
         printf ("Ingrese la practica a buscar \n");
         char busqueda[30];
         gets(busqueda);
         NodoPractica * listaFiltrada=filtrarPracticasPorIniciales(listaPracticas, busqueda);
-        mostrarListaPracticas(listaFiltrada, 1);
+        mostrarListaPracticas(listaFiltrada, 1, 1);
         system("pause");
         break;
     default:
@@ -1437,47 +1437,116 @@ void swicherPracticasXIngresosMaster (int opcion, int perfil, NodoPractica * lis
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.
     NodoIngresos * ingresoBuscado=inicListaI();
-    int ingreso;
+    NodoPxI * nodoPxIBuscado=NULL;
+    int nroIngreso;
     switch(duplicado)
     {
     case 1:
         mostrarNodosIngresosTodosLosPacientes (pacientes);
         printf ("Ingrese el nroIngreso del cual quiera ver sus practicas: \n");
-        scanf ("%d",&ingreso);
-        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, ingreso);
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
         if (ingresoBuscado)
         {
-            mostrarPracticasXIngresos (ingresoBuscado, ingreso, listaPracticas);
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
         }
         system("pause");
         break;
     case 2:
-        ///modificar practicas
+        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        printf ("Ingrese el nroIngreso del cual modificar alguna de sus practicas: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            printf ("Ingrese el nro practica a modificar");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            nodoPxIBuscado=NULL;
+            nodoPxIBuscado=obtenerPxI(ingresoBuscado, nroPractica);
+            if (!nodoPxIBuscado)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                char nuevoResultado [40];
+                printf ("Ingrese nuevo resultado: \n");
+                fflush(stdin);
+                gets(nuevoResultado);
+                strcpy(nodoPxIBuscado->PxI.resultado, nuevoResultado);
+            }
+        }
+        system("pause");
         break;
     case 3:
-        ///baja practicas
-        break;
-    case 4:
-        /*
-        mostrarArbolPacientes(pacientes);
-        printf("Ingrese el DNI del paciente al cual desea dar de alta una practica \n el mismo debe estar en estado activo:");
-        scanf("%d",&dni);
-        buscado=buscarXDni(*pacientes, dni);
-        if (buscado && buscado->paciente.eliminado==0)
+        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        printf ("Ingrese el nroIngreso del cual desea de dar de baja la practica: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
         {
-            AltaDePracticaPxI (*listaPxI, buscado, *listaPracticas);
-        }
-        else
-        {
-            printf("El DNI %d no es valido para realizar un alta de practica \n");
+            mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            printf ("Ingrese el nro practica a eliminar: \n");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            nodoPxIBuscado=NULL;
+            nodoPxIBuscado=obtenerPxI(ingresoBuscado, nroPractica);
+            if (!nodoPxIBuscado)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                nodoPxIBuscado->PxI.eliminado=1;
+            }
             system("pause");
         }
         break;
-        */
+    case 4:
+        mostrarNodosIngresosTodosLosPacientes (pacientes);
+        printf ("Ingrese el nroIngreso del cual desea de dar de alta una practica: \n");
+        scanf ("%d",&nroIngreso);
+        ingresoBuscado=buscarNodoIngresoEnArbol (pacientes, ingresoBuscado, nroIngreso);
+        if (ingresoBuscado)
+        {
+            //mostrarPracticasXIngresos (ingresoBuscado, nroIngreso, listaPracticas);
+            mostrarListaPracticas(listaPracticas, 1, 0);
+            printf ("Ingrese el nro practica que desea dar de alta en el ingreso: \n");
+            int nroPractica;
+            scanf("%d",&nroPractica);
+            NodoPractica * practica=encontrarNodoPracticaXId(practica, nroPractica);
+            if (!practica)
+            {
+                printf ("No existe la practica ingresada \n");
+            }
+            else
+            {
+                PracticasXIngreso pxiNueva;
+                pxiNueva.eliminado==0;
+                pxiNueva.nroIngreso=nroIngreso;
+                pxiNueva.nroPractica=nroPractica;
+                printf ("Ingrese el resultado de la practica:");
+                char resultado[40];
+                gets(resultado);
+                strcpy(pxiNueva.resultado, resultado);
+                NodoPxI * nuevo=crearNodoPxI(pxiNueva);
+                int existe=existePxIEnIngreso(ingresoBuscado, nuevo);
+                if (existe==0)
+                {
+                    ingresoBuscado->listaPxI=agregarPrincipioPxI(ingresoBuscado->listaPxI, crearNodoPxI(pxiNueva));
+                }
+                else
+                {
+                    printf ("Ya existe una practica de %s en este ingreso, seleccione otra practica \n", practica->practica.NombrePractica);
+                }
+            }
         break;
     default:
         break;
     }
+}
 }
 void swicherPracticasXIngresosAdministrativo (int opcion,int perfil,char archivo[])  ///sirve para solo para ADMINISTRATIVO
 {
@@ -1536,6 +1605,7 @@ void swicherPracticasTecnicos(int opcion,int perfil,char archivo[])  ///sirve pa
         break;
     }
 }
+
 void swicherPracticasXIngresosTecnicos(int opcion,int perfil,char archivo[])  ///sirve para solo para tercnico
 {
     int duplicado=opcion; ///por alguna razon el switch no toma la variable opcion y es necesario duplicarla.

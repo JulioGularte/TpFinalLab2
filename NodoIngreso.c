@@ -266,6 +266,7 @@ void BajaDeIngresos (NodoIngresos * ingresosDelPaciente)
     while(seg)
     {
         seg->PxI.eliminado=1;
+        printf ("Eliminado: %d \n", seg->PxI.eliminado);
         seg=seg->siguiente;
     }
     printf ("Ingreso %d y sus practicas dadas de baja exitosamente \n", nroIngreso);
