@@ -1060,7 +1060,7 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
                 do ///pacientes
                 {
                     opcionInterna=menuPacientes();
-                    swicherPacientes(opcionInterna,perfil,archivo);
+                    swicherPacientes(opcionInterna,perfil,archivo,arbol);
                 }
                 while(opcionInterna!=0);
             }
@@ -1102,20 +1102,36 @@ void menu_opciones_gerarquia (int perfil,char archivo[]) ///swich para mostrar l
             }
             else if(opcion==2)
             {
-                ///ver pacientes funcion sola
+                mostrarArbolPacientes(arbol);
+                system("pause");
             }
             else if(opcion==3)
             {
-                opcionInterna=menuIngresosTecnicos();
-                swicherIngresosTecnicos(opcion,perfil, arbol, listaPracticas, listaPxI);
+                nodoArbolPaciente * buscado=NULL;
+                mostrarArbolPacientes(arbol);
+                printf("Ingrese el DNI del paciente del cual desea ver sus ingresos: ");
+                char * dni;
+                scanf("%d",&dni);
+                buscado=buscarXDni(arbol, dni);
+                if (buscado)
+                {
+                    mostrarListaIngresos(buscado->listaIngresos);
+                }
+                else
+                {
+                    printf("El DNI %d no es valido \n", dni);
+                    system("pause");
+                }
+                system("pause");
             }
             else if(opcion==4)
             {
                 do ///practicas
                 {
                     opcionInterna=menuPracticas();
-                    swicherPracticasMaster(opcionInterna,perfil, &listaPracticas, &listaPxI);
-                }while(opcionInterna!=0);
+                    swicherPracticasMaster(opcionInterna,perfil, listaPracticas, listaPxI);
+                }
+                while(opcionInterna!=0);
             }
             else if(opcion==5)
             {
